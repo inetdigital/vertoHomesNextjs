@@ -1,0 +1,162 @@
+{
+  "format": "page",
+  "id": "development",
+  "label": "Development",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": "E.G Nexa Fields"
+        }
+      },
+      "location_town": {
+        "type": "Text",
+        "config": {
+          "label": "Location Town",
+          "placeholder": "E.G Pinhoe"
+        }
+      },
+      "location_city": {
+        "type": "Text",
+        "config": {
+          "label": "Location City",
+          "placeholder": "E.G Exeter"
+        }
+      },
+      "location_postcode": {
+        "type": "Text",
+        "config": {
+          "label": "Location Postcode",
+          "placeholder": "E.G EX2 8PA"
+        }
+      },
+      "location_county": {
+        "type": "Link",
+        "config": {
+          "label": "Location County",
+          "select": "document",
+          "customtypes": ["taxonomy_location"]
+        }
+      },
+      "property_types": {
+        "type": "Text",
+        "config": {
+          "label": "Property Types",
+          "placeholder": ""
+        }
+      },
+      "what_three_words": {
+        "type": "Text",
+        "config": {
+          "label": "What3Words",
+          "placeholder": ""
+        }
+      },
+      "development_size": {
+        "type": "Text",
+        "config": {
+          "label": "Development Size",
+          "placeholder": ""
+        }
+      },
+      "development_status": {
+        "type": "Link",
+        "config": {
+          "label": "Development Status",
+          "select": "document",
+          "customtypes": ["taxonomy_status"]
+        }
+      },
+      "prices_from": {
+        "type": "Number",
+        "config": {
+          "label": "Prices From",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    },
+    "Images": {
+      "banner_image": {
+        "type": "Image",
+        "config": {
+          "label": "Banner Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "listing_images": {
+        "type": "Group",
+        "config": {
+          "label": "Listing Images",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "Downloads": {
+      "brochure": {
+        "type": "Link",
+        "config": {
+          "label": "Brochure",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      }
+    }
+  }
+}

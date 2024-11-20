@@ -1,0 +1,38 @@
+{
+  "id": "development_showcase",
+  "type": "SharedSlice",
+  "name": "DevelopmentShowcase",
+  "description": "DevelopmentShowcase",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "developments": {
+          "type": "Group",
+          "config": {
+            "label": "Developments",
+            "repeat": true,
+            "fields": {
+              "development": {
+                "type": "Link",
+                "config": {
+                  "label": "Development",
+                  "select": "document",
+                  "customtypes": [
+                    "development"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

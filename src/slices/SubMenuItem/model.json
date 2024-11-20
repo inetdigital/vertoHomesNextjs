@@ -1,0 +1,58 @@
+{
+  "id": "sub_menu_item",
+  "type": "SharedSlice",
+  "name": "SubMenuItem",
+  "description": "SubMenuItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "withDevelopmentReference",
+      "name": "With Development Reference",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "development": {
+          "type": "Link",
+          "config": {
+            "label": "Development",
+            "select": "document",
+            "customtypes": [
+              "development"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

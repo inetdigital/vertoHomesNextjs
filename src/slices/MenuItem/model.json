@@ -1,0 +1,101 @@
+{
+  "id": "menu_item",
+  "type": "SharedSlice",
+  "name": "MenuItem",
+  "description": "MenuItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "menuItemWithSubMenu",
+      "name": "Menu Item With SubMenu",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
+        },
+        "standard_sub_menu": {
+          "type": "Link",
+          "config": {
+            "label": "Standard Sub Menu",
+            "select": "document",
+            "customtypes": [
+              "sub_menu"
+            ]
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "withMultipleSubMenus",
+      "name": "With multiple Sub Menus",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
+        },
+        "sub_menus_group": {
+          "type": "Group",
+          "config": {
+            "label": "Sub Menus Group",
+            "repeat": true,
+            "fields": {
+              "sub_menu_item_in_group": {
+                "type": "Link",
+                "config": {
+                  "label": "Sub menu item in group",
+                  "select": "document",
+                  "customtypes": [
+                    "sub_menu"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

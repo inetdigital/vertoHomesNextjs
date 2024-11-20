@@ -1,0 +1,24 @@
+{
+  "format": "custom",
+  "id": "taxonomy_status",
+  "label": "[Taxonomy] - Status",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": "E.G. Available"
+        }
+      }
+    }
+  }
+}

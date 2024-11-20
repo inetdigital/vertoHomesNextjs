@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .headroom-wrapper {
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Equivalent to shadow-sm */
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading;
+    }
+          body {
+            @apply text-base;
+            font-family: "motiva-sans", sans-serif;
+          }
+    
+          h1 {
+              @apply text-h1 font-semibold;
+          }
+    
+          h2 {
+              @apply text-h2 font-semibold;
+          }
+    
+          h3 {
+              @apply text-h3 font-medium;
+          }
+    
+          h4 {
+              @apply text-h4;
+          }
+    
+          p {
+            @apply text-paragraph font-light;
+            font-family: "motiva-sans", sans-serif;
+          }
+        .o {
+            justify-content: center;
+            display: inline-flex;
+            width: auto;
+            letter-spacing: normal;
+            align-items: center;
+            flex-direction: column;
+            line-height: 1;
+            top: -2px;
+            transform: translateY(-15px);
+        }
+    
+        .live-zero-line {
+            width: 40%;
+            background: white;
+            height: 4px;
+            margin-top: 3px;
+        }
+}
