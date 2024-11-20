@@ -7,8 +7,8 @@ export const SingleSubMenu = ({ navItems, openSubMenuIndex }) => {
     <div className="pt-24 pb-32 w-full">
       <h3>
         {
-          navItems[openSubMenuIndex].primary.standard_sub_menu.data
-            .sub_menu_header
+          navItems[openSubMenuIndex]?.primary?.standard_sub_menu?.data
+            ?.sub_menu_header
         }
       </h3>
       <hr className="border-t border-gray-300 my-8" />

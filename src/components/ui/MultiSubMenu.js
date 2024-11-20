@@ -48,7 +48,7 @@ export const MultiSubMenu = ({ navItems, openSubMenuIndex }) => {
                     </span>
                   )}
 
-                  {item.sub_menu_item_in_group.data.sub_menu_header}
+                  {item?.sub_menu_item_in_group?.data?.sub_menu_header}
                 </h3>
                 <hr className="border-t border-gray-300 my-8" />
                 <div className="grid grid-cols-2 gap-4">

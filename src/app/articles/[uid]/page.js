@@ -18,7 +18,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 function LatestArticle({ article }) {
   const date = prismic.asDate(
-    article.data.publishDate || article.first_publication_date,
+    article.data.publishDate || article.first_publication_date
   );
 
   return (
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${prismic.asText(article.data.title)} | ${prismic.asText(
-      settings.data.name,
+      settings.data.name
     )}`,
     description: article.data.meta_description,
     openGraph: {
@@ -61,9 +61,7 @@ export default async function Page({ params }) {
   const { uid } = await params;
   const client = createClient();
 
-  const article = await client
-    .getByUID("article", uid)
-    .catch(() => notFound());
+  const article = await client.getByUID("article", uid).catch(() => notFound());
   const latestArticles = await client.getAllByType("article", {
     limit: 3,
     orderings: [
@@ -71,11 +69,79 @@ export default async function Page({ params }) {
       { field: "document.first_publication_date", direction: "desc" },
     ],
   });
-  const navigation = await client.getSingle("navigation");
+  const navigation = await client.getSingle("navigation", {
+    graphQuery: `
+    {
+      navigation {
+        ...navigationFields
+        slices {
+          ...on menu_item {
+            variation {
+              ...on default {
+                primary {
+                  ...primaryFields
+                }
+              }
+              ...on menuItemWithSubMenu {
+                primary {
+                  link_label
+                  standard_sub_menu {
+                    ...standard_sub_menuFields
+                    slices {
+                      ...on sub_menu_item {
+                        variation {
+                          ...on default {
+                            primary {
+                              ...primaryFields
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ...on withMultipleSubMenus {
+                primary {
+                  link_label
+                  sub_menus_group {
+                    sub_menu_item_in_group {
+                      ...sub_menu_item_in_groupFields
+                      slices {
+                      ...on sub_menu_item {
+                        variation {
+                          ...on withDevelopmentReference {
+                            primary {
+                              ...primaryFields
+                              development {
+                                ...on development {
+                                  name
+                                  uid
+                                  banner_image
+                                  location_town
+                                  location_city
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `,
+  });
   const settings = await client.getSingle("settings");
 
   const date = prismic.asDate(
-    article.data.publishDate || article.first_publication_date,
+    article.data.publishDate || article.first_publication_date
   );
 
   return (
