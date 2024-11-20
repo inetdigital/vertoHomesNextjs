@@ -7,15 +7,16 @@ import { PrismicNextImage } from "@prismicio/next";
 const DevelopmentShowcase = ({ slice }) => {
   return (
     <section>
-      {slice.primary?.developments.map((item, index) => {
-        return <DevelopmentListing key={index} data={item.development.data} />;
-      })}
+      {slice.primary?.developments.map((item, index) => (
+        <DevelopmentListing key={index} data={item.development.data} />
+      ))}
     </section>
   );
 };
 
 const DevelopmentListing = ({ data }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0); // Track window width
   const images = data?.listing_images || [];
 
   const handleSwipe = (direction) => {
@@ -26,13 +27,19 @@ const DevelopmentListing = ({ data }) => {
     }
   };
 
+  // Set up event listener for resize and update windowWidth
   useEffect(() => {
-    const handleResize = () => {
-      setCurrentIndex(0); // Reset slider on resize
-    };
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize(); // Initialize on mount
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Reset slider position on resize
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [windowWidth]);
 
   return (
     <div className="relative w-full h-dvh overflow-hidden">
@@ -60,18 +67,17 @@ const DevelopmentListing = ({ data }) => {
       </div>
 
       {/* Slider Container */}
-      {images?.length > 0 && (
+      {images.length > 0 && (
         <motion.div
           className="absolute inset-0 flex"
-          animate={{ x: -currentIndex * window.innerWidth }}
+          animate={{ x: -currentIndex * windowWidth }}
           transition={{
-            duration: 1, // Total duration for the animation
-            ease: [0.42, 0, 0.58, 1], // Ease for a slow start, fast end (Cubic Bezier)
-            type: "tween", // Change to "tween" for smoother control over duration
+            duration: 1,
+            ease: [0.42, 0, 0.58, 1],
           }}
           drag="x"
           dragConstraints={{
-            left: -window.innerWidth * (images.length - 1),
+            left: -windowWidth * (images.length - 1),
             right: 0,
           }}
           dragElastic={1}
@@ -155,10 +161,7 @@ const DevelopmentListing = ({ data }) => {
             {images.map((_, index) => (
               <div
                 key={index}
-                onClick={() => {
-                  console.log(`Dot clicked: ${index}`);
-                  setCurrentIndex(index);
-                }}
+                onClick={() => setCurrentIndex(index)}
                 className={`h-3 rounded-full transition-all duration-1000 ${
                   index === currentIndex
                     ? "bg-white w-12" // Active dot is wider
