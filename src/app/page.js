@@ -5,8 +5,9 @@ import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 
 import { Layout } from "@/components/Layout";
-
 import HomePageBanner from "@/components/HomePageBanner";
+
+import { fetchNavigation } from "@/lib/fetchNavigation";
 
 export async function generateMetadata() {
   const client = createClient();
@@ -21,75 +22,7 @@ export default async function Index() {
   const client = createClient();
 
   const settings = await client.getSingle("settings");
-  const navigation = await client.getSingle("navigation", {
-    graphQuery: `
-    {
-      navigation {
-        ...navigationFields
-        slices {
-          ...on menu_item {
-            variation {
-              ...on default {
-                primary {
-                  ...primaryFields
-                }
-              }
-              ...on menuItemWithSubMenu {
-                primary {
-                  link_label
-                  standard_sub_menu {
-                    ...standard_sub_menuFields
-                    slices {
-                      ...on sub_menu_item {
-                        variation {
-                          ...on default {
-                            primary {
-                              ...primaryFields
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              ...on withMultipleSubMenus {
-                primary {
-                  link_label
-                  sub_menus_group {
-                    sub_menu_item_in_group {
-                      ...sub_menu_item_in_groupFields
-                      slices {
-                      ...on sub_menu_item {
-                        variation {
-                          ...on withDevelopmentReference {
-                            primary {
-                              ...primaryFields
-                              development {
-                                ...on development {
-                                  name
-                                  uid
-                                  banner_image
-                                  location_town
-                                  location_city
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `,
-  });
+  const navigation = await fetchNavigation(client);
 
   // Fetch home page content
   const homePage = await client.getSingle("home_page", {

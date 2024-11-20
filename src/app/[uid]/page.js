@@ -6,6 +6,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 
+import { fetchNavigation } from "@/lib/fetchNavigation";
+
 export async function generateMetadata({ params }) {
   const { uid } = await params;
   const client = createClient();
@@ -33,75 +35,7 @@ export default async function Page({ params }) {
   const client = createClient();
 
   const page = await client.getByUID("page", uid).catch(() => notFound());
-  const navigation = await client.getSingle("navigation", {
-    graphQuery: `
-    {
-      navigation {
-        ...navigationFields
-        slices {
-          ...on menu_item {
-            variation {
-              ...on default {
-                primary {
-                  ...primaryFields
-                }
-              }
-              ...on menuItemWithSubMenu {
-                primary {
-                  link_label
-                  standard_sub_menu {
-                    ...standard_sub_menuFields
-                    slices {
-                      ...on sub_menu_item {
-                        variation {
-                          ...on default {
-                            primary {
-                              ...primaryFields
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              ...on withMultipleSubMenus {
-                primary {
-                  link_label
-                  sub_menus_group {
-                    sub_menu_item_in_group {
-                      ...sub_menu_item_in_groupFields
-                      slices {
-                      ...on sub_menu_item {
-                        variation {
-                          ...on withDevelopmentReference {
-                            primary {
-                              ...primaryFields
-                              development {
-                                ...on development {
-                                  name
-                                  uid
-                                  banner_image
-                                  location_town
-                                  location_city
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `,
-  });
+  const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
 
   return (
