@@ -12,7 +12,6 @@ import DefaultButton from "@/components/ui/DefaultButton";
 
 export const Header = ({ navigation, settings }) => {
   const navItems = navigation.data.slices;
-  console.log(navItems);
   const [subMenuOpenStatus, setSubMenuOpenStatus] = useState(false);
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState(0);
   const [hoverDelayTimer, setHoverDelayTimer] = useState(null);
@@ -82,6 +81,7 @@ export const Header = ({ navigation, settings }) => {
                   alt="Verto Homes"
                   width={150}
                   height={50}
+                  priority
                 />
               </Link>
             </div>

@@ -7,7 +7,7 @@ export const Footer = ({ navigation }) => {
   return (
     <div className="border-t-4 border-vertoBlue">
       <Bounded as="footer" size="widest">
-        <div className="grid grid-cols-2 gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div className="flex items-center">
             <div>
               <span className="live-zero-logo text-vertoBlue tracking-logo flex text-6xl">
@@ -18,7 +18,7 @@ export const Footer = ({ navigation }) => {
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {navigation.data.slices1.map((item, index) => {
               return (
                 <div key={index}>
@@ -29,7 +29,7 @@ export const Footer = ({ navigation }) => {
                     <ul>
                       {item.primary.links.map((item, index) => {
                         return (
-                          <li key={index} className="mb-6">
+                          <li key={index} className="mb-2 sm:mb-6">
                             <PrismicNextLink
                               field={item.link}
                               className="font-sans text-base font-extralight text-vertoBlack"
@@ -41,13 +41,13 @@ export const Footer = ({ navigation }) => {
                   )}
                   {item.variation === "contactDetails" && (
                     <ul>
-                      <li className="mb-6">
+                      <li className="mb-2 sm:mb-6">
                         <PrismicNextLink
                           field={item.primary.link}
                           className="font-sans text-base font-extralight text-vertoBlack"
                         />
                       </li>
-                      <li className="mb-6">
+                      <li className="mb-2 sm:mb-6">
                         <a
                           href={`tel:0${item.primary.telephone}`}
                           className="font-sans text-base font-extralight text-vertoBlack"

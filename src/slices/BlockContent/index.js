@@ -257,7 +257,7 @@ const Testimonial = ({ slice }) => {
                     field={item.content}
                     components={{
                       paragraph: ({ children }) => (
-                        <p className="text-white leading-10 relative">
+                        <p className="text-white lg:leading-10 relative text-base lg:text-2xl">
                           {children}
                         </p>
                       ),
@@ -265,7 +265,7 @@ const Testimonial = ({ slice }) => {
                   />
                   {item.author && (
                     <div className="mt-10">
-                      <p className="text-white font-semibold text-base">
+                      <p className="text-white font-semibold text-sm lg:text-base">
                         {item.author}
                       </p>
                     </div>

@@ -70,6 +70,8 @@ export default async function Index() {
                                   name
                                   uid
                                   banner_image
+                                  location_town
+                                  location_city
                                 }
                               }
                             }

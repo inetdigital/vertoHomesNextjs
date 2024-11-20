@@ -45,7 +45,7 @@ const DevelopmentListing = ({ data }) => {
     <div className="relative w-full h-dvh overflow-hidden">
       {/* Overlay Title */}
       <div
-        className="absolute top-20 left-1/2 transform -translate-x-1/2"
+        className="absolute top-20 left-1/2 transform -translate-x-1/2 w-9/12 lg:w-max"
         style={{ zIndex: 2 }}
       >
         {data?.name && (
@@ -103,7 +103,6 @@ const DevelopmentListing = ({ data }) => {
             >
               <PrismicNextImage
                 field={img.image}
-                alt={img.image?.alt || ""}
                 className="w-full h-full object-cover"
               />
             </div>

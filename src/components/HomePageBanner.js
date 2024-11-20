@@ -98,7 +98,24 @@ export default function HomePageBanner({ banners }) {
               ease: "easeInOut",
             }}
           >
-            <PrismicRichText field={banners[currentIndex].banner_content} />
+            <PrismicRichText
+              field={banners[currentIndex].banner_content}
+              components={{
+                label: ({ children, node }) => {
+                  if (node.data.label === "live-zero-title") {
+                    return (
+                      <span className="live-zero-logo text-white tracking-logo flex justify-center">
+                        LIVE ZER
+                        <span className="o text-white">
+                          O<div className="live-zero-line text-white"> </div>
+                        </span>
+                      </span>
+                    );
+                  }
+                  return <span>{children}</span>;
+                },
+              }}
+            />
           </motion.div>
         </motion.div>
       </AnimatePresence>
