@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
-export default function HomePageBanner({ banners }) {
+export default function HomePageBanner({ singleHomePage, banners }) {
   const [isBrowser, setIsBrowser] = useState(false); // Track if the app is in the browser
   const [currentIndex, setCurrentIndex] = useState(0); // State for current banner index
   const { scrollY } = useScroll();
@@ -44,7 +44,43 @@ export default function HomePageBanner({ banners }) {
 
   if (!isBrowser) {
     // Return a fallback or placeholder until the app detects the browser
-    return <div className="h-screen w-full bg-gray-200"></div>;
+    return (
+      <div className="relative w-full h-screen overflow-hidden">
+        <Image
+          src={singleHomePage.data.home_page_banner_images[0].image.url}
+          alt={
+            singleHomePage.data.home_page_banner_images[0].image.alt ||
+            "Verto Homes"
+          }
+          width={100}
+          height={100}
+          quality={1}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 bg-black bg-opacity-50">
+          <PrismicRichText
+            field={
+              singleHomePage.data.home_page_banner_images[0].banner_content
+            }
+            components={{
+              label: ({ children, node }) => {
+                if (node.data.label === "live-zero-title") {
+                  return (
+                    <span className="live-zero-logo text-white tracking-logo flex justify-center">
+                      LIVE ZER
+                      <span className="o text-white">
+                        O<div className="live-zero-line text-white"> </div>
+                      </span>
+                    </span>
+                  );
+                }
+                return <span>{children}</span>;
+              },
+            }}
+          />
+        </div>
+      </div>
+    );
   }
 
   return (

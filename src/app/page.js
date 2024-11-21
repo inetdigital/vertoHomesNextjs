@@ -48,26 +48,11 @@ export default async function Index() {
 
   return (
     <Layout navigation={navigation} settings={settings}>
-      {/* Static fallback content for SEO */}
-      <div className="absolute w-full h-screen overflow-hidden invisible">
-        <Image
-          src={homePage.data.home_page_banner_images[0].image.url}
-          alt={
-            homePage.data.home_page_banner_images[0].image.alt || "Verto Homes"
-          }
-          width={100}
-          height={100}
-          quality={1}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 flex items-center justify-center text-center text-white p-4 bg-black bg-opacity-50">
-          <PrismicRichText
-            field={homePage.data.home_page_banner_images[0].banner_content}
-          />
-        </div>
-      </div>
       {/* Animated client-rendered banner for users */}
-      <HomePageBanner banners={homePage.data.home_page_banner_images} />
+      <HomePageBanner
+        singleHomePage={homePage}
+        banners={homePage.data.home_page_banner_images}
+      />
       <SliceZone
         slices={enhancedSlices}
         components={{
