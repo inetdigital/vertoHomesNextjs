@@ -576,6 +576,331 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type PropertyDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Property documents
+ */
+interface PropertyDocumentData {
+  /**
+   * Development field in *Property*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.development
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  development: prismic.ContentRelationshipField<"development">;
+
+  /**
+   * Title field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Bedrooms field in *Property*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.bedrooms
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  bedrooms: prismic.ContentRelationshipField<"taxonomy_number_of_bedrooms">;
+
+  /**
+   * Type field in *Property*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.type
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  type: prismic.ContentRelationshipField<"taxonomy_house_type">;
+
+  /**
+   * Status field in *Property*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.status
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  status: prismic.ContentRelationshipField<"taxonomy_status">;
+
+  /**
+   * Bathrooms field in *Property*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.bathrooms
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bathrooms: prismic.SelectField<"1" | "2" | "3" | "4" | "5">;
+
+  /**
+   * Zero Bills field in *Property*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: property.zero_bills
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  zero_bills: prismic.BooleanField;
+
+  /**
+   * Price field in *Property*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.price
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price: prismic.NumberField;
+
+  /**
+   * Square Metres field in *Property*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.square_metres
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  square_metres: prismic.NumberField;
+
+  /**
+   * Slice Zone field in *Property*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PropertyDocumentDataSlicesSlice> /**
+   * Meta Title field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: property.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: property.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Property*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never> /**
+   * Featured Image field in *Property*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.featured_image
+   * - **Tab**: Images
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */;
+  featured_image: prismic.ImageField<never> /**
+   * Map Location field in *Property*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.map_location
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */;
+  map_location: prismic.GeoPointField;
+
+  /**
+   * Address Line 1 field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.address_line_1
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address_line_1: prismic.KeyTextField;
+
+  /**
+   * Address Line 2 field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.address_line_2
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address_line_2: prismic.KeyTextField;
+
+  /**
+   * Town field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.town
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  town: prismic.KeyTextField;
+
+  /**
+   * Postcode field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.postcode
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  postcode: prismic.KeyTextField;
+
+  /**
+   * Location Filter field in *Property*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.location_filter
+   * - **Tab**: Location
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  location_filter: prismic.ContentRelationshipField<"taxonomy_location">;
+}
+
+/**
+ * Property document from Prismic
+ *
+ * - **API ID**: `property`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PropertyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PropertyDocumentData>,
+    "property",
+    Lang
+  >;
+
+type SearchDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Search documents
+ */
+interface SearchDocumentData {
+  /**
+   * Title Lead field in *Search*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: search.title_lead
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *Search*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: search.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Search*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: search.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<SearchDocumentDataSlicesSlice> /**
+   * Meta Title field in *Search*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: search.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Search*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: search.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Search*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: search.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Search document from Prismic
+ *
+ * - **API ID**: `search`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SearchDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SearchDocumentData>,
+    "search",
+    Lang
+  >;
+
 /**
  * Content for Settings documents
  */
@@ -698,6 +1023,38 @@ export type SubMenuDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for [Taxonomy] - House Type documents
+ */
+interface TaxonomyHouseTypeDocumentData {
+  /**
+   * Name field in *[Taxonomy] - House Type*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: E.G Detached
+   * - **API ID Path**: taxonomy_house_type.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * [Taxonomy] - House Type document from Prismic
+ *
+ * - **API ID**: `taxonomy_house_type`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TaxonomyHouseTypeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TaxonomyHouseTypeDocumentData>,
+    "taxonomy_house_type",
+    Lang
+  >;
+
+/**
  * Content for [Taxonomy] - Location documents
  */
 interface TaxonomyLocationDocumentData {
@@ -726,6 +1083,81 @@ export type TaxonomyLocationDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<TaxonomyLocationDocumentData>,
     "taxonomy_location",
+    Lang
+  >;
+
+/**
+ * Content for [Taxonomy] - Number of Bedrooms documents
+ */
+interface TaxonomyNumberOfBedroomsDocumentData {
+  /**
+   * Number of Bedrooms field in *[Taxonomy] - Number of Bedrooms*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: taxonomy_number_of_bedrooms.number_of_bedrooms
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  number_of_bedrooms: prismic.NumberField;
+}
+
+/**
+ * [Taxonomy] - Number of Bedrooms document from Prismic
+ *
+ * - **API ID**: `taxonomy_number_of_bedrooms`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TaxonomyNumberOfBedroomsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TaxonomyNumberOfBedroomsDocumentData>,
+    "taxonomy_number_of_bedrooms",
+    Lang
+  >;
+
+/**
+ * Content for [Taxonomy] - Price Range documents
+ */
+interface TaxonomyPriceRangeDocumentData {
+  /**
+   * Price From field in *[Taxonomy] - Price Range*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: taxonomy_price_range.price_from
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price_from: prismic.NumberField;
+
+  /**
+   * Price To field in *[Taxonomy] - Price Range*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: taxonomy_price_range.price_to
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price_to: prismic.NumberField;
+}
+
+/**
+ * [Taxonomy] - Price Range document from Prismic
+ *
+ * - **API ID**: `taxonomy_price_range`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TaxonomyPriceRangeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TaxonomyPriceRangeDocumentData>,
+    "taxonomy_price_range",
     Lang
   >;
 
@@ -767,9 +1199,14 @@ export type AllDocumentTypes =
   | HomePageDocument
   | NavigationDocument
   | PageDocument
+  | PropertyDocument
+  | SearchDocument
   | SettingsDocument
   | SubMenuDocument
+  | TaxonomyHouseTypeDocument
   | TaxonomyLocationDocument
+  | TaxonomyNumberOfBedroomsDocument
+  | TaxonomyPriceRangeDocument
   | TaxonomyStatusDocument;
 
 /**
@@ -931,7 +1368,7 @@ export interface BlockContentSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
 }
@@ -995,7 +1432,7 @@ export interface BlockContentSliceTestimonialPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
 }
@@ -1059,7 +1496,7 @@ export interface BlockContentSliceExplorePrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "VertoGreen",
     "filled"
   >;
 }
@@ -1121,7 +1558,7 @@ export interface BlockContentSliceWithImageLeadPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
 }
@@ -1175,7 +1612,7 @@ export interface BlockContentSliceContentListPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
 }
@@ -1227,7 +1664,7 @@ export interface BlockContentSliceWithRegisterInterestFormPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   background_color: prismic.SelectField<
-    "VertoBlue" | "VertoGrey" | "White",
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
 }
@@ -2170,13 +2607,25 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PropertyDocument,
+      PropertyDocumentData,
+      PropertyDocumentDataSlicesSlice,
+      SearchDocument,
+      SearchDocumentData,
+      SearchDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SubMenuDocument,
       SubMenuDocumentData,
       SubMenuDocumentDataSlicesSlice,
+      TaxonomyHouseTypeDocument,
+      TaxonomyHouseTypeDocumentData,
       TaxonomyLocationDocument,
       TaxonomyLocationDocumentData,
+      TaxonomyNumberOfBedroomsDocument,
+      TaxonomyNumberOfBedroomsDocumentData,
+      TaxonomyPriceRangeDocument,
+      TaxonomyPriceRangeDocumentData,
       TaxonomyStatusDocument,
       TaxonomyStatusDocumentData,
       AllDocumentTypes,

@@ -22,6 +22,11 @@ const routes = [
     type: "page",
     path: "/:uid",
   },
+  {
+    type: "search",
+    uid: "search",
+    path: "/find-your-new-home",
+  },
 ];
 
 /**

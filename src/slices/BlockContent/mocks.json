@@ -80,7 +80,7 @@
 			},
 			"background_color": {
 				"__TYPE__": "FieldContent",
-				"value": "White",
+				"value": "VertoBlue",
 				"type": "Select"
 			}
 		},
@@ -321,7 +321,7 @@
 			},
 			"background_color": {
 				"__TYPE__": "FieldContent",
-				"value": "VertoBlue",
+				"value": "VertoGrey",
 				"type": "Select"
 			},
 			"title_content": {
@@ -365,7 +365,7 @@
 			},
 			"background_color": {
 				"__TYPE__": "FieldContent",
-				"value": "White",
+				"value": "VertoBlue",
 				"type": "Select"
 			}
 		},

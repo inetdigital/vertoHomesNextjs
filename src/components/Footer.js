@@ -5,15 +5,15 @@ import { FormatUKPhoneNumber } from "@/lib/formatUKPhoneNumber";
 
 export const Footer = ({ navigation }) => {
   return (
-    <div className="border-t-4 border-vertoBlue">
+    <div className="border-t-4 border-vertoDarkBlue">
       <Bounded as="footer" size="widest">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div className="flex items-center">
             <div>
-              <span className="live-zero-logo text-vertoBlue tracking-logo flex text-6xl">
+              <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex text-6xl">
                 LIVE ZER
-                <span className="o text-vertoBlue">
-                  O<div className="bg-vertoBlue h-1 w-6/12 mx-auto"> </div>
+                <span className="o text-vertoDarkBlue">
+                  O<div className="bg-vertoDarkBlue h-1 w-6/12 mx-auto"> </div>
                 </span>
               </span>
             </div>
@@ -22,7 +22,7 @@ export const Footer = ({ navigation }) => {
             {navigation.data.slices1.map((item, index) => {
               return (
                 <div key={index}>
-                  <p className="text-vertoBlue font-normal mb-4">
+                  <p className="text-vertoDarkBlue font-normal mb-4">
                     {item.primary.title}
                   </p>
                   {item.variation === "default" && (
@@ -77,7 +77,7 @@ export const Footer = ({ navigation }) => {
         as="section"
         size="widest"
         paddingAs="copyright"
-        className="bg-vertoBlue"
+        className="bg-vertoDarkBlue"
       >
         <div className="grid grid-cols-2 gap-24">
           <div />

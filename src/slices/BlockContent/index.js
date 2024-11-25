@@ -15,6 +15,7 @@ const BlockContent = ({ slice, isConsecutive }) => {
       VertoBlue: "bg-vertoDarkBlue",
       VertoGrey: "bg-vertoLightGrey",
       White: "bg-white",
+      VertoGreen: "bg-vertoDarkGreen",
     }[slice.primary.background_color] || "bg-vertoDarkBlue"; // Fallback if undefined
   return (
     <Bounded
@@ -30,10 +31,7 @@ const BlockContent = ({ slice, isConsecutive }) => {
         {slice.variation === "contentList" && <ContentList slice={slice} />}
         {slice.variation === "testimonial" && <Testimonial slice={slice} />}
         {slice.variation === "withRegisterInterestForm" && (
-          <WithRegistrationForm
-            slice={slice}
-            themeColor={slice.primary.background_color}
-          />
+          <WithRegistrationForm slice={slice} />
         )}
       </div>
     </Bounded>
@@ -41,10 +39,27 @@ const BlockContent = ({ slice, isConsecutive }) => {
 };
 
 const SearchVariant = ({ slice }) => {
+  const textColorClass =
+    {
+      VertoBlue: "text-vertoLightBlue",
+      VertoGrey: "text-vertoDarkBlue",
+      White: "text-vertoDarkBlue",
+      VertoGreen: "text-vertoLightGreen",
+    }[slice.primary.background_color] || "text-vertoDarkBlue"; // Fallback if undefined
+  const bgColorClass =
+    {
+      VertoBlue: "bg-vertoLightBlue",
+      VertoGrey: "bg-vertoDarkBlue",
+      White: "bg-vertoDarkBlue",
+      VertoGreen: "bg-vertoLightGreen",
+    }[slice.primary.background_color] || "bg-vertoDarkBlue"; // Fallback if undefined
+
   return (
     <>
       {slice.primary.title_lead && (
-        <p className="uppercase text-vertoLightBlue tracking-wide font-medium text-xl">
+        <p
+          className={`${textColorClass} uppercase tracking-wide font-medium text-xl`}
+        >
           {slice.primary.title_lead}
         </p>
       )}
@@ -54,7 +69,7 @@ const SearchVariant = ({ slice }) => {
           <h2 className="uppercase text-white tracking-widest">
             {slice.primary.title}
           </h2>
-          <div className="bg-vertoLightBlue w-[100px] h-[2px] mx-auto my-16" />
+          <div className={`${bgColorClass} w-[100px] h-[2px] mx-auto my-16`} />
         </>
       )}
       {slice.primary.content && (
@@ -115,10 +130,13 @@ const ContentList = ({ slice }) => {
               label: ({ children, node }) => {
                 if (node.data.label === "live-zero-title") {
                   return (
-                    <span className="live-zero-logo text-vertoBlue tracking-logo flex justify-center">
+                    <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex justify-center">
                       LIVE ZER
-                      <span className="o text-vertoBlue">
-                        O<div className="live-zero-line text-vertoBlue"> </div>
+                      <span className="o text-vertoDarkBlue">
+                        O
+                        <div className="live-zero-line text-vertoDarkBlue">
+                          {" "}
+                        </div>
                       </span>
                     </span>
                   );
@@ -188,12 +206,29 @@ const Testimonial = ({ slice }) => {
     }
   };
 
+  const textColorClass =
+    {
+      VertoBlue: "text-vertoLightBlue",
+      VertoGrey: "text-vertoDarkBlue",
+      White: "text-vertoDarkBlue",
+      VertoGreen: "text-vertoLightGreen",
+    }[slice.primary.background_color] || "text-vertoDarkBlue"; // Fallback if undefined
+  const bgColorClass =
+    {
+      VertoBlue: "bg-vertoLightBlue",
+      VertoGrey: "bg-vertoDarkBlue",
+      White: "bg-vertoDarkBlue",
+      VertoGreen: "bg-vertoLightGreen",
+    }[slice.primary.background_color] || "bg-vertoDarkBlue"; // Fallback if undefined
+
   return (
     <div className="max-w-6xl mx-auto">
       {/* Title Section */}
       <div>
         {slice.primary.title_lead && (
-          <p className="uppercase text-vertoLightBlue tracking-wide font-medium text-xl">
+          <p
+            className={`${textColorClass} uppercase tracking-wide font-medium text-xl`}
+          >
             {slice.primary.title_lead}
           </p>
         )}
@@ -301,16 +336,16 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
   const BtnColorClasses =
     {
       VertoBlue:
-        "border-black text-vertoBlack hover:bg-vertoBlack hover:text-white",
+        "border-vertoDarkBlue text-vertoBlack hover:bg-vertoDarkBlue hover:text-white",
       White:
-        "text-white bg-vertoBlack hover:bg-vertoLightBlue hover:text-white",
+        "text-white bg-vertoDarkBlue hover:bg-vertoLightBlue hover:text-white",
     }[themeColor] ||
-    "border-black text-vertoBlack hover:bg-vertoBlack hover:text-white"; // Fallback if undefined
+    "border-vertoDarkBlue text-vertoDarkBlue hover:bg-vertoDarkBlue hover:text-white"; // Fallback if undefined
   return (
     <div className="text-left max-w-7xl mx-auto">
       {slice.primary.title && (
         <>
-          <p className="uppercase text-vertoBlue tracking-widest font-heading font-semibold text-3xl">
+          <p className="uppercase text-vertoDarkBlue tracking-widest font-heading font-semibold text-3xl">
             {slice.primary.title}
           </p>
           <div className="bg-vertoLightBlue w-[100px] h-[4px] mr-auto my-10" />
@@ -322,7 +357,7 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             field={slice.primary.content}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-vertoBlue text-xl">{children}</p>
+                <p className="text-vertoDarkBlue text-xl">{children}</p>
               ),
             }}
           />

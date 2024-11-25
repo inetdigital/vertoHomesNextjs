@@ -5,6 +5,9 @@ import { Montserrat } from "next/font/google";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 
+import { SearchTabProvider } from "@/context/SearchTabContext";
+import { SearchOptionsProvider } from "@/context/SearchOptions";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // Include any weights you need
@@ -19,10 +22,14 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://use.typekit.net/xno3cen.css" />
       </head>
       <body className="overflow-x-hidden antialiased">
-        <main>
-          {children}
-          <PrismicPreview repositoryName={repositoryName} />
-        </main>
+        <SearchTabProvider>
+          <SearchOptionsProvider>
+            <main>
+              {children}
+              <PrismicPreview repositoryName={repositoryName} />
+            </main>
+          </SearchOptionsProvider>
+        </SearchTabProvider>
       </body>
     </html>
   );

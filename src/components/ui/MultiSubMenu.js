@@ -1,7 +1,6 @@
 import { PrismicNextLink } from "@prismicio/next";
 
 export const MultiSubMenu = ({ navItems, openSubMenuIndex }) => {
-  console.log(navItems[openSubMenuIndex]);
   return (
     <div className="pt-24 pb-32 w-full">
       <div className="grid grid-cols-2 gap-12">

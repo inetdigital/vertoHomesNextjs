@@ -29,10 +29,11 @@ module.exports = {
       colors: {
         "black-opacity-50": "rgba(0, 0, 0, 0.5)", // 50% opacity
         vertoBlack: "#0f131f",
-        vertoBlue: "#142B4E",
-        vertoDarkBlue: "#142539",
+        vertoDarkBlue: "#132338",
         vertoLightBlue: "#70b1d9",
         vertoLightGrey: "#E9EBED",
+        vertoDarkGreen: "#152E27",
+        vertoLightGreen: "#61DB79",
       },
     },
   },

@@ -43,7 +43,8 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "White",
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }
@@ -106,7 +107,8 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "White",
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }
@@ -187,7 +189,7 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }
@@ -238,7 +240,8 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "White",
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }
@@ -317,7 +320,8 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "White",
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }
@@ -357,7 +361,8 @@
             "options": [
               "VertoBlue",
               "VertoGrey",
-              "White"
+              "White",
+              "VertoGreen"
             ],
             "default_value": "VertoBlue"
           }

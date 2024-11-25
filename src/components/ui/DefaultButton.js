@@ -10,7 +10,7 @@ const DefaultButton = ({ link }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        className="relative px-4 py-2 font-medium text-sm tracking-button uppercase border border-black rounded text-vertoBlack transition-colors duration-300 ease-in-out hover:bg-vertoBlack hover:text-white"
+        className="relative px-4 py-2 font-medium text-sm tracking-button uppercase border border-vertoDarkBlue rounded text-vertoDarkBlue transition-colors duration-300 ease-in-out hover:bg-vertoDarkBlue hover:text-white"
       >
         {link.text}
       </motion.div>

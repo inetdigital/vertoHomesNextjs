@@ -1,0 +1,176 @@
+{
+  "format": "page",
+  "id": "property",
+  "label": "Property",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "development": {
+        "type": "Link",
+        "config": {
+          "label": "Development",
+          "select": "document",
+          "customtypes": ["development"]
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "bedrooms": {
+        "type": "Link",
+        "config": {
+          "label": "Bedrooms",
+          "select": "document",
+          "customtypes": ["taxonomy_number_of_bedrooms"]
+        }
+      },
+      "type": {
+        "type": "Link",
+        "config": {
+          "label": "Type",
+          "select": "document",
+          "customtypes": ["taxonomy_house_type"]
+        }
+      },
+      "status": {
+        "type": "Link",
+        "config": {
+          "label": "Status",
+          "select": "document",
+          "customtypes": ["taxonomy_status"]
+        }
+      },
+      "bathrooms": {
+        "type": "Select",
+        "config": {
+          "label": "Bathrooms",
+          "placeholder": "",
+          "options": ["1", "2", "3", "4", "5"]
+        }
+      },
+      "zero_bills": {
+        "type": "Boolean",
+        "config": {
+          "label": "Zero Bills",
+          "placeholder_false": "No",
+          "placeholder_true": "Yes",
+          "default_value": false
+        }
+      },
+      "price": {
+        "type": "Number",
+        "config": {
+          "label": "Price",
+          "placeholder": ""
+        }
+      },
+      "square_metres": {
+        "type": "Number",
+        "config": {
+          "label": "Square Metres",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    },
+    "Images": {
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "Featured Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    },
+    "Downloads": {},
+    "Location": {
+      "map_location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Map Location"
+        }
+      },
+      "address_line_1": {
+        "type": "Text",
+        "config": {
+          "label": "Address Line 1",
+          "placeholder": ""
+        }
+      },
+      "address_line_2": {
+        "type": "Text",
+        "config": {
+          "label": "Address Line 2",
+          "placeholder": ""
+        }
+      },
+      "town": {
+        "type": "Text",
+        "config": {
+          "label": "Town",
+          "placeholder": ""
+        }
+      },
+      "postcode": {
+        "type": "Text",
+        "config": {
+          "label": "Postcode",
+          "placeholder": ""
+        }
+      },
+      "location_filter": {
+        "type": "Link",
+        "config": {
+          "label": "Location Filter",
+          "select": "document",
+          "customtypes": ["taxonomy_location"]
+        }
+      }
+    }
+  }
+}
