@@ -28,9 +28,6 @@ export const SearchResultsPanel = ({ properties }) => {
     setOrderByType,
   } = useSearch();
 
-  console.log(selectedPriceRange);
-  console.log(properties);
-
   const [sortedProperties, setSortedProperties] = useState([]);
 
   const orderByOptions = [
@@ -250,7 +247,13 @@ export const SearchResultsPanel = ({ properties }) => {
           ))}
         </div>
       )}
-      {filteredProperties.length === 0 && <div>No results</div>}
+      {filteredProperties.length === 0 && (
+        <div className="text-center">
+          <p className="text-2xl">
+            Sorry, there is nothing matching your search
+          </p>
+        </div>
+      )}
     </div>
   );
 };

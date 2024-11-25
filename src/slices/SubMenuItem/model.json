@@ -50,6 +50,16 @@
               "development"
             ]
           }
+        },
+        "show_developments_of_status": {
+          "type": "Link",
+          "config": {
+            "label": "Show Developments of Status",
+            "select": "document",
+            "customtypes": [
+              "taxonomy_status"
+            ]
+          }
         }
       },
       "items": {}

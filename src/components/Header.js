@@ -10,7 +10,7 @@ import SubMenu from "@/components/SubMenu";
 import { MobileMenu } from "@/components/MobileMenu";
 import DefaultButton from "@/components/ui/DefaultButton";
 
-export const Header = ({ navigation, settings }) => {
+export const Header = ({ navigation, developments, settings }) => {
   const navItems = navigation.data.slices;
   const [subMenuOpenStatus, setSubMenuOpenStatus] = useState(false);
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState(0);
@@ -165,6 +165,7 @@ export const Header = ({ navigation, settings }) => {
           setSubMenuInnerHeight={setSubMenuInnerHeight}
           transitionClasses={transitionClasses}
           handleMouseLeaveNavItem={handleMouseLeaveNavItem}
+          developments={developments}
         />
 
         {/** Mobile menu */}

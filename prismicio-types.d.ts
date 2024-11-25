@@ -2491,6 +2491,16 @@ export interface SubMenuItemSliceWithDevelopmentReferencePrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   development: prismic.ContentRelationshipField<"development">;
+
+  /**
+   * Show Developments of Status field in *SubMenuItem → With Development Reference → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.withDevelopmentReference.primary.show_developments_of_status
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  show_developments_of_status: prismic.ContentRelationshipField<"taxonomy_status">;
 }
 
 /**
