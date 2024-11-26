@@ -155,7 +155,7 @@ export const Header = ({ navigation, settings }) => {
           <div>
             <div className="hidden lg:block">
               <div className="flex">
-                <a href="/find-your-new-home">
+                <Link href="/find-your-new-home">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 1 }}
@@ -164,7 +164,7 @@ export const Header = ({ navigation, settings }) => {
                   >
                     {navigation.data.header_link.text}
                   </motion.div>
-                </a>
+                </Link>
               </div>
             </div>
             <nav className="block lg:hidden">

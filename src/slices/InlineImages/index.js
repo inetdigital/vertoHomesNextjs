@@ -14,7 +14,7 @@ const InlineImages = ({ slice }) => {
           {slice.primary.title}
         </h3>
       )}
-      <div className="grid grid-cols-5 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-8">
         {slice.primary.images?.map((item, index) => {
           return (
             <div key={index}>

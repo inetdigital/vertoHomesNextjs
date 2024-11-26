@@ -155,17 +155,17 @@ const ContentList = ({ slice }) => {
           {slice.primary.content_block.map((item, index) => (
             <div
               key={index}
-              className="flex w-full mb-10 cursor-pointer transition-all duration-500 hover:bg-slate-50 hover:translate-x-0.5"
+              className="flex flex-col sm:flex-row w-full mb-10 cursor-pointer transition-all duration-500 hover:bg-slate-50 sm:hover:translate-x-0.5"
             >
               {/* Image Div */}
-              <div className="image-div w-2/5">
+              <div className="image-div w-full sm:w-2/5">
                 <PrismicNextImage
                   field={item.image}
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Content Div */}
-              <div className="flex w-3/5 text-left p-10 justify-center flex-col">
+              <div className="flex w-full sm:w-3/5 text-left p-10 justify-center flex-col">
                 <h3 className="mb-4 font-semibold">{item.title}</h3>
                 <PrismicRichText
                   field={item.content}

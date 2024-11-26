@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
@@ -35,7 +36,7 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
     >
       <div className="px-6 lg:px-12 pt-8">
         <div>
-          <a href="/find-your-new-home">
+          <Link href="/find-your-new-home">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
@@ -44,7 +45,7 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
             >
               {navigation.data.header_link.text}
             </motion.div>
-          </a>
+          </Link>
         </div>
         <hr className="border-t border-gray-300 my-8" />
         <nav aria-label="Sidebar" className="flex flex-1 flex-col">
