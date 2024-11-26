@@ -10,8 +10,13 @@ import SubMenu from "@/components/SubMenu";
 import { MobileMenu } from "@/components/MobileMenu";
 import DefaultButton from "@/components/ui/DefaultButton";
 
-export const Header = ({ navigation, developments, settings }) => {
+import { useMenuStatus } from "@/context/MenuStatus";
+
+export const Header = ({ navigation, settings }) => {
   const navItems = navigation.data.slices;
+
+  const { setMenuStatus } = useMenuStatus();
+
   const [subMenuOpenStatus, setSubMenuOpenStatus] = useState(false);
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState(0);
   const [hoverDelayTimer, setHoverDelayTimer] = useState(null);
@@ -34,6 +39,7 @@ export const Header = ({ navigation, developments, settings }) => {
 
     const timer = setTimeout(() => {
       setSubMenuOpenStatus(true);
+      setMenuStatus(true);
     }, 100);
     setHoverDelayTimer(timer);
   };
@@ -42,11 +48,13 @@ export const Header = ({ navigation, developments, settings }) => {
     if (hoverDelayTimer) clearTimeout(hoverDelayTimer);
     setTimeout(() => {
       setSubMenuOpenStatus(false);
+      setMenuStatus(false);
     }, 100);
   };
 
   const handleEnterNoSubMenuItem = () => {
     setSubMenuOpenStatus(false);
+    setMenuStatus(false);
   };
 
   useEffect(() => {
@@ -165,7 +173,6 @@ export const Header = ({ navigation, developments, settings }) => {
           setSubMenuInnerHeight={setSubMenuInnerHeight}
           transitionClasses={transitionClasses}
           handleMouseLeaveNavItem={handleMouseLeaveNavItem}
-          developments={developments}
         />
 
         {/** Mobile menu */}

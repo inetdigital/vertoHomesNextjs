@@ -13,7 +13,7 @@ export const SingleSubMenu = ({ navItems, openSubMenuIndex }) => {
       </h3>
       <hr className="border-t border-gray-300 my-8" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {navItems[openSubMenuIndex].primary.standard_sub_menu.data.slices.map(
           (item, index) => (
             <div

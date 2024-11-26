@@ -1,19 +1,11 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-import { createClient } from "@/prismicio";
-
 export async function Layout({ navigation, settings, children }) {
-  const client = createClient();
   const serializedNavigation = JSON.parse(JSON.stringify(navigation));
-  const developments = await client.getAllByType("development");
   return (
     <div>
-      <Header
-        navigation={navigation}
-        developments={developments}
-        settings={settings}
-      />
+      <Header navigation={navigation} settings={settings} />
       <main>{children}</main>
       <Footer navigation={serializedNavigation} />
       <div className="fixed w-[50px] h-[50px] bg-black text-white flex items-center justify-center right-10 bottom-10">

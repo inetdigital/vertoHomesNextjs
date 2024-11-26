@@ -7,6 +7,11 @@ import { repositoryName } from "@/prismicio";
 
 import { SearchTabProvider } from "@/context/SearchTabContext";
 import { SearchOptionsProvider } from "@/context/SearchOptions";
+import { LocationsProvider } from "@/context/TaxonomyLocations";
+import { DevelopmentsProvider } from "@/context/AllDevelopments";
+import { MenuStatusProvider } from "@/context/MenuStatus";
+
+import BodyClassManager from "@/components/BodyClassManager";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,10 +29,17 @@ export default function RootLayout({ children }) {
       <body className="overflow-x-hidden antialiased">
         <SearchTabProvider>
           <SearchOptionsProvider>
-            <main>
-              {children}
-              <PrismicPreview repositoryName={repositoryName} />
-            </main>
+            <LocationsProvider>
+              <DevelopmentsProvider>
+                <MenuStatusProvider>
+                  <BodyClassManager />
+                  <main>
+                    {children}
+                    <PrismicPreview repositoryName={repositoryName} />
+                  </main>
+                </MenuStatusProvider>
+              </DevelopmentsProvider>
+            </LocationsProvider>
           </SearchOptionsProvider>
         </SearchTabProvider>
       </body>

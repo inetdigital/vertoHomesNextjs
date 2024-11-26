@@ -14,7 +14,6 @@ const SubMenu = ({
   setSubMenuInnerHeight,
   transitionClasses,
   handleMouseLeaveNavItem,
-  developments,
 }) => {
   const subMenuInnerRef = useRef(null);
 
@@ -55,7 +54,6 @@ const SubMenu = ({
                 <MultiSubMenu
                   navItems={navItems}
                   openSubMenuIndex={openSubMenuIndex}
-                  developments={developments}
                 />
               )}
             </>
