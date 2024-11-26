@@ -36,7 +36,15 @@ export default async function SearchPage() {
   const settings = await client.getSingle("settings");
 
   const developments = await client.getAllByType("development");
-  const properties = await client.getAllByType("property");
+  const properties = await client.getAllByType("property", {
+    fetchLinks: [
+      "development.uid",
+      "development.name",
+      "type.uid",
+      "taxonomy_house_type.name",
+      "taxonomy_number_of_bedrooms.number_of_bedrooms",
+    ],
+  });
   const locations = await client.getAllByType("taxonomy_location");
   const statuses = await client.getAllByType("taxonomy_status");
   const price_range = await client.getAllByType("taxonomy_price_range");

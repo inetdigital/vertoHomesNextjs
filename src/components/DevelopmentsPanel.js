@@ -10,6 +10,8 @@ import Image from "next/image";
 
 import { capitalizeWords } from "@/lib/capitalizeWords";
 
+import { formatPrice } from "@/lib/formatPrice";
+
 export const DevelopmentsPanel = ({ locations, developments }) => {
   const { selectedLocationTab, setSelectedLocationTab } = useTab();
 
@@ -171,7 +173,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                             <p className="text-white text-lg font-medium mt-4">
                               Prices from £
                               {item.data.prices_from
-                                ? item.data.prices_from
+                                ? formatPrice(item.data.prices_from)
                                 : "N/A"}
                             </p>
                             <div className="z-[2] relative opacity-0 transition-all duration-500 ease-in-out translate-y-24 group-hover:translate-y-20 group-hover:opacity-100">

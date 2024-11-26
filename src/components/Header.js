@@ -24,7 +24,7 @@ export const Header = ({ navigation, settings }) => {
   const [transitionClasses, setTransitionClasses] = useState("");
   const subMenuInnerRef = useRef(null);
   const previousIndex = useRef(openSubMenuIndex);
-  const [mobileMenuStatus, SetMobileMenuStatus] = useState(false);
+  const [mobileMenuStatus, setMobileMenuStatus] = useState(false);
 
   const handleMouseEnterNavItem = (index) => {
     if (hoverDelayTimer) clearTimeout(hoverDelayTimer);
@@ -57,6 +57,11 @@ export const Header = ({ navigation, settings }) => {
     setMenuStatus(false);
   };
 
+  const handleEnterLogo = () => {
+    setSubMenuOpenStatus(false);
+    setMenuStatus(false);
+  };
+
   useEffect(() => {
     if (subMenuOpenStatus && subMenuInnerRef.current) {
       setTimeout(() => {
@@ -72,6 +77,24 @@ export const Header = ({ navigation, settings }) => {
     }
   }, []);
 
+  useEffect(() => {
+    // Ensure window is defined (avoids issues during SSR)
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => {
+      setMobileMenuStatus(false);
+      setMenuStatus(false);
+    };
+
+    // Add event listener on mount
+    window.addEventListener("resize", handleResize);
+
+    // Clean up listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Empty dependency array ensures it runs once on mount
+
   return (
     <Headroom>
       <header className="relative w-full px-6 lg:px-12 bg-white shadow-sm z-10 transition-all duration-300">
@@ -80,7 +103,7 @@ export const Header = ({ navigation, settings }) => {
             <div
               className="flex items-center"
               onMouseEnter={() => {
-                setSubMenuOpenStatus(false);
+                handleEnterLogo();
               }}
             >
               <Link href="/">
@@ -94,7 +117,7 @@ export const Header = ({ navigation, settings }) => {
               </Link>
             </div>
             <nav className="ml-24 hidden lg:block">
-              <ul className="flex space-x-8">
+              <ul className="flex space-x-4 lg:space-x-4 xl:space-x-8">
                 {navItems.map((item, index) => (
                   <li
                     key={index}
@@ -132,7 +155,7 @@ export const Header = ({ navigation, settings }) => {
           <div>
             <div className="hidden lg:block">
               <div className="flex">
-                <a href="find-your-new-home">
+                <a href="/find-your-new-home">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 1 }}
@@ -150,7 +173,10 @@ export const Header = ({ navigation, settings }) => {
                   <input
                     type="checkbox"
                     checked={mobileMenuStatus}
-                    onChange={() => SetMobileMenuStatus((prev) => !prev)}
+                    onChange={() => {
+                      setMobileMenuStatus((prev) => !prev); // Toggle mobileMenuStatus
+                      setMenuStatus((prev) => !prev); // Toggle menuStatus
+                    }}
                     className="hidden-checkbox"
                   />
                   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -187,7 +213,10 @@ export const Header = ({ navigation, settings }) => {
         />
 
         {/** Mobile menu */}
-        <MobileMenu navItems={navItems} mobileMenuStatus={mobileMenuStatus} />
+        <MobileMenu
+          navigation={navigation}
+          mobileMenuStatus={mobileMenuStatus}
+        />
       </header>
 
       <style jsx>{`
@@ -240,24 +269,28 @@ export const Header = ({ navigation, settings }) => {
         }
 
         circle {
-          fill: #0f131f;
+          fill: #132338;
           opacity: 0;
-          transition: opacity 0.8s;
+          transition: opacity 0.3s;
         }
 
         label:hover circle {
-          opacity: 0.1;
+          opacity: 1;
+        }
+
+        label:hover path {
+          stroke: #fff;
         }
 
         path {
           fill: none;
-          stroke: #0f131f;
+          stroke: #132338;
           stroke-width: 2;
           stroke-linecap: round;
           stroke-linejoin: round;
           stroke-dasharray: var(--length, 24) var(--total-length, 100);
           stroke-dashoffset: var(--offset, -38);
-          transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .line--1,

@@ -5,6 +5,8 @@ import { useRef, useEffect } from "react";
 import { SingleSubMenu } from "@/components/ui/SingleSubMenu";
 import { MultiSubMenu } from "@/components/ui/MultiSubMenu";
 
+import { useMenuStatus } from "@/context/MenuStatus";
+
 const SubMenu = ({
   navItems,
   openSubMenuIndex,
@@ -16,6 +18,7 @@ const SubMenu = ({
   handleMouseLeaveNavItem,
 }) => {
   const subMenuInnerRef = useRef(null);
+  const { setMenuStatus } = useMenuStatus();
 
   // Calculate submenu height on mount
   useEffect(() => {
@@ -24,6 +27,11 @@ const SubMenu = ({
       setSubMenuInnerHeight(height);
     }
   }, [openSubMenuIndex, subMenuOpenStatus]);
+
+  useEffect(() => {
+    console.log("sub menu loaded");
+    setMenuStatus(false);
+  }, []);
 
   return (
     <div

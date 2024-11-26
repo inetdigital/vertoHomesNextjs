@@ -22,7 +22,7 @@ export const MultiSubMenu = ({ navItems, openSubMenuIndex }) => {
               onClick={() => setActiveTab(index)}
               className={`py-2 px-4 rounded-t-md transition ${
                 activeTab === index
-                  ? "bg-vertoDarkBlue text-white font-semibold"
+                  ? "bg-white text-vertoDarkBlue font-semibold"
                   : "bg-transparent text-gray-500"
               }`}
             >
