@@ -41,16 +41,6 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "development": {
-          "type": "Link",
-          "config": {
-            "label": "Development",
-            "select": "document",
-            "customtypes": [
-              "development"
-            ]
-          }
-        },
         "show_developments_of_status": {
           "type": "Link",
           "config": {

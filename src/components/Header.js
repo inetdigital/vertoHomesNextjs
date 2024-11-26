@@ -8,13 +8,13 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import SubMenu from "@/components/SubMenu";
 import { MobileMenu } from "@/components/MobileMenu";
-import DefaultButton from "@/components/ui/DefaultButton";
+
+import { motion } from "framer-motion";
 
 import { useMenuStatus } from "@/context/MenuStatus";
 
 export const Header = ({ navigation, settings }) => {
   const navItems = navigation.data.slices;
-
   const { setMenuStatus } = useMenuStatus();
 
   const [subMenuOpenStatus, setSubMenuOpenStatus] = useState(false);
@@ -131,7 +131,18 @@ export const Header = ({ navigation, settings }) => {
           </div>
           <div>
             <div className="hidden lg:block">
-              <DefaultButton link={navigation.data.header_link} />
+              <div className="flex">
+                <a href="find-your-new-home">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="relative px-4 py-2 font-medium text-sm tracking-button uppercase border border-vertoDarkBlue rounded text-vertoDarkBlue transition-colors duration-300 ease-in-out hover:bg-vertoDarkBlue hover:text-white"
+                  >
+                    {navigation.data.header_link.text}
+                  </motion.div>
+                </a>
+              </div>
             </div>
             <nav className="block lg:hidden">
               <div className="menu cross menu--1">

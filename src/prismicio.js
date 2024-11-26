@@ -19,6 +19,10 @@ const routes = [
     path: "/articles/:uid",
   },
   {
+    type: "development",
+    path: "/development/:uid",
+  },
+  {
     type: "page",
     path: "/:uid",
   },

@@ -11,17 +11,18 @@ export const SearchTabs = () => {
   const [tabs] = useState([
     {
       name: "Explore Verto Developments",
+      mobileName: "Developments",
       key: 1,
       icon: "house",
     },
-    { name: "Search Results", key: 2, icon: "search" },
+    { name: "Search Results", mobileName: "Search", key: 2, icon: "search" },
   ]);
 
   const updateCurrentTab = (key) => {
     setSelectedTab(key);
   };
 
-  const HoverTab = ({ name, icon }) => {
+  const HoverTab = ({ name, mobileName, icon }) => {
     return (
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -30,16 +31,18 @@ export const SearchTabs = () => {
         className="flex items-center justify-center"
       >
         <TabIcon icon={icon} />
-        <span className="ml-4">{name}</span>
+        <span className="ml-4 hidden xl:block">{name}</span>
+        <span className="ml-4 block xl:hidden text-base">{mobileName}</span>
       </motion.div>
     );
   };
 
-  const CurrentTab = ({ name, icon }) => {
+  const CurrentTab = ({ name, mobileName, icon }) => {
     return (
       <span className="flex items-center justify-center">
         <TabIcon icon={icon} />
-        <span className="ml-4">{name}</span>
+        <span className="ml-4 hidden xl:block">{name}</span>
+        <span className="ml-4 block xl:hidden text-base">{mobileName}</span>
       </span>
     );
   };
@@ -94,9 +97,17 @@ export const SearchTabs = () => {
                 )}
               >
                 {tab.key === selectedTab ? (
-                  <CurrentTab name={tab.name} icon={tab.icon} />
+                  <CurrentTab
+                    name={tab.name}
+                    mobileName={tab.mobileName}
+                    icon={tab.icon}
+                  />
                 ) : (
-                  <HoverTab name={tab.name} icon={tab.icon} />
+                  <HoverTab
+                    name={tab.name}
+                    mobileName={tab.mobileName}
+                    icon={tab.icon}
+                  />
                 )}
               </button>
             ))}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const DefaultButton = ({ link }) => {
   return (
-    <PrismicNextLink field={link} className="flex">
+    <PrismicNextLink field={link} className="flex button">
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 1 }}

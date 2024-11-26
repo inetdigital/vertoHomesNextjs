@@ -45,15 +45,6 @@ export const fetchNavigation = async (client) => {
                             ...on withDevelopmentReference {
                               primary {
                                 ...primaryFields
-                                development {
-                                  ...on development {
-                                    name
-                                    uid
-                                    banner_image
-                                    location_town
-                                    location_city
-                                  }
-                                }
                               }
                             }
                           }

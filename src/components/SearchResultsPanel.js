@@ -114,7 +114,7 @@ export const SearchResultsPanel = ({ properties }) => {
       {/* Render filtered properties */}
       <div className="flex w-full justify-between mb-16">
         <div className="flex">
-          <div className="bg-vertoLightGreen rounded-full p-4 mr-2">
+          <div className="bg-vertoDarkGreen rounded-full p-4 mr-2">
             <p className="text-white text-base">
               Homes{" "}
               {capitalizeWords(
@@ -122,17 +122,17 @@ export const SearchResultsPanel = ({ properties }) => {
               )}
             </p>
           </div>
-          <div className="bg-vertoLightGreen rounded-full p-4 mx-2">
+          <div className="bg-vertoDarkGreen rounded-full p-4 mx-2">
             <p className="text-white text-base">
               In {capitalizeWords(selectedLocation)}
             </p>
           </div>
-          <div className="bg-vertoLightGreen rounded-full p-4 mx-2">
+          <div className="bg-vertoDarkGreen rounded-full p-4 mx-2">
             <p className="text-white text-base">
               {formatRange(selectedPriceRange)}
             </p>
           </div>
-          <div className="bg-vertoLightGreen rounded-full p-4 ml-2">
+          <div className="bg-vertoDarkGreen rounded-full p-4 ml-2">
             <p className="text-white text-base">
               {selectedNumBedrooms} Bedrooms
             </p>

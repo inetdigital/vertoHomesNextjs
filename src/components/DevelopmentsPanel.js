@@ -5,7 +5,7 @@ import * as prismic from "@prismicio/client";
 import { useTab } from "@/context/SearchTabContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Image from "next/image";
 
 import { capitalizeWords } from "@/lib/capitalizeWords";
@@ -36,13 +36,37 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
 
   // Update background position/size when selected tab changes
   useEffect(() => {
-    const currentTabIndex = tabs.findIndex(
-      (tab) => tab.key === selectedLocationTab
-    );
-    if (tabRefs.current[currentTabIndex]) {
-      const { offsetLeft, offsetWidth } = tabRefs.current[currentTabIndex];
-      setBgStyle({ left: offsetLeft, width: offsetWidth });
+    // Function to update the background style
+    const updateBackgroundStyle = () => {
+      const currentTabIndex = tabs.findIndex(
+        (tab) => tab.key === selectedLocationTab
+      );
+      if (tabRefs.current[currentTabIndex]) {
+        const { offsetLeft, offsetWidth } = tabRefs.current[currentTabIndex];
+        setBgStyle({ left: offsetLeft, width: offsetWidth });
+      }
+    };
+
+    // Initial update
+    if (typeof window !== "undefined") {
+      updateBackgroundStyle();
     }
+
+    // Add resize listener
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        updateBackgroundStyle();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on unmount
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
   }, [selectedLocationTab, tabs]);
 
   return (
@@ -62,7 +86,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                   tab.key === selectedLocationTab
                     ? "text-white"
                     : "text-gray-500 hover:text-vertoDarkBlue",
-                  "relative z-10 rounded-md px-3 py-2 text-xl font-normal flex items-center"
+                  "relative z-10 rounded-md px-3 py-2 text-base lg:text-xl font-normal flex items-center"
                 )}
               >
                 {tab.key === selectedLocationTab && (
@@ -72,9 +96,10 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                     width={20}
                     height={20}
                     priority
+                    className="hidden lg:block"
                   />
                 )}
-                <span className="ml-2">{tab.name}</span>
+                <span className="ml-0 lg:ml-2">{tab.name}</span>
               </button>
             ))}
 
@@ -91,7 +116,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
             />
           </nav>
         </div>
-        <div className="flex items-center justify-end">
+        <div className="items-center justify-end hidden xl:flex">
           <p className="font-medium">
             {filteredDevelopments.length} Development
             {filteredDevelopments.length > 1 ? "s" : ""} in{" "}
@@ -103,43 +128,54 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
         <AnimatePresence mode="wait">
           {filteredDevelopments.length > 0 ? (
             <motion.div
-              key={selectedLocationTab}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 gap-4"
             >
-              {filteredDevelopments.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 1 }} // Staggered animation
-                >
-                  <div className="aspect-h-2 aspect-w-5 relative">
-                    <div className="absolute w-full h-full bg-black opacity-50 z-[1]" />
-                    {prismic.isFilled.image(item.data.banner_image) && (
-                      <PrismicNextImage
-                        field={item.data.banner_image}
-                        fill={true}
-                        className="object-cover"
-                      />
-                    )}
-                    <div className="absolute w-full h-full w-9/12 z-[2]">
-                      <div className="relative left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-center">
-                        <p className="text-white text-xl">
-                          {item.data.location_town}, {item.data.location_city}
-                        </p>
-                        <h2 className="text-white uppercase tracking-widest font-bold text-center mb-4">
-                          {item.data.name}
-                        </h2>
+              {filteredDevelopments.map((item, index) => {
+                return (
+                  <PrismicNextLink document={item} key={index}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 0 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 1 }} // Staggered animation
+                    >
+                      <div className="aspect-h-1 aspect-w-1 md:aspect-h-2 md:aspect-w-5 relative">
+                        <div className="absolute w-full h-full bg-black opacity-50 z-[1]" />
+                        {prismic.isFilled.image(item.data.banner_image) && (
+                          <PrismicNextImage
+                            field={item.data.banner_image}
+                            fill={true}
+                            className="object-cover"
+                          />
+                        )}
+                        <div className="absolute w-full h-full w-9/12 z-[2]">
+                          <div className="relative left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-center">
+                            <p className="text-white text-xl">
+                              {item.data.location_town},{" "}
+                              {item.data.location_city}
+                            </p>
+                            <h2 className="text-white uppercase tracking-widest font-bold text-center mb-4">
+                              {item.data.name}
+                            </h2>
+                            <p className="text-white text-lg">
+                              {item.data.property_types}
+                            </p>
+                            <p className="text-white text-lg font-medium mt-4">
+                              Prices from £
+                              {item.data.prices_from
+                                ? item.data.prices_from
+                                : "N/A"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="bg-vertoDarkGreen p-6">Info here</div>
-                </motion.div>
-              ))}
+                    </motion.div>
+                  </PrismicNextLink>
+                );
+              })}
             </motion.div>
           ) : (
             <motion.div

@@ -2483,16 +2483,6 @@ export type SubMenuItemSliceDefault = prismic.SharedSliceVariation<
  */
 export interface SubMenuItemSliceWithDevelopmentReferencePrimary {
   /**
-   * Development field in *SubMenuItem → With Development Reference → Primary*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: sub_menu_item.withDevelopmentReference.primary.development
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  development: prismic.ContentRelationshipField<"development">;
-
-  /**
    * Show Developments of Status field in *SubMenuItem → With Development Reference → Primary*
    *
    * - **Field Type**: Content Relationship

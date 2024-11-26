@@ -15,7 +15,7 @@ export function Bounded({
     fullWidthBlockConsecutive: "mt-0",
     copyright: "py-6",
     searchHeader: "pt-36",
-    tight: "py-12",
+    tight: "px-6 md:px-12 py-12",
     // Add more cases here as needed
   };
 

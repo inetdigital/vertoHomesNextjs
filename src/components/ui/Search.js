@@ -71,7 +71,7 @@ export const Search = ({
       <div className="mb-4">
         <p className="text-left">Show me homes that are:</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
         <div>
           <Listbox value={selectedStatus} onChange={handleAvailabilitySelect}>
             <div className="relative mt-2">
