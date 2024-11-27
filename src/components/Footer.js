@@ -10,7 +10,7 @@ export const Footer = ({ navigation }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div className="flex items-center">
             <div>
-              <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex text-6xl">
+              <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex text-3xl md:text-4xl lg:text-6xl">
                 LIVE ZER
                 <span className="o text-vertoDarkBlue">
                   O<div className="bg-vertoDarkBlue h-1 w-6/12 mx-auto"> </div>

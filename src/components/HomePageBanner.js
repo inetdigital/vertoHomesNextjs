@@ -125,7 +125,7 @@ export default function HomePageBanner({ singleHomePage, banners }) {
             }}
           ></motion.div>
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
@@ -150,6 +150,9 @@ export default function HomePageBanner({ singleHomePage, banners }) {
                   }
                   return <span>{children}</span>;
                 },
+                paragraph: ({ children }) => (
+                  <p className="text-xl lg:text-2xl">{children}</p>
+                ),
               }}
             />
           </motion.div>
