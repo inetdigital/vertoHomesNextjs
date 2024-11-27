@@ -10,12 +10,12 @@ export const SearchTabs = () => {
   const { selectedTab, setSelectedTab } = useTab();
   const [tabs] = useState([
     {
-      name: "Explore Verto Developments",
+      name: "Explore Developments",
       mobileName: "Developments",
       key: 1,
       icon: "house",
     },
-    { name: "Search Results", mobileName: "Search", key: 2, icon: "search" },
+    { name: "Search Properties", mobileName: "Search", key: 2, icon: "search" },
   ]);
 
   const updateCurrentTab = (key) => {

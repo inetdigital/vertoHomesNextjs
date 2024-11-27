@@ -29,7 +29,6 @@ const SubMenu = ({
   }, [openSubMenuIndex, subMenuOpenStatus]);
 
   useEffect(() => {
-    console.log("sub menu loaded");
     setMenuStatus(false);
   }, []);
 

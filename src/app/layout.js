@@ -10,6 +10,8 @@ import { SearchOptionsProvider } from "@/context/SearchOptions";
 import { LocationsProvider } from "@/context/TaxonomyLocations";
 import { DevelopmentsProvider } from "@/context/AllDevelopments";
 import { MenuStatusProvider } from "@/context/MenuStatus";
+import { StatusProvider } from "@/context/TaxonomyStatus";
+import { StatusSelectedProvider } from "@/context/StatusSelected";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -32,11 +34,15 @@ export default function RootLayout({ children }) {
             <LocationsProvider>
               <DevelopmentsProvider>
                 <MenuStatusProvider>
-                  <BodyClassManager />
-                  <main>
-                    {children}
-                    <PrismicPreview repositoryName={repositoryName} />
-                  </main>
+                  <StatusProvider>
+                    <StatusSelectedProvider>
+                      <BodyClassManager />
+                      <main>
+                        {children}
+                        <PrismicPreview repositoryName={repositoryName} />
+                      </main>
+                    </StatusSelectedProvider>
+                  </StatusProvider>
                 </MenuStatusProvider>
               </DevelopmentsProvider>
             </LocationsProvider>

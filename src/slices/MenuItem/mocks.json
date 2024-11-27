@@ -71,6 +71,11 @@
 						]
 					}
 				]
+			},
+			"uid": {
+				"__TYPE__": "FieldContent",
+				"value": "sort",
+				"type": "Text"
 			}
 		},
 		"items": [

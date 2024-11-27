@@ -68,6 +68,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "uid": {
+          "type": "Text",
+          "config": {
+            "label": "UID",
+            "placeholder": ""
+          }
+        },
         "link_label": {
           "type": "Text",
           "config": {

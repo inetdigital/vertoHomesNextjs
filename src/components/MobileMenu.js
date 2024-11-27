@@ -2,31 +2,56 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { motion } from "framer-motion";
+import { useLocations } from "@/context/TaxonomyLocations";
+import { useTab } from "@/context/SearchTabContext";
+import { PrismicNextLink } from "@prismicio/next";
 
 export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
+  const [activeNavItem, setActiveNavItem] = useState(null);
   const [animatedItems, setAnimatedItems] = useState([]);
+
+  const { setSelectedLocationTab } = useTab();
+
+  const locations = useLocations();
 
   const navItems = navigation.data.slices;
 
+  // Animation Variants
+  const menuVariants = {
+    hidden: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.3 },
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? "-100%" : "100%",
+      opacity: 0,
+      transition: { duration: 0.3 },
+    }),
+  };
+
+  const setDevelopmentsParams = (uid) => {
+    setSelectedLocationTab(uid);
+  };
+
   useEffect(() => {
-    if (mobileMenuStatus) {
-      let timeoutIds = [];
+    if (mobileMenuStatus && !activeNavItem) {
+      setAnimatedItems([]);
       navItems.forEach((_, index) => {
         const timeoutId = setTimeout(() => {
           setAnimatedItems((prev) => [...prev, index]);
-        }, index * 100); // Stagger animation by 150ms per item
-        timeoutIds.push(timeoutId);
+        }, index * 100); // Stagger by 100ms
+        return () => clearTimeout(timeoutId);
       });
-
-      return () => {
-        timeoutIds.forEach(clearTimeout); // Clear timeouts when menu is closed
-        setAnimatedItems([]);
-      };
     }
-  }, [mobileMenuStatus, navItems]);
+  }, [mobileMenuStatus, activeNavItem]);
 
   return (
     <div
@@ -35,6 +60,7 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
       }`}
     >
       <div className="px-6 lg:px-12 pt-8">
+        {/* Header Link */}
         <div>
           <Link href="/find-your-new-home">
             <motion.div
@@ -48,58 +74,148 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
           </Link>
         </div>
         <hr className="border-t border-gray-300 my-8" />
-        <nav aria-label="Sidebar" className="flex flex-1 flex-col">
-          <ul role="list" className="-mx-2 space-y-4">
-            {navItems.map((item, index) => (
-              <li
-                key={index}
-                className={`transform transition-all duration-300 ease-in-out ${
-                  animatedItems.includes(index)
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 translate-x-[-20px]"
-                }`}
+        <div className="transition-all duration-300 ease-in-out">
+          {/* Navigation */}
+          <AnimatePresence
+            initial={false}
+            mode="wait"
+            custom={activeNavItem ? 1 : -1}
+          >
+            {!activeNavItem ? (
+              <motion.ul
+                key="main-menu"
+                variants={menuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                custom={-1} // Slide in from left
+                role="list"
+                className="-mx-2 space-y-4"
               >
-                {item.variation === "default" ? (
-                  <a
-                    href=""
-                    className={clsx(
-                      item.current
-                        ? "bg-gray-50 text-vertoDarkBlue"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-vertoDarkBlue",
-                      "group flex rounded-md p-2 pl-3 text-xl"
-                    )}
+                {navItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`transform transition-all duration-300 ease-in-out ${
+                      animatedItems.includes(index)
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 translate-x-[-20px]"
+                    }`}
                   >
-                    {item.primary.link_label}
-                  </a>
-                ) : (
-                  <button
-                    className={clsx(
-                      item.current
-                        ? "bg-gray-50 text-vertoDarkBlue"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-vertoDarkBlue",
-                      "group flex rounded-md p-2 pl-3 text-xl w-full flex items-center justify-between"
+                    {item.variation === "default" ? (
+                      <a
+                        href=""
+                        className={clsx(
+                          "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
+                          "group flex rounded-md p-2 pl-3 text-xl"
+                        )}
+                      >
+                        {item.primary.link_label}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => setActiveNavItem(item)}
+                        className={clsx(
+                          "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
+                          "group flex rounded-md p-2 pl-3 text-xl w-full flex items-center justify-between"
+                        )}
+                      >
+                        <span>{item.primary.link_label}</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="size-6"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </button>
                     )}
+                  </li>
+                ))}
+              </motion.ul>
+            ) : (
+              <motion.div
+                key="submenu"
+                variants={menuVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                custom={1} // Slide in from right
+              >
+                <button
+                  onClick={() => setActiveNavItem(null)}
+                  className="text-sm text-vertoDarkBlue mb-8 flex items-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-6"
                   >
-                    <span>{item.primary.link_label}</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="size-6"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+                    <path
+                      fillRule="evenodd"
+                      d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Back
+                </button>
+                <ul role="list" className="-mx-2 space-y-4 mt-4">
+                  {activeNavItem.primary.uid === "developments" && (
+                    <>
+                      {locations
+                        .slice()
+                        .sort((a, b) => a.data.name.localeCompare(b.data.name))
+                        .map((item, index) => {
+                          return (
+                            <li key={index}>
+                              <Link
+                                href="/find-your-new-home"
+                                onClick={() => setDevelopmentsParams(item.uid)}
+                                className={clsx(
+                                  "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
+                                  "group flex rounded-md p-2 pl-3 text-xl"
+                                )}
+                              >
+                                {item.data.name}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                    </>
+                  )}
+                  {activeNavItem.variation === "menuItemWithSubMenu" && (
+                    <>
+                      {activeNavItem.primary.standard_sub_menu.data.slices.map(
+                        (item, index) => {
+                          return (
+                            <li key={index}>
+                              <PrismicNextLink
+                                field={item.primary.link}
+                                className={clsx(
+                                  "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
+                                  "group flex rounded-md p-2 pl-3 text-xl"
+                                )}
+                              />
+                            </li>
+                          );
+                        }
+                      )}
+                    </>
+                  )}
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <hr className="border-t border-gray-300 my-8" />
+
+        {/* Footer */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <p className="text-sm">

@@ -107,7 +107,7 @@ export const SearchResultsPanel = ({ properties }) => {
   if (hasNullValues) {
     return (
       <div className="w-full h-full py-12">
-        <p className="text-center">Please complete your search criteria</p>
+        <p className="text-center">Please update your search criteria above</p>
       </div>
     );
   }
@@ -236,7 +236,6 @@ export const SearchResultsPanel = ({ properties }) => {
       {sortedProperties.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {sortedProperties.map((property, index) => {
-            console.log(property);
             return (
               <div key={index}>
                 <div className="aspect-h-3 aspect-w-3 relative bg-gray-100">

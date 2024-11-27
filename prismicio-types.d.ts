@@ -2288,6 +2288,16 @@ export type MenuItemSliceMenuItemWithSubMenu = prismic.SharedSliceVariation<
  */
 export interface MenuItemSliceWithMultipleSubMenusPrimary {
   /**
+   * UID field in *MenuItem → With multiple Sub Menus → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.withMultipleSubMenus.primary.uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+
+  /**
    * Link Label field in *MenuItem → With multiple Sub Menus → Primary*
    *
    * - **Field Type**: Text

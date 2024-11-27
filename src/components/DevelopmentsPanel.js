@@ -8,16 +8,33 @@ import { clsx } from "clsx";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Image from "next/image";
 
+import {
+  Label,
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+
 import { capitalizeWords } from "@/lib/capitalizeWords";
 
 import { formatPrice } from "@/lib/formatPrice";
 
+import { useStatus } from "@/context/TaxonomyStatus";
+import { useStatusSelected } from "@/context/StatusSelected";
+
 export const DevelopmentsPanel = ({ locations, developments }) => {
+  const status = useStatus();
   const { selectedLocationTab, setSelectedLocationTab } = useTab();
+  const { statusSelected, setStatusSelected } = useStatusSelected();
 
   /** Filter all developments to selected tab */
   const filteredDevelopments = developments.filter(
-    (doc) => doc.data.location_county?.uid === selectedLocationTab
+    (doc) =>
+      doc.data.location_county?.uid === selectedLocationTab &&
+      (statusSelected === "all" ||
+        doc.data.development_status?.uid === statusSelected)
   );
 
   // Prepare tabs from locations data
@@ -73,9 +90,91 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-2 mb-16">
-        <div className="w-full flex items-center justify-left relative">
-          <nav aria-label="Tabs" className="flex space-x-4 relative">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-16">
+        <div>
+          <Listbox value={statusSelected} onChange={setStatusSelected}>
+            <div className="relative">
+              {/* Button */}
+              <ListboxButton className="w-full lg:w-[200px] px-4 py-2 text-white bg-vertoDarkGreen rounded-full flex items-center justify-between hover:ring-2 hover:ring-vertoDarkGreen hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-vertoDarkGreen focus:ring-offset-2 text-base lg:text-xl">
+                <span className="truncate">
+                  {statusSelected !== "all"
+                    ? status.find((item) => item.uid === statusSelected)?.data
+                        .name
+                    : "All"}
+                </span>
+                <ChevronUpDownIcon className="w-5 h-5 text-white" />
+              </ListboxButton>
+
+              {/* Dropdown */}
+              <ListboxOptions className="absolute z-10 mt-2 w-full lg:w-[200px] rounded-lg bg-white shadow-lg ring-1 ring-black/10 focus:outline-none sm:text-sm">
+                {/* "All" Option */}
+                <ListboxOption
+                  key="all"
+                  value="all"
+                  className={({ active }) =>
+                    `group cursor-pointer select-none py-2 px-4 ${
+                      active
+                        ? "bg-vertoDarkGreen text-white"
+                        : "text-vertoDarkBlue"
+                    }`
+                  }
+                >
+                  {({ selected }) => (
+                    <div className="flex justify-between items-center">
+                      <span
+                        className={`truncate ${selected ? "font-semibold" : ""}`}
+                      >
+                        All
+                      </span>
+                      {selected && (
+                        <CheckIcon
+                          className="w-5 h-5 text-vertoDarkBlue group-hover:text-white"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </div>
+                  )}
+                </ListboxOption>
+
+                {/* Map through status */}
+                {status.map((statusItem) => (
+                  <ListboxOption
+                    key={statusItem.uid}
+                    value={statusItem.uid}
+                    className={({ active }) =>
+                      `group cursor-pointer select-none py-2 px-4 ${
+                        active
+                          ? "bg-vertoDarkGreen text-white"
+                          : "text-vertoDarkBlue"
+                      }`
+                    }
+                  >
+                    {({ selected }) => (
+                      <div className="flex justify-between items-center">
+                        <span
+                          className={`truncate ${selected ? "font-semibold" : ""}`}
+                        >
+                          {statusItem.data.name}
+                        </span>
+                        {selected && (
+                          <CheckIcon
+                            className="w-5 h-5 text-vertoDarkBlue group-hover:text-white"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </ListboxOption>
+                ))}
+              </ListboxOptions>
+            </div>
+          </Listbox>
+        </div>
+        <div className="w-full flex items-center justify-center lg:justify-end relative">
+          <nav
+            aria-label="Tabs"
+            className="flex space-x-4 relative mt-8 lg:mt-0"
+          >
             {tabs.map((tab, index) => (
               <button
                 key={tab.name}
@@ -87,7 +186,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                 className={clsx(
                   tab.key === selectedLocationTab
                     ? "text-white"
-                    : "text-gray-500 hover:text-vertoDarkBlue",
+                    : "text-vertoDarkBlue hover:text-vertoDarkBlue",
                   "relative z-[1] rounded-md px-3 py-2 text-base lg:text-xl font-normal flex items-center"
                 )}
               >
@@ -176,7 +275,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                                 ? formatPrice(item.data.prices_from)
                                 : "N/A"}
                             </p>
-                            <div className="z-[2] relative opacity-0 transition-all duration-500 ease-in-out translate-y-24 group-hover:translate-y-20 group-hover:opacity-100">
+                            <div className="hidden md:block z-[2] relative opacity-0 transition-all duration-500 ease-in-out translate-y-24 group-hover:translate-y-20 group-hover:opacity-100">
                               <p className="text-xl text-white inline-block rounded-full bg-vertoLightGreen py-2 px-4">
                                 View Development
                               </p>
@@ -198,10 +297,21 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
               transition={{ duration: 0.3 }}
               className="text-center"
             >
-              <p className="text-2xl">
-                Sorry, there are no developments in{" "}
-                {capitalizeWords(selectedLocationTab)}.
-              </p>
+              <div className="py-24">
+                <p className="text-2xl">
+                  Sorry, there are currently no developments
+                  {statusSelected
+                    ? statusSelected === "all"
+                      ? " "
+                      : statusSelected === "available"
+                        ? " with availble homes "
+                        : statusSelected == "coming_soon"
+                          ? " coming soon "
+                          : ""
+                    : ""}
+                  in {capitalizeWords(selectedLocationTab)}.
+                </p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
