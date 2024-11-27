@@ -12,6 +12,8 @@ import { DevelopmentsProvider } from "@/context/AllDevelopments";
 import { MenuStatusProvider } from "@/context/MenuStatus";
 import { StatusProvider } from "@/context/TaxonomyStatus";
 import { StatusSelectedProvider } from "@/context/StatusSelected";
+import { PriceRangeProvider } from "@/context/TaxonomyPriceRange";
+import { RoomsProvider } from "@/context/TaxonomyRooms";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -36,11 +38,15 @@ export default function RootLayout({ children }) {
                 <MenuStatusProvider>
                   <StatusProvider>
                     <StatusSelectedProvider>
-                      <BodyClassManager />
-                      <main>
-                        {children}
-                        <PrismicPreview repositoryName={repositoryName} />
-                      </main>
+                      <PriceRangeProvider>
+                        <RoomsProvider>
+                          <BodyClassManager />
+                          <main>
+                            {children}
+                            <PrismicPreview repositoryName={repositoryName} />
+                          </main>
+                        </RoomsProvider>
+                      </PriceRangeProvider>
                     </StatusSelectedProvider>
                   </StatusProvider>
                 </MenuStatusProvider>

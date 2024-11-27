@@ -107,7 +107,9 @@ export const SearchResultsPanel = ({ properties }) => {
   if (hasNullValues) {
     return (
       <div className="w-full h-full py-12">
-        <p className="text-center">Please update your search criteria above</p>
+        <p className="text-center">
+          Please update your search criteria above to search properties
+        </p>
       </div>
     );
   }

@@ -45,12 +45,6 @@ export default async function SearchPage() {
       "taxonomy_number_of_bedrooms.number_of_bedrooms",
     ],
   });
-  const locations = await client.getAllByType("taxonomy_location");
-  const statuses = await client.getAllByType("taxonomy_status");
-  const price_range = await client.getAllByType("taxonomy_price_range");
-  const number_of_rooms = await client.getAllByType(
-    "taxonomy_number_of_bedrooms"
-  );
 
   return (
     <Layout navigation={navigation} settings={settings}>
@@ -75,21 +69,12 @@ export default async function SearchPage() {
               <div className="bg-vertoLightGreen w-[100px] h-[2px] mx-auto my-8" />
             </>
           )}
-          <Search
-            locations={locations}
-            statuses={statuses}
-            price_range={price_range}
-            number_of_rooms={number_of_rooms}
-          />
+          <Search />
           <SearchTabs />
         </Bounded>
       </div>
       <Bounded as="section" size="widest" paddingAs="tight">
-        <SearchResults
-          locations={locations}
-          developments={developments}
-          properties={properties}
-        />
+        <SearchResults developments={developments} properties={properties} />
       </Bounded>
     </Layout>
   );

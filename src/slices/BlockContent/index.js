@@ -7,6 +7,8 @@ import { Bounded } from "@/components/Bounded";
 import { PrismicRichText } from "@/components/PrismicRichText";
 import { PrismicNextImage } from "@prismicio/next";
 
+import { Search } from "@/components/ui/Search";
+
 import DefaultButton from "@/components/ui/DefaultButton";
 
 const BlockContent = ({ slice, isConsecutive }) => {
@@ -78,12 +80,15 @@ const SearchVariant = ({ slice }) => {
             field={slice.primary.content}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-white">{children}</p>
+                <p className="text-white text-xl lg:text-2xl">{children}</p>
               ),
             }}
           />
         </div>
       )}
+      <div className="max-w-6xl mx-auto mt-16">
+        <Search withButton />
+      </div>
     </>
   );
 };

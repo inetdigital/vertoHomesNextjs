@@ -6,8 +6,12 @@ import { useTab } from "@/context/SearchTabContext";
 import { DevelopmentsPanel } from "@/components/DevelopmentsPanel";
 import { SearchResultsPanel } from "@/components/SearchResultsPanel";
 
-export const SearchResults = ({ locations, developments, properties }) => {
+import { useLocations } from "@/context/TaxonomyLocations";
+
+export const SearchResults = ({ developments, properties }) => {
   const { selectedTab } = useTab();
+
+  const locations = useLocations();
 
   return (
     <div className="relative w-full h-full">

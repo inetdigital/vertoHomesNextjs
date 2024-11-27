@@ -93,9 +93,9 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 mb-16">
         <div>
           <Listbox value={statusSelected} onChange={setStatusSelected}>
-            <div className="relative">
+            <div className="relative flex justify-center lg:justify-start">
               {/* Button */}
-              <ListboxButton className="w-full lg:w-[200px] px-4 py-2 text-white bg-vertoDarkGreen rounded-full flex items-center justify-between hover:ring-2 hover:ring-vertoDarkGreen hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-vertoDarkGreen focus:ring-offset-2 text-base lg:text-xl">
+              <ListboxButton className="w-9/12 lg:w-[200px] px-4 py-2 text-white bg-vertoDarkGreen rounded-full flex items-center justify-between hover:ring-2 hover:ring-vertoDarkGreen hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-vertoDarkGreen focus:ring-offset-2 text-base lg:text-xl">
                 <span className="truncate">
                   {statusSelected !== "all"
                     ? status.find((item) => item.uid === statusSelected)?.data

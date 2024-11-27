@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Label,
   Listbox,
@@ -11,16 +13,17 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 import { formatPrice } from "@/lib/formatPrice";
+import { formatRange } from "@/lib/formatPriceRange";
 
 import { useSearch } from "@/context/SearchOptions";
 import { useTab } from "@/context/SearchTabContext";
 
-export const Search = ({
-  locations,
-  statuses,
-  price_range,
-  number_of_rooms,
-}) => {
+import { useLocations } from "@/context/TaxonomyLocations";
+import { useStatus } from "@/context/TaxonomyStatus";
+import { usePriceRange } from "@/context/TaxonomyPriceRange";
+import { useRooms } from "@/context/TaxonomyRooms";
+
+export const Search = ({ withButton }) => {
   const {
     selectedLocation,
     selectedStatus,
@@ -32,7 +35,13 @@ export const Search = ({
     setSelectedNumBedrooms,
   } = useSearch();
 
+  const [btnActive, setBtnActive] = useState(false);
+
   const { setSelectedTab } = useTab();
+  const locations = useLocations();
+  const statuses = useStatus();
+  const price_range = usePriceRange();
+  const number_of_rooms = useRooms();
 
   const handleAvailabilitySelect = (selectedUid) => {
     setSelectedStatus(selectedUid); // Update the selected state
@@ -58,6 +67,7 @@ export const Search = ({
       selectedNumBedrooms
     ) {
       setSelectedTab(2);
+      setBtnActive(true);
     }
   }, [
     selectedStatus,
@@ -69,7 +79,7 @@ export const Search = ({
   return (
     <div className="bg-white rounded-lg p-12">
       <div className="mb-4">
-        <p className="text-left">Show me homes that are:</p>
+        <p className="text-center">Show me homes that are</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
         <div>
@@ -184,7 +194,7 @@ export const Search = ({
                           (item) => item.uid === selectedPriceRange
                         );
                         return selectedRange
-                          ? `£${formatPrice(selectedRange.data.price_from)} - £${formatPrice(selectedRange.data.price_to)}`
+                          ? `${formatRange(selectedPriceRange)}`
                           : "With Price Range of";
                       })()
                     : "With Price Range of"}
@@ -204,7 +214,7 @@ export const Search = ({
 
               <ListboxOptions
                 transition
-                className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
+                className="truncate absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
               >
                 {price_range
                   .sort((a, b) => a.data.price_from - b.data.price_from) // Sort by price_from
@@ -284,6 +294,22 @@ export const Search = ({
           </Listbox>
         </div>
       </div>
+      {withButton && btnActive && (
+        <Link
+          href="/find-your-new-home"
+          onClick={() => setSelectedTab(2)}
+          className="mt-6 inline-flex"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            className="relative px-4 py-2 font-medium text-sm tracking-button uppercase border border-vertoDarkBlue rounded text-vertoDarkBlue transition-colors duration-300 ease-in-out hover:bg-vertoDarkBlue hover:text-white"
+          >
+            View Properties
+          </motion.div>
+        </Link>
+      )}
     </div>
   );
 };
