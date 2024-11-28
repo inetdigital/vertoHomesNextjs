@@ -34,6 +34,7 @@ module.exports = {
         vertoLightGrey: "#E9EBED",
         vertoDarkGreen: "#152E27",
         vertoLightGreen: "#61DB79",
+        vertoLightGreenOpacity50: "rgba(97, 219, 121, 0.9)", // 80% opacity
       },
     },
   },

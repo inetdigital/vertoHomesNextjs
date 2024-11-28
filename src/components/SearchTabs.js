@@ -10,12 +10,12 @@ export const SearchTabs = () => {
   const { selectedTab, setSelectedTab } = useTab();
   const [tabs] = useState([
     {
-      name: "Explore Developments",
+      name: "Developments",
       mobileName: "Developments",
       key: 1,
       icon: "house",
     },
-    { name: "Search Properties", mobileName: "Search", key: 2, icon: "search" },
+    { name: "Properties", mobileName: "Search", key: 2, icon: "search" },
   ]);
 
   const updateCurrentTab = (key) => {
@@ -80,40 +80,27 @@ export const SearchTabs = () => {
   };
 
   return (
-    <div className="mt-16">
-      <div>
-        <div className="border-b border-gray-200">
-          <nav aria-label="Tabs" className="-mb-px flex">
-            {tabs.map((tab) => (
-              <button
-                key={tab.name}
-                aria-current={tab.key === selectedTab ? "page" : undefined}
-                onClick={() => updateCurrentTab(tab.key)}
-                className={clsx(
-                  tab.key === selectedTab
-                    ? "border-vertoLightGreen text-white"
-                    : "border-transparent text-gray-400 hover:border-gray-300 hover:text-white",
-                  "w-1/2 border-b-4 px-1 py-4  text-2xl font-normal transition duration-300 ease-in-out"
-                )}
-              >
-                {tab.key === selectedTab ? (
-                  <CurrentTab
-                    name={tab.name}
-                    mobileName={tab.mobileName}
-                    icon={tab.icon}
-                  />
-                ) : (
-                  <HoverTab
-                    name={tab.name}
-                    mobileName={tab.mobileName}
-                    icon={tab.icon}
-                  />
-                )}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
+    <div className="my-16 inline-block">
+      <span className="isolate inline-flex rounded-md shadow-sm">
+        {tabs.map((tab, index) => {
+          const isFirst = index === 0;
+          const isLast = index === tabs.length - 1;
+
+          return (
+            <button
+              key={tab.name}
+              aria-current={tab.key === selectedTab ? "page" : undefined}
+              onClick={() => updateCurrentTab(tab.key)}
+              type="button"
+              className={`${selectedTab === tab.key ? "bg-vertoLightGreen text-white" : "bg-white hover:bg-vertoLightGreenOpacity50 hover:underline hover:underline-offset-8"} w-[300px] relative inline-flex items-center justify-center px-12 py-4 text-xl font-normal transition duration-300 ease-in-out text-vertoDarkBlue hover:text-white ${
+                isFirst ? "rounded-l-full" : isLast ? "rounded-r-full" : ""
+              }`}
+            >
+              {tab.name}
+            </button>
+          );
+        })}
+      </span>
     </div>
   );
 };
