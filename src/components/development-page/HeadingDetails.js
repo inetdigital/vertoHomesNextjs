@@ -36,7 +36,9 @@ export const HeadingDetails = ({ page }) => {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="text-xl text-vertoLightGreen w-6">///</span>
+                <span className="text-xl text-vertoLightGreen w-6">
+                  {"///"}
+                </span>
                 <div>
                   <h3 className="text-sm font-semibold uppercase">
                     What3Words
