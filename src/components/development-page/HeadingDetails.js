@@ -16,7 +16,6 @@ export const HeadingDetails = ({ page }) => {
           </h2>
           <div className="flex flex-col lg:flex-row">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 w-full lg:w-2/3">
-              {/* Location */}
               <div className="flex items-start gap-4">
                 <MapPinIcon className="h-6 w-6 text-vertoLightGreen" />
                 <div>
@@ -27,7 +26,6 @@ export const HeadingDetails = ({ page }) => {
                   </p>
                 </div>
               </div>
-              {/* Property Types */}
               <div className="flex items-start gap-4">
                 <HomeIcon className="h-6 w-6 text-vertoLightGreen" />
                 <div>
@@ -37,7 +35,6 @@ export const HeadingDetails = ({ page }) => {
                   <p className="text-base">{page.data.property_types}</p>
                 </div>
               </div>
-              {/* What3Words */}
               <div className="flex items-start gap-4">
                 <span className="text-xl text-vertoLightGreen w-6">///</span>
                 <div>
@@ -47,7 +44,6 @@ export const HeadingDetails = ({ page }) => {
                   <p className="text-base">{page.data.what_three_words}</p>
                 </div>
               </div>
-              {/* Development Size */}
               <div className="flex items-start gap-4">
                 <Squares2X2Icon className="h-6 w-6 text-vertoLightGreen" />
                 <div>
