@@ -106,7 +106,9 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type DevelopmentDocumentDataSlicesSlice = never;
+type DevelopmentDocumentDataSlicesSlice =
+  | ImageGridSlice
+  | LeadContentBlockSlice;
 
 /**
  * Item in *Development → Listing Images*
@@ -2046,6 +2048,66 @@ type ImageSliceVariation = ImageSliceDefault | ImageSliceWide;
 export type ImageSlice = prismic.SharedSlice<"image", ImageSliceVariation>;
 
 /**
+ * Item in *ImageGrid → Default → Primary → Images*
+ */
+export interface ImageGridSliceDefaultPrimaryImagesItem {
+  /**
+   * Image field in *ImageGrid → Default → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.default.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *ImageGrid → Default → Primary*
+ */
+export interface ImageGridSliceDefaultPrimary {
+  /**
+   * Images field in *ImageGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.default.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<ImageGridSliceDefaultPrimaryImagesItem>>;
+}
+
+/**
+ * Default variation for ImageGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ImageGrid*
+ */
+type ImageGridSliceVariation = ImageGridSliceDefault;
+
+/**
+ * ImageGrid Shared Slice
+ *
+ * - **API ID**: `image_grid`
+ * - **Description**: ImageGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageGridSlice = prismic.SharedSlice<
+  "image_grid",
+  ImageGridSliceVariation
+>;
+
+/**
  * Item in *InlineImages → Default → Primary → Images*
  */
 export interface InlineImagesSliceDefaultPrimaryImagesItem {
@@ -2678,6 +2740,11 @@ declare module "@prismicio/client" {
       ImageSliceVariation,
       ImageSliceDefault,
       ImageSliceWide,
+      ImageGridSlice,
+      ImageGridSliceDefaultPrimaryImagesItem,
+      ImageGridSliceDefaultPrimary,
+      ImageGridSliceVariation,
+      ImageGridSliceDefault,
       InlineImagesSlice,
       InlineImagesSliceDefaultPrimaryImagesItem,
       InlineImagesSliceDefaultPrimary,

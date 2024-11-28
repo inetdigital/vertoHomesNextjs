@@ -8,6 +8,7 @@ export const components = {
   development_showcase: dynamic(() => import("./DevelopmentShowcase")),
   footer_menu: dynamic(() => import("./FooterMenu")),
   image: dynamic(() => import("./Image")),
+  image_grid: dynamic(() => import("./ImageGrid")),
   inline_images: dynamic(() => import("./InlineImages")),
   lead_content_block: dynamic(() => import("./LeadContentBlock")),
   menu_item: dynamic(() => import("./MenuItem")),

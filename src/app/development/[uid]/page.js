@@ -6,6 +6,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 import { BannerImage } from "@/components/BannerImage";
+import { HeadingDetails } from "@/components/development-page/HeadingDetails";
+import { FooterContact } from "@/components/development-page/FooterContact";
 
 import { fetchNavigation } from "@/lib/fetchNavigation";
 
@@ -46,7 +48,9 @@ export default async function Development({ params }) {
       {prismic.isFilled.image(page.data.banner_image) && (
         <BannerImage image={page.data.banner_image} />
       )}
+      <HeadingDetails page={page} />
       <SliceZone slices={page.data.slices} components={components} />
+      <FooterContact />
     </Layout>
   );
 }
