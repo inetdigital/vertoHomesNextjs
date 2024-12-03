@@ -84,5 +84,47 @@
 				"value": []
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "threeColumnSubMenu",
+		"primary": {
+			"uid": {
+				"__TYPE__": "FieldContent",
+				"value": "slipped",
+				"type": "Text"
+			},
+			"link_label": {
+				"__TYPE__": "FieldContent",
+				"value": "shine",
+				"type": "Text"
+			},
+			"sub_menus_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"sub_menu_item_in_group",
+								{
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

@@ -12,6 +12,7 @@ const nextConfig = {
       },
     ];
   },
+  swcMinify: true, // Enable SWC minification for faster builds and smaller JS bundles
 };
 
 module.exports = nextConfig;

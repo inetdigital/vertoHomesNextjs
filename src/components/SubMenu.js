@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 
 import { SingleSubMenu } from "@/components/ui/SingleSubMenu";
 import { MultiSubMenu } from "@/components/ui/MultiSubMenu";
+import { ThreeColumnSubMenu } from "@/components/ui/ThreeColumnSubMenu";
 
 import { useMenuStatus } from "@/context/MenuStatus";
 
@@ -47,9 +48,11 @@ const SubMenu = ({
         >
           {openSubMenuIndex !== null && (
             <>
-              {!["default", "withMultipleSubMenus"].includes(
-                navItems[openSubMenuIndex]?.variation
-              ) && (
+              {![
+                "default",
+                "withMultipleSubMenus",
+                "threeColumnSubMenu",
+              ].includes(navItems[openSubMenuIndex]?.variation) && (
                 <SingleSubMenu
                   navItems={navItems}
                   openSubMenuIndex={openSubMenuIndex}
@@ -59,6 +62,14 @@ const SubMenu = ({
               {navItems[openSubMenuIndex]?.variation ===
                 "withMultipleSubMenus" && (
                 <MultiSubMenu
+                  navItems={navItems}
+                  openSubMenuIndex={openSubMenuIndex}
+                />
+              )}
+
+              {navItems[openSubMenuIndex]?.variation ===
+                "threeColumnSubMenu" && (
+                <ThreeColumnSubMenu
                   navItems={navItems}
                   openSubMenuIndex={openSubMenuIndex}
                 />

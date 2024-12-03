@@ -12,6 +12,7 @@ import { PrismicNextLink } from "@prismicio/next";
 export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
   const [activeNavItem, setActiveNavItem] = useState(null);
   const [animatedItems, setAnimatedItems] = useState([]);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const { setSelectedLocationTab } = useTab();
 
@@ -41,6 +42,10 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
     setSelectedLocationTab(uid);
   };
 
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   useEffect(() => {
     if (mobileMenuStatus && !activeNavItem) {
       setAnimatedItems([]);
@@ -52,6 +57,8 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
       });
     }
   }, [mobileMenuStatus, activeNavItem]);
+
+  console.log(activeNavItem);
 
   return (
     <div
@@ -206,6 +213,86 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                         }
                       )}
                     </>
+                  )}
+                  {activeNavItem.variation === "threeColumnSubMenu" && (
+                    <div className="w-full">
+                      {activeNavItem.primary.sub_menus_group.map(
+                        (item, index) => (
+                          <div key={index} className="space-y-4">
+                            <button
+                              onClick={() => toggleAccordion(index)}
+                              className={`flex items-center justify-between w-full px-4 py-3 text-left
+                          group flex rounded-md p-2 pl-3 text-xl ${openIndex === index ? "bg-vertoDarkBlue text-white" : "text-gray-700 hover:bg-vertoDarkBlue hover:text-white"}`}
+                            >
+                              <span className="flex items-center space-x-2">
+                                {
+                                  item.sub_menu_item_in_group.data
+                                    .sub_menu_header
+                                }
+                              </span>
+                              <span
+                                className={`transform transition-all duration-300 ${
+                                  openIndex === index
+                                    ? "rotate-180"
+                                    : "rotate-0"
+                                }`}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  fill="currentColor"
+                                  className="size-6"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                            <div
+                              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                                openIndex === index ? "max-h-screen" : "max-h-0"
+                              }`}
+                            >
+                              <div className="px-4 py-6 bg-gray-100 rounded-md mb-4">
+                                <ul className="space-y-4">
+                                  {item.sub_menu_item_in_group.data.slices[0].primary.links.map(
+                                    (item, index) => {
+                                      return (
+                                        <li
+                                          key={index}
+                                          className="flex items-center"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                            className="size-4 mr-2"
+                                          >
+                                            <path
+                                              fillRule="evenodd"
+                                              d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                                              clipRule="evenodd"
+                                            />
+                                          </svg>
+
+                                          <PrismicNextLink
+                                            field={item.link}
+                                            className="text-base"
+                                          />
+                                        </li>
+                                      );
+                                    }
+                                  )}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
                   )}
                 </ul>
               </motion.div>

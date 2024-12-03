@@ -2270,6 +2270,21 @@ export interface MenuItemSliceWithMultipleSubMenusPrimarySubMenusGroupItem {
 }
 
 /**
+ * Item in *MenuItem → ThreeColumnSubMenu → Primary → Sub Menus Group*
+ */
+export interface MenuItemSliceThreeColumnSubMenuPrimarySubMenusGroupItem {
+  /**
+   * Sub menu item in group field in *MenuItem → ThreeColumnSubMenu → Primary → Sub Menus Group*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.threeColumnSubMenu.primary.sub_menus_group[].sub_menu_item_in_group
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  sub_menu_item_in_group: prismic.ContentRelationshipField<"sub_menu">;
+}
+
+/**
  * Primary content in *MenuItem → Default → Primary*
  */
 export interface MenuItemSliceDefaultPrimary {
@@ -2396,12 +2411,63 @@ export type MenuItemSliceWithMultipleSubMenus = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *MenuItem → ThreeColumnSubMenu → Primary*
+ */
+export interface MenuItemSliceThreeColumnSubMenuPrimary {
+  /**
+   * UID field in *MenuItem → ThreeColumnSubMenu → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.threeColumnSubMenu.primary.uid
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  uid: prismic.KeyTextField;
+
+  /**
+   * Link Label field in *MenuItem → ThreeColumnSubMenu → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.threeColumnSubMenu.primary.link_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_label: prismic.KeyTextField;
+
+  /**
+   * Sub Menus Group field in *MenuItem → ThreeColumnSubMenu → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.threeColumnSubMenu.primary.sub_menus_group[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  sub_menus_group: prismic.GroupField<
+    Simplify<MenuItemSliceThreeColumnSubMenuPrimarySubMenusGroupItem>
+  >;
+}
+
+/**
+ * ThreeColumnSubMenu variation for MenuItem Slice
+ *
+ * - **API ID**: `threeColumnSubMenu`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSliceThreeColumnSubMenu = prismic.SharedSliceVariation<
+  "threeColumnSubMenu",
+  Simplify<MenuItemSliceThreeColumnSubMenuPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *MenuItem*
  */
 type MenuItemSliceVariation =
   | MenuItemSliceDefault
   | MenuItemSliceMenuItemWithSubMenu
-  | MenuItemSliceWithMultipleSubMenus;
+  | MenuItemSliceWithMultipleSubMenus
+  | MenuItemSliceThreeColumnSubMenu;
 
 /**
  * MenuItem Shared Slice
@@ -2513,6 +2579,21 @@ export type StandardTextBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *SubMenuItem → singleColumnMenu → Primary → Links*
+ */
+export interface SubMenuItemSliceSingleColumnMenuPrimaryLinksItem {
+  /**
+   * Link field in *SubMenuItem → singleColumnMenu → Primary → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.singleColumnMenu.primary.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
  * Primary content in *SubMenuItem → Default → Primary*
  */
 export interface SubMenuItemSliceDefaultPrimary {
@@ -2580,11 +2661,42 @@ export type SubMenuItemSliceWithDevelopmentReference =
   >;
 
 /**
+ * Primary content in *SubMenuItem → singleColumnMenu → Primary*
+ */
+export interface SubMenuItemSliceSingleColumnMenuPrimary {
+  /**
+   * Links field in *SubMenuItem → singleColumnMenu → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.singleColumnMenu.primary.links[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<
+    Simplify<SubMenuItemSliceSingleColumnMenuPrimaryLinksItem>
+  >;
+}
+
+/**
+ * singleColumnMenu variation for SubMenuItem Slice
+ *
+ * - **API ID**: `singleColumnMenu`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSliceSingleColumnMenu = prismic.SharedSliceVariation<
+  "singleColumnMenu",
+  Simplify<SubMenuItemSliceSingleColumnMenuPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *SubMenuItem*
  */
 type SubMenuItemSliceVariation =
   | SubMenuItemSliceDefault
-  | SubMenuItemSliceWithDevelopmentReference;
+  | SubMenuItemSliceWithDevelopmentReference
+  | SubMenuItemSliceSingleColumnMenu;
 
 /**
  * SubMenuItem Shared Slice
@@ -2759,10 +2871,13 @@ declare module "@prismicio/client" {
       MenuItemSliceMenuItemWithSubMenuPrimary,
       MenuItemSliceWithMultipleSubMenusPrimarySubMenusGroupItem,
       MenuItemSliceWithMultipleSubMenusPrimary,
+      MenuItemSliceThreeColumnSubMenuPrimarySubMenusGroupItem,
+      MenuItemSliceThreeColumnSubMenuPrimary,
       MenuItemSliceVariation,
       MenuItemSliceDefault,
       MenuItemSliceMenuItemWithSubMenu,
       MenuItemSliceWithMultipleSubMenus,
+      MenuItemSliceThreeColumnSubMenu,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
@@ -2774,9 +2889,12 @@ declare module "@prismicio/client" {
       SubMenuItemSlice,
       SubMenuItemSliceDefaultPrimary,
       SubMenuItemSliceWithDevelopmentReferencePrimary,
+      SubMenuItemSliceSingleColumnMenuPrimaryLinksItem,
+      SubMenuItemSliceSingleColumnMenuPrimary,
       SubMenuItemSliceVariation,
       SubMenuItemSliceDefault,
       SubMenuItemSliceWithDevelopmentReference,
+      SubMenuItemSliceSingleColumnMenu,
       TextSlice,
       TextSliceDefaultPrimary,
       TextSliceVariation,

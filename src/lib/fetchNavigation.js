@@ -55,6 +55,28 @@ export const fetchNavigation = async (client) => {
                   }
                 }
               }
+              ...on threeColumnSubMenu {
+                primary {
+                  uid
+                  link_label
+                  sub_menus_group {
+                    sub_menu_item_in_group {
+                      ...sub_menu_item_in_groupFields
+                      slices {
+                        ...on sub_menu_item {
+                          variation {
+                            ...on singleColumnMenu {
+                              primary {
+                                ...primaryFields
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

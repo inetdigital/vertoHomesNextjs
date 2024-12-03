@@ -1,16 +1,14 @@
 import { PrismicNextLink } from "@prismicio/next";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { useLocations } from "@/context/TaxonomyLocations";
 import { useDevelopments } from "@/context/AllDevelopments";
 
 export const MultiSubMenu = ({ navItems, openSubMenuIndex }) => {
   const [activeTab, setActiveTab] = useState(0); // Track active tab for small screens
-
   const subMenus = navItems[openSubMenuIndex]?.primary?.sub_menus_group || [];
-
   return (
     <div className="pt-12 lg:pt-12 xl:pt-24 pb-32 w-full">
       {/* Tabs for screens below 2xl */}

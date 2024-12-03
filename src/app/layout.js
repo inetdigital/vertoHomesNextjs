@@ -26,10 +26,7 @@ const montserrat = Montserrat({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} font-sans`}>
-      <head>
-        {/* Adobe Fonts link */}
-        <link rel="stylesheet" href="https://use.typekit.net/xno3cen.css" />
-      </head>
+      <head>{/* Adobe Fonts link */}</head>
       <body className="overflow-x-hidden antialiased">
         <SearchTabProvider>
           <SearchOptionsProvider>

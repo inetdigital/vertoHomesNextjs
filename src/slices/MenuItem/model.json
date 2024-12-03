@@ -103,6 +103,50 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "threeColumnSubMenu",
+      "name": "ThreeColumnSubMenu",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "uid": {
+          "type": "Text",
+          "config": {
+            "label": "UID",
+            "placeholder": ""
+          }
+        },
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
+        },
+        "sub_menus_group": {
+          "type": "Group",
+          "config": {
+            "label": "Sub Menus Group",
+            "repeat": true,
+            "fields": {
+              "sub_menu_item_in_group": {
+                "type": "Link",
+                "config": {
+                  "label": "Sub menu item in group",
+                  "select": "document",
+                  "customtypes": [
+                    "sub_menu"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }
