@@ -4,16 +4,23 @@ import dynamic from "next/dynamic";
 
 export const components = {
   block_content: dynamic(() => import("./BlockContent")),
+  check_list: dynamic(() => import("./CheckList")),
   contact_form: dynamic(() => import("./ContactForm")),
   development_showcase: dynamic(() => import("./DevelopmentShowcase")),
+  energy_comparison: dynamic(() => import("./StatisticComparisonCards")),
   footer_menu: dynamic(() => import("./FooterMenu")),
+  fullimage_block: dynamic(() => import("./FullimageBlock")),
   image: dynamic(() => import("./Image")),
   image_grid: dynamic(() => import("./ImageGrid")),
   inline_images: dynamic(() => import("./InlineImages")),
   lead_content_block: dynamic(() => import("./LeadContentBlock")),
   menu_item: dynamic(() => import("./MenuItem")),
+  property_grid: dynamic(() => import("./PropertyGrid")),
   quote: dynamic(() => import("./Quote")),
+  rich_content_block: dynamic(() => import("./RichContentBlock")),
+  split_content_block: dynamic(() => import("./SplitContentBlock")),
   standard_text_block: dynamic(() => import("./StandardTextBlock")),
   sub_menu_item: dynamic(() => import("./SubMenuItem")),
   text: dynamic(() => import("./Text")),
+  typology_layout: dynamic(() => import("./TypologyLayout")),
 };

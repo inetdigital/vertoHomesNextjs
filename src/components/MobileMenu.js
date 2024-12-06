@@ -58,8 +58,6 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
     }
   }, [mobileMenuStatus, activeNavItem]);
 
-  console.log(activeNavItem);
-
   return (
     <div
       className={`block lg:hidden transition-all duration-300 ease-in-out absolute overflow-hidden left-0 w-full bg-white ${

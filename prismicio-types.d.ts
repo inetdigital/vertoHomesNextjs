@@ -106,9 +106,7 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type DevelopmentDocumentDataSlicesSlice =
-  | ImageGridSlice
-  | LeadContentBlockSlice;
+type DevelopmentDocumentDataSlicesSlice = never;
 
 /**
  * Item in *Development → Listing Images*
@@ -124,6 +122,16 @@ export interface DevelopmentDocumentDataListingImagesItem {
    */
   image: prismic.ImageField<never>;
 }
+
+type DevelopmentDocumentDataSlices4Slice =
+  | SplitContentBlockSlice
+  | ImageSlice
+  | FullimageBlockSlice
+  | TypologyLayoutSlice
+  | PropertyGridSlice
+  | BlockContentSlice
+  | ImageGridSlice
+  | LeadContentBlockSlice;
 
 /**
  * Content for Development documents
@@ -310,7 +318,16 @@ interface DevelopmentDocumentData {
    * - **Tab**: Downloads
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */;
-  brochure: prismic.LinkField;
+  brochure: prismic.LinkField /**
+   * Slice Zone field in *Development*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: development.slices4[]
+   * - **Tab**: Content
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices4: prismic.SliceZone<DevelopmentDocumentDataSlices4Slice>;
 }
 
 /**
@@ -581,6 +598,29 @@ export type PageDocument<Lang extends string = string> =
 type PropertyDocumentDataSlicesSlice = never;
 
 /**
+ * Item in *Property → Property Images*
+ */
+export interface PropertyDocumentDataPropertyImagesItem {
+  /**
+   * Image field in *Property → Property Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.property_images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+type PropertyDocumentDataSlices5Slice =
+  | PropertyGridSlice
+  | BlockContentSlice
+  | RichContentBlockSlice
+  | EnergyComparisonSlice
+  | FullimageBlockSlice
+  | CheckListSlice;
+
+/**
  * Content for Property documents
  */
 interface PropertyDocumentData {
@@ -725,7 +765,7 @@ interface PropertyDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never> /**
-   * Featured Image field in *Property*
+   * Featured Image (Property listings) field in *Property*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -733,7 +773,20 @@ interface PropertyDocumentData {
    * - **Tab**: Images
    * - **Documentation**: https://prismic.io/docs/field#image
    */;
-  featured_image: prismic.ImageField<never> /**
+  featured_image: prismic.ImageField<never>;
+
+  /**
+   * Property Images field in *Property*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.property_images[]
+   * - **Tab**: Images
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  property_images: prismic.GroupField<
+    Simplify<PropertyDocumentDataPropertyImagesItem>
+  > /**
    * Map Location field in *Property*
    *
    * - **Field Type**: GeoPoint
@@ -797,7 +850,16 @@ interface PropertyDocumentData {
    * - **Tab**: Location
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  location_filter: prismic.ContentRelationshipField<"taxonomy_location">;
+  location_filter: prismic.ContentRelationshipField<"taxonomy_location"> /**
+   * Slice Zone field in *Property*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.slices5[]
+   * - **Tab**: Content
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices5: prismic.SliceZone<PropertyDocumentDataSlices5Slice>;
 }
 
 /**
@@ -1686,6 +1748,78 @@ export type BlockContentSliceWithRegisterInterestForm =
   >;
 
 /**
+ * Primary content in *BlockContent → SplitGrid → Primary*
+ */
+export interface BlockContentSliceSplitGridPrimary {
+  /**
+   * Background Color field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoBlue
+   * - **API ID Path**: block_content.splitGrid.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
+    "filled"
+  >;
+
+  /**
+   * Title Lead field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.splitGrid.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.splitGrid.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.splitGrid.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Link field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.splitGrid.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * SplitGrid variation for BlockContent Slice
+ *
+ * - **API ID**: `splitGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlockContentSliceSplitGrid = prismic.SharedSliceVariation<
+  "splitGrid",
+  Simplify<BlockContentSliceSplitGridPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *BlockContent*
  */
 type BlockContentSliceVariation =
@@ -1694,7 +1828,8 @@ type BlockContentSliceVariation =
   | BlockContentSliceExplore
   | BlockContentSliceWithImageLead
   | BlockContentSliceContentList
-  | BlockContentSliceWithRegisterInterestForm;
+  | BlockContentSliceWithRegisterInterestForm
+  | BlockContentSliceSplitGrid;
 
 /**
  * BlockContent Shared Slice
@@ -1706,6 +1841,78 @@ type BlockContentSliceVariation =
 export type BlockContentSlice = prismic.SharedSlice<
   "block_content",
   BlockContentSliceVariation
+>;
+
+/**
+ * Item in *CheckList → Default → Primary → Bullet Points*
+ */
+export interface CheckListSliceDefaultPrimaryBulletPointsItem {
+  /**
+   * Label field in *CheckList → Default → Primary → Bullet Points*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.default.primary.bullet_points[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CheckList → Default → Primary*
+ */
+export interface CheckListSliceDefaultPrimary {
+  /**
+   * Title field in *CheckList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Bullet Points field in *CheckList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.default.primary.bullet_points[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  bullet_points: prismic.GroupField<
+    Simplify<CheckListSliceDefaultPrimaryBulletPointsItem>
+  >;
+}
+
+/**
+ * Default variation for CheckList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CheckListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CheckListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CheckList*
+ */
+type CheckListSliceVariation = CheckListSliceDefault;
+
+/**
+ * CheckList Shared Slice
+ *
+ * - **API ID**: `check_list`
+ * - **Description**: CheckList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CheckListSlice = prismic.SharedSlice<
+  "check_list",
+  CheckListSliceVariation
 >;
 
 /**
@@ -1798,6 +2005,118 @@ type DevelopmentShowcaseSliceVariation = DevelopmentShowcaseSliceDefault;
 export type DevelopmentShowcaseSlice = prismic.SharedSlice<
   "development_showcase",
   DevelopmentShowcaseSliceVariation
+>;
+
+/**
+ * Item in *StatisticComparisonCards → Default → Primary → Cards*
+ */
+export interface EnergyComparisonSliceDefaultPrimaryCardsItem {
+  /**
+   * Icon field in *StatisticComparisonCards → Default → Primary → Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.cards[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Statistic field in *StatisticComparisonCards → Default → Primary → Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.cards[].statistic
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  statistic: prismic.KeyTextField;
+
+  /**
+   * Content field in *StatisticComparisonCards → Default → Primary → Cards*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.cards[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Highlight Color field in *StatisticComparisonCards → Default → Primary → Cards*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.cards[].highlight_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  highlight_color: prismic.ColorField;
+}
+
+/**
+ * Primary content in *StatisticComparisonCards → Default → Primary*
+ */
+export interface EnergyComparisonSliceDefaultPrimary {
+  /**
+   * Title field in *StatisticComparisonCards → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *StatisticComparisonCards → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Cards field in *StatisticComparisonCards → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.default.primary.cards[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  cards: prismic.GroupField<
+    Simplify<EnergyComparisonSliceDefaultPrimaryCardsItem>
+  >;
+}
+
+/**
+ * Default variation for StatisticComparisonCards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EnergyComparisonSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EnergyComparisonSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StatisticComparisonCards*
+ */
+type EnergyComparisonSliceVariation = EnergyComparisonSliceDefault;
+
+/**
+ * StatisticComparisonCards Shared Slice
+ *
+ * - **API ID**: `energy_comparison`
+ * - **Description**: EnergyComparison
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EnergyComparisonSlice = prismic.SharedSlice<
+  "energy_comparison",
+  EnergyComparisonSliceVariation
 >;
 
 /**
@@ -1958,6 +2277,81 @@ export type FooterMenuSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *FullimageBlock → Default → Primary*
+ */
+export interface FullimageBlockSliceDefaultPrimary {
+  /**
+   * Image field in *FullimageBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fullimage_block.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Title Lead field in *FullimageBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fullimage_block.default.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *FullimageBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fullimage_block.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Link field in *FullimageBlock → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fullimage_block.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Default variation for FullimageBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FullimageBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FullimageBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FullimageBlock*
+ */
+type FullimageBlockSliceVariation = FullimageBlockSliceDefault;
+
+/**
+ * FullimageBlock Shared Slice
+ *
+ * - **API ID**: `fullimage_block`
+ * - **Description**: FullimageBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FullimageBlockSlice = prismic.SharedSlice<
+  "fullimage_block",
+  FullimageBlockSliceVariation
+>;
+
+/**
  * Primary content in *Image → Default → Primary*
  */
 export interface ImageSliceDefaultPrimary {
@@ -1970,16 +2364,6 @@ export interface ImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
-
-  /**
-   * Caption field in *Image → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Optional - Caption under the image
-   * - **API ID Path**: image.default.primary.caption
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  caption: prismic.RichTextField;
 }
 
 /**
@@ -2008,16 +2392,6 @@ export interface ImageSliceWidePrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
-
-  /**
-   * Caption field in *Image → Wide → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Optional - Caption under the image
-   * - **API ID Path**: image.wide.primary.caption
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  caption: prismic.RichTextField;
 }
 
 /**
@@ -2238,9 +2612,69 @@ export type LeadContentBlockSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *LeadContentBlock → greenHighlight → Primary*
+ */
+export interface LeadContentBlockSliceGreenHighlightPrimary {
+  /**
+   * Title Lead field in *LeadContentBlock → greenHighlight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lead_content_block.greenHighlight.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *LeadContentBlock → greenHighlight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lead_content_block.greenHighlight.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *LeadContentBlock → greenHighlight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lead_content_block.greenHighlight.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Link field in *LeadContentBlock → greenHighlight → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lead_content_block.greenHighlight.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * greenHighlight variation for LeadContentBlock Slice
+ *
+ * - **API ID**: `greenHighlight`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LeadContentBlockSliceGreenHighlight = prismic.SharedSliceVariation<
+  "greenHighlight",
+  Simplify<LeadContentBlockSliceGreenHighlightPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *LeadContentBlock*
  */
-type LeadContentBlockSliceVariation = LeadContentBlockSliceDefault;
+type LeadContentBlockSliceVariation =
+  | LeadContentBlockSliceDefault
+  | LeadContentBlockSliceGreenHighlight;
 
 /**
  * LeadContentBlock Shared Slice
@@ -2482,6 +2916,71 @@ export type MenuItemSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *PropertyGrid → Default → Primary*
+ */
+export interface PropertyGridSliceDefaultPrimary {
+  /**
+   * Title Lead field in *PropertyGrid → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_grid.default.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *PropertyGrid → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_grid.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Properties from development field in *PropertyGrid → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_grid.default.primary.properties_from_development
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  properties_from_development: prismic.ContentRelationshipField<"development">;
+}
+
+/**
+ * Default variation for PropertyGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PropertyGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PropertyGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PropertyGrid*
+ */
+type PropertyGridSliceVariation = PropertyGridSliceDefault;
+
+/**
+ * PropertyGrid Shared Slice
+ *
+ * - **API ID**: `property_grid`
+ * - **Description**: PropertyGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PropertyGridSlice = prismic.SharedSlice<
+  "property_grid",
+  PropertyGridSliceVariation
+>;
+
+/**
  * Primary content in *Quote → Default → Primary*
  */
 export interface QuoteSliceDefaultPrimary {
@@ -2532,6 +3031,227 @@ type QuoteSliceVariation = QuoteSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
+
+/**
+ * Primary content in *RichContentBlock → Default → Primary*
+ */
+export interface RichContentBlockSliceDefaultPrimary {
+  /**
+   * Content field in *RichContentBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_content_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Block Width Percentage field in *RichContentBlock → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 50
+   * - **API ID Path**: rich_content_block.default.primary.block_width_percentage
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  block_width_percentage: prismic.SelectField<"50" | "75" | "100", "filled">;
+}
+
+/**
+ * Default variation for RichContentBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichContentBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RichContentBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *RichContentBlock*
+ */
+type RichContentBlockSliceVariation = RichContentBlockSliceDefault;
+
+/**
+ * RichContentBlock Shared Slice
+ *
+ * - **API ID**: `rich_content_block`
+ * - **Description**: RichContentBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichContentBlockSlice = prismic.SharedSlice<
+  "rich_content_block",
+  RichContentBlockSliceVariation
+>;
+
+/**
+ * Primary content in *SplitContentBlock → withBicycleFooter → Primary*
+ */
+export interface SplitContentBlockSliceDefaultPrimary {
+  /**
+   * Title Lead field in *SplitContentBlock → withBicycleFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.default.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *SplitContentBlock → withBicycleFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *SplitContentBlock → withBicycleFooter → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * withBicycleFooter variation for SplitContentBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitContentBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SplitContentBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *SplitContentBlock → withHouseFooter → Primary*
+ */
+export interface SplitContentBlockSliceWithHouseFooterPrimary {
+  /**
+   * Title Lead field in *SplitContentBlock → withHouseFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withHouseFooter.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *SplitContentBlock → withHouseFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withHouseFooter.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *SplitContentBlock → withHouseFooter → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withHouseFooter.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * withHouseFooter variation for SplitContentBlock Slice
+ *
+ * - **API ID**: `withHouseFooter`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitContentBlockSliceWithHouseFooter =
+  prismic.SharedSliceVariation<
+    "withHouseFooter",
+    Simplify<SplitContentBlockSliceWithHouseFooterPrimary>,
+    never
+  >;
+
+/**
+ * Primary content in *SplitContentBlock → withoutFooter → Primary*
+ */
+export interface SplitContentBlockSliceWithoutFooterPrimary {
+  /**
+   * Title Lead field in *SplitContentBlock → withoutFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withoutFooter.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *SplitContentBlock → withoutFooter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withoutFooter.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *SplitContentBlock → withoutFooter → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_content_block.withoutFooter.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * withoutFooter variation for SplitContentBlock Slice
+ *
+ * - **API ID**: `withoutFooter`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitContentBlockSliceWithoutFooter = prismic.SharedSliceVariation<
+  "withoutFooter",
+  Simplify<SplitContentBlockSliceWithoutFooterPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SplitContentBlock*
+ */
+type SplitContentBlockSliceVariation =
+  | SplitContentBlockSliceDefault
+  | SplitContentBlockSliceWithHouseFooter
+  | SplitContentBlockSliceWithoutFooter;
+
+/**
+ * SplitContentBlock Shared Slice
+ *
+ * - **API ID**: `split_content_block`
+ * - **Description**: SplitContentBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitContentBlockSlice = prismic.SharedSlice<
+  "split_content_block",
+  SplitContentBlockSliceVariation
+>;
 
 /**
  * Primary content in *StandardTextBlock → With Register Interest Form → Primary*
@@ -2752,6 +3472,71 @@ type TextSliceVariation = TextSliceDefault;
  */
 export type TextSlice = prismic.SharedSlice<"text", TextSliceVariation>;
 
+/**
+ * Primary content in *TypologyLayout → Default → Primary*
+ */
+export interface TypologyLayoutSliceDefaultPrimary {
+  /**
+   * Title field in *TypologyLayout → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: typology_layout.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Map Image field in *TypologyLayout → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: typology_layout.default.primary.map_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  map_image: prismic.ImageField<"square">;
+
+  /**
+   * Key Image field in *TypologyLayout → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: typology_layout.default.primary.key_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  key_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for TypologyLayout Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TypologyLayoutSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TypologyLayoutSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TypologyLayout*
+ */
+type TypologyLayoutSliceVariation = TypologyLayoutSliceDefault;
+
+/**
+ * TypologyLayout Shared Slice
+ *
+ * - **API ID**: `typology_layout`
+ * - **Description**: TypologyLayout
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TypologyLayoutSlice = prismic.SharedSlice<
+  "typology_layout",
+  TypologyLayoutSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -2780,6 +3565,7 @@ declare module "@prismicio/client" {
       DevelopmentDocumentData,
       DevelopmentDocumentDataSlicesSlice,
       DevelopmentDocumentDataListingImagesItem,
+      DevelopmentDocumentDataSlices4Slice,
       HomePageDocument,
       HomePageDocumentData,
       HomePageDocumentDataHomePageBannerImagesItem,
@@ -2794,6 +3580,8 @@ declare module "@prismicio/client" {
       PropertyDocument,
       PropertyDocumentData,
       PropertyDocumentDataSlicesSlice,
+      PropertyDocumentDataPropertyImagesItem,
+      PropertyDocumentDataSlices5Slice,
       SearchDocument,
       SearchDocumentData,
       SearchDocumentDataSlicesSlice,
@@ -2823,6 +3611,7 @@ declare module "@prismicio/client" {
       BlockContentSliceContentListPrimaryContentBlockItem,
       BlockContentSliceContentListPrimary,
       BlockContentSliceWithRegisterInterestFormPrimary,
+      BlockContentSliceSplitGridPrimary,
       BlockContentSliceVariation,
       BlockContentSliceDefault,
       BlockContentSliceTestimonial,
@@ -2830,6 +3619,12 @@ declare module "@prismicio/client" {
       BlockContentSliceWithImageLead,
       BlockContentSliceContentList,
       BlockContentSliceWithRegisterInterestForm,
+      BlockContentSliceSplitGrid,
+      CheckListSlice,
+      CheckListSliceDefaultPrimaryBulletPointsItem,
+      CheckListSliceDefaultPrimary,
+      CheckListSliceVariation,
+      CheckListSliceDefault,
       ContactFormSlice,
       ContactFormSliceVariation,
       ContactFormSliceDefault,
@@ -2838,6 +3633,11 @@ declare module "@prismicio/client" {
       DevelopmentShowcaseSliceDefaultPrimary,
       DevelopmentShowcaseSliceVariation,
       DevelopmentShowcaseSliceDefault,
+      EnergyComparisonSlice,
+      EnergyComparisonSliceDefaultPrimaryCardsItem,
+      EnergyComparisonSliceDefaultPrimary,
+      EnergyComparisonSliceVariation,
+      EnergyComparisonSliceDefault,
       FooterMenuSlice,
       FooterMenuSliceDefaultPrimaryLinksItem,
       FooterMenuSliceDefaultPrimary,
@@ -2846,6 +3646,10 @@ declare module "@prismicio/client" {
       FooterMenuSliceVariation,
       FooterMenuSliceDefault,
       FooterMenuSliceContactDetails,
+      FullimageBlockSlice,
+      FullimageBlockSliceDefaultPrimary,
+      FullimageBlockSliceVariation,
+      FullimageBlockSliceDefault,
       ImageSlice,
       ImageSliceDefaultPrimary,
       ImageSliceWidePrimary,
@@ -2864,8 +3668,10 @@ declare module "@prismicio/client" {
       InlineImagesSliceDefault,
       LeadContentBlockSlice,
       LeadContentBlockSliceDefaultPrimary,
+      LeadContentBlockSliceGreenHighlightPrimary,
       LeadContentBlockSliceVariation,
       LeadContentBlockSliceDefault,
+      LeadContentBlockSliceGreenHighlight,
       MenuItemSlice,
       MenuItemSliceDefaultPrimary,
       MenuItemSliceMenuItemWithSubMenuPrimary,
@@ -2878,10 +3684,26 @@ declare module "@prismicio/client" {
       MenuItemSliceMenuItemWithSubMenu,
       MenuItemSliceWithMultipleSubMenus,
       MenuItemSliceThreeColumnSubMenu,
+      PropertyGridSlice,
+      PropertyGridSliceDefaultPrimary,
+      PropertyGridSliceVariation,
+      PropertyGridSliceDefault,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
       QuoteSliceDefault,
+      RichContentBlockSlice,
+      RichContentBlockSliceDefaultPrimary,
+      RichContentBlockSliceVariation,
+      RichContentBlockSliceDefault,
+      SplitContentBlockSlice,
+      SplitContentBlockSliceDefaultPrimary,
+      SplitContentBlockSliceWithHouseFooterPrimary,
+      SplitContentBlockSliceWithoutFooterPrimary,
+      SplitContentBlockSliceVariation,
+      SplitContentBlockSliceDefault,
+      SplitContentBlockSliceWithHouseFooter,
+      SplitContentBlockSliceWithoutFooter,
       StandardTextBlockSlice,
       StandardTextBlockSliceDefaultPrimary,
       StandardTextBlockSliceVariation,
@@ -2899,6 +3721,10 @@ declare module "@prismicio/client" {
       TextSliceDefaultPrimary,
       TextSliceVariation,
       TextSliceDefault,
+      TypologyLayoutSlice,
+      TypologyLayoutSliceDefaultPrimary,
+      TypologyLayoutSliceVariation,
+      TypologyLayoutSliceDefault,
     };
   }
 }

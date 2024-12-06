@@ -1,0 +1,43 @@
+{
+  "id": "property_grid",
+  "type": "SharedSlice",
+  "name": "PropertyGrid",
+  "description": "PropertyGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title_lead": {
+          "type": "Text",
+          "config": {
+            "label": "Title Lead",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "properties_from_development": {
+          "type": "Link",
+          "config": {
+            "label": "Properties from development",
+            "select": "document",
+            "customtypes": [
+              "development"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

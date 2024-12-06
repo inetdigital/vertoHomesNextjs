@@ -35,17 +35,6 @@ export default async function SearchPage() {
   const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
 
-  const developments = await client.getAllByType("development");
-  const properties = await client.getAllByType("property", {
-    fetchLinks: [
-      "development.uid",
-      "development.name",
-      "type.uid",
-      "taxonomy_house_type.name",
-      "taxonomy_number_of_bedrooms.number_of_bedrooms",
-    ],
-  });
-
   return (
     <Layout navigation={navigation} settings={settings}>
       <div className="bg-vertoDarkGreen">
@@ -74,7 +63,7 @@ export default async function SearchPage() {
         </Bounded>
       </div>
       <Bounded as="section" size="widest" paddingAs="tight">
-        <SearchResults developments={developments} properties={properties} />
+        <SearchResults />
       </Bounded>
     </Layout>
   );

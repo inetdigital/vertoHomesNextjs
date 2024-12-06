@@ -1,0 +1,41 @@
+{
+  "id": "rich_content_block",
+  "type": "SharedSlice",
+  "name": "RichContentBlock",
+  "description": "RichContentBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "block_width_percentage": {
+          "type": "Select",
+          "config": {
+            "label": "Block Width Percentage",
+            "placeholder": "",
+            "options": [
+              "50",
+              "75",
+              "100"
+            ],
+            "default_value": "50"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

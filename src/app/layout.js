@@ -9,11 +9,13 @@ import { SearchTabProvider } from "@/context/SearchTabContext";
 import { SearchOptionsProvider } from "@/context/SearchOptions";
 import { LocationsProvider } from "@/context/TaxonomyLocations";
 import { DevelopmentsProvider } from "@/context/AllDevelopments";
+import { PropertiesProvider } from "@/context/AllProperties";
 import { MenuStatusProvider } from "@/context/MenuStatus";
 import { StatusProvider } from "@/context/TaxonomyStatus";
 import { StatusSelectedProvider } from "@/context/StatusSelected";
 import { PriceRangeProvider } from "@/context/TaxonomyPriceRange";
 import { RoomsProvider } from "@/context/TaxonomyRooms";
+import { HouseTypesProvider } from "@/context/TaxonomyHouseType";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -32,21 +34,27 @@ export default function RootLayout({ children }) {
           <SearchOptionsProvider>
             <LocationsProvider>
               <DevelopmentsProvider>
-                <MenuStatusProvider>
-                  <StatusProvider>
-                    <StatusSelectedProvider>
-                      <PriceRangeProvider>
-                        <RoomsProvider>
-                          <BodyClassManager />
-                          <main>
-                            {children}
-                            <PrismicPreview repositoryName={repositoryName} />
-                          </main>
-                        </RoomsProvider>
-                      </PriceRangeProvider>
-                    </StatusSelectedProvider>
-                  </StatusProvider>
-                </MenuStatusProvider>
+                <PropertiesProvider>
+                  <MenuStatusProvider>
+                    <StatusProvider>
+                      <StatusSelectedProvider>
+                        <PriceRangeProvider>
+                          <RoomsProvider>
+                            <HouseTypesProvider>
+                              <BodyClassManager />
+                              <main>
+                                {children}
+                                <PrismicPreview
+                                  repositoryName={repositoryName}
+                                />
+                              </main>
+                            </HouseTypesProvider>
+                          </RoomsProvider>
+                        </PriceRangeProvider>
+                      </StatusSelectedProvider>
+                    </StatusProvider>
+                  </MenuStatusProvider>
+                </PropertiesProvider>
               </DevelopmentsProvider>
             </LocationsProvider>
           </SearchOptionsProvider>

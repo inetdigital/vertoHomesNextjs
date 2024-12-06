@@ -14,8 +14,8 @@ module.exports = {
     extend: {
       fontSize: {
         base: "18px", // Default body size
-        h1: "calc(38px + 2vw)", // ~36px
-        h2: "calc(26px + 1.1vw)", // ~30px
+        h1: "4.5rem", // ~36px
+        h2: "2.25rem", // ~30px
         h3: "1.5rem", // ~24px
         h4: "1.25rem", // ~20px
         h5: "1.125rem", // ~18px

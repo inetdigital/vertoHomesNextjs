@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Amet et laboris commodo reprehenderit magna laborum proident nostrud labore eiusmod nisi. Adipisicing minim sint amet in exercitation sint incididunt. Aute laboris est ipsum cupidatat ex."
+						}
+					}
+				]
+			},
+			"block_width_percentage": {
+				"__TYPE__": "FieldContent",
+				"value": "50",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

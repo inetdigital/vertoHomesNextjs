@@ -121,9 +121,26 @@
       "featured_image": {
         "type": "Image",
         "config": {
-          "label": "Featured Image",
+          "label": "Featured Image (Property listings)",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "property_images": {
+        "type": "Group",
+        "config": {
+          "label": "Property Images",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
         }
       }
     },
@@ -169,6 +186,34 @@
           "label": "Location Filter",
           "select": "document",
           "customtypes": ["taxonomy_location"]
+        }
+      }
+    },
+    "Content": {
+      "slices5": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "property_grid": {
+              "type": "SharedSlice"
+            },
+            "block_content": {
+              "type": "SharedSlice"
+            },
+            "rich_content_block": {
+              "type": "SharedSlice"
+            },
+            "energy_comparison": {
+              "type": "SharedSlice"
+            },
+            "fullimage_block": {
+              "type": "SharedSlice"
+            },
+            "check_list": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

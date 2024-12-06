@@ -196,7 +196,6 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                     alt="Verto Homes"
                     width={20}
                     height={20}
-                    priority
                     className="hidden lg:block"
                   />
                 )}

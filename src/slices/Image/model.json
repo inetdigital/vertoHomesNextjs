@@ -18,15 +18,6 @@
             "constraint": {},
             "thumbnails": []
           }
-        },
-        "caption": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Caption",
-            "placeholder": "Optional - Caption under the image",
-            "allowTargetBlank": true,
-            "single": "paragraph,em,strong"
-          }
         }
       },
       "items": {},
@@ -45,15 +36,6 @@
             "label": "Image",
             "constraint": {},
             "thumbnails": []
-          }
-        },
-        "caption": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Caption",
-            "placeholder": "Optional - Caption under the image",
-            "allowTargetBlank": true,
-            "single": "paragraph,em,strong"
           }
         }
       },

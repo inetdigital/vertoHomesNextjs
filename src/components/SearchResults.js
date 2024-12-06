@@ -7,11 +7,15 @@ import { DevelopmentsPanel } from "@/components/DevelopmentsPanel";
 import { SearchResultsPanel } from "@/components/SearchResultsPanel";
 
 import { useLocations } from "@/context/TaxonomyLocations";
+import { useDevelopments } from "@/context/AllDevelopments";
+import { useProperties } from "@/context/AllProperties";
 
-export const SearchResults = ({ developments, properties }) => {
+export const SearchResults = () => {
   const { selectedTab } = useTab();
 
   const locations = useLocations();
+  const developments = useDevelopments();
+  const properties = useProperties();
 
   return (
     <div className="relative w-full h-full">
@@ -39,7 +43,7 @@ export const SearchResults = ({ developments, properties }) => {
             transition={{ duration: 0.3 }}
             //className="absolute inset-0"
           >
-            <SearchResultsPanel properties={properties} />
+            <SearchResultsPanel />
           </motion.div>
         )}
       </AnimatePresence>

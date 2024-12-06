@@ -1,0 +1,96 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title_lead": {
+				"__TYPE__": "FieldContent",
+				"value": "ago",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "mad",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Fugiat ea quis do proident."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withHouseFooter",
+		"primary": {
+			"title_lead": {
+				"__TYPE__": "FieldContent",
+				"value": "water",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "factory",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex nulla anim consectetur exercitation id labore consectetur ex exercitation adipisicing cupidatat dolore. Veniam enim fugiat irure amet ad anim ut laborum laborum velit do dolor aute cillum nostrud. Mollit laboris sunt esse velit cillum esse."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withoutFooter",
+		"primary": {
+			"title_lead": {
+				"__TYPE__": "FieldContent",
+				"value": "frozen",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "something",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Enim Lorem nulla enim aliquip aliquip nisi eiusmod cupidatat anim ipsum duis laboris excepteur est. Veniam sint laborum culpa labore proident laborum elit irure commodo enim minim."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

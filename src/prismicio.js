@@ -23,6 +23,10 @@ const routes = [
     path: "/development/:uid",
   },
   {
+    type: "property",
+    path: "/property/:uid",
+  },
+  {
     type: "page",
     path: "/:uid",
   },

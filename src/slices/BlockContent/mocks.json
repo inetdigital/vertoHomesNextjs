@@ -375,5 +375,51 @@
 				"value": []
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "splitGrid",
+		"primary": {
+			"title_lead": {
+				"__TYPE__": "FieldContent",
+				"value": "syllable",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Pariatur in enim ea commodo laborum consectetur ut duis. Nisi proident magna sit anim sit adipisicing exercitation."
+						}
+					}
+				]
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "VertoGrey",
+				"type": "Select"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "doubt"
+				}
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "said",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

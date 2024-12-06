@@ -15,6 +15,7 @@ export const SearchOptionsProvider = ({ children }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
   const [selectedNumBedrooms, setSelectedNumBedrooms] = useState(null);
+  const [selectedHouseType, setSelectedHouseType] = useState(null);
 
   const [orderBy, setOrderBy] = useState(null);
   const [orderByType, setOrderByType] = useState(null);
@@ -30,6 +31,8 @@ export const SearchOptionsProvider = ({ children }) => {
         setSelectedStatus,
         setSelectedPriceRange,
         setSelectedNumBedrooms,
+        selectedHouseType,
+        setSelectedHouseType,
         orderBy,
         setOrderBy,
         orderByType,

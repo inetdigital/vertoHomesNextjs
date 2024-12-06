@@ -26,7 +26,7 @@ const defaultComponents = {
     </Heading>
   ),
   paragraph: ({ children }) => (
-    <p className="mb-7 last:mb-0 text-paragraph">{children}</p>
+    <p className="mb-7 last:mb-0 text-base">{children}</p>
   ),
   oList: ({ children }) => (
     <ol className="mb-7 pl-4 last:mb-0 md:pl-6">{children}</ol>
@@ -45,9 +45,7 @@ const defaultComponents = {
       <code>{children}</code>
     </pre>
   ),
-  strong: ({ children }) => (
-    <strong className="font-semibold">{children}</strong>
-  ),
+  strong: ({ children }) => <strong className="font-medium">{children}</strong>,
   hyperlink: ({ children, node }) => (
     <PrismicNextLink
       field={node.data}

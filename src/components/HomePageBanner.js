@@ -111,7 +111,6 @@ export default function HomePageBanner({ singleHomePage, banners }) {
               fill
               style={{ objectFit: "cover" }}
               quality={80}
-              priority
             />
           </motion.div>
           <motion.div

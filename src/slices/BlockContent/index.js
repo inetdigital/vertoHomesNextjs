@@ -10,8 +10,9 @@ import { PrismicNextImage } from "@prismicio/next";
 import { Search } from "@/components/ui/Search";
 
 import DefaultButton from "@/components/ui/DefaultButton";
+import BlockButton from "@/components/ui/BlockButton";
 
-const BlockContent = ({ slice, isConsecutive }) => {
+const BlockContent = ({ slice, isConsecutive = false }) => {
   const backgroundColorClass =
     {
       VertoBlue: "bg-vertoDarkBlue",
@@ -35,6 +36,7 @@ const BlockContent = ({ slice, isConsecutive }) => {
         {slice.variation === "withRegisterInterestForm" && (
           <WithRegistrationForm slice={slice} />
         )}
+        {slice.variation === "splitGrid" && <SplitGrid slice={slice} />}
       </div>
     </Bounded>
   );
@@ -379,6 +381,35 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             Register your interest
           </motion.div>
         </button>
+      </div>
+    </div>
+  );
+};
+
+const SplitGrid = ({ slice }) => {
+  return (
+    <div className="max-w-7xl mx-auto text-white text-left">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Left Section */}
+        <div className="flex items-left justify-start">
+          <h2 className="text-vertoLightGreen text-4xl font-bold uppercase">
+            {slice.primary.title_lead}
+          </h2>
+        </div>
+
+        {/* Right Section */}
+        <div>
+          <h3 className="text-xl font-bold mb-4 text-left">
+            {slice.primary.title}
+          </h3>
+          <hr className="bg-vertoLightGreen h-[4px] w-20 my-10" />
+          <div className="text-left text-base">
+            <PrismicRichText field={slice.primary.content} />
+          </div>
+          <div className="mt-10 text-left flex">
+            <BlockButton label={slice.primary.link?.text} />
+          </div>
+        </div>
       </div>
     </div>
   );

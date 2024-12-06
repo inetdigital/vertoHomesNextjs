@@ -7,7 +7,7 @@ import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 import { BannerImage } from "@/components/BannerImage";
 import { HeadingDetails } from "@/components/development-page/HeadingDetails";
-import { FooterContact } from "@/components/development-page/FooterContact";
+import { FooterContact } from "@/components/FooterContact";
 
 import { fetchNavigation } from "@/lib/fetchNavigation";
 
@@ -42,14 +42,13 @@ export default async function Development({ params }) {
     .catch(() => notFound());
   const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
-
   return (
     <Layout navigation={navigation} settings={settings}>
       {prismic.isFilled.image(page.data.banner_image) && (
-        <BannerImage image={page.data.banner_image} />
+        <BannerImage image={page.data.banner_image} title={page.data.name} />
       )}
       <HeadingDetails page={page} />
-      <SliceZone slices={page.data.slices} components={components} />
+      <SliceZone slices={page.data.slices4} components={components} />
       <FooterContact />
     </Layout>
   );

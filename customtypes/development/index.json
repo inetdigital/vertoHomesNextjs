@@ -88,14 +88,7 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "image_grid": {
-              "type": "SharedSlice"
-            },
-            "lead_content_block": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
@@ -162,6 +155,40 @@
           "allowTargetBlank": true,
           "select": null,
           "allowText": true
+        }
+      }
+    },
+    "Content": {
+      "slices4": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "split_content_block": {
+              "type": "SharedSlice"
+            },
+            "image": {
+              "type": "SharedSlice"
+            },
+            "fullimage_block": {
+              "type": "SharedSlice"
+            },
+            "typology_layout": {
+              "type": "SharedSlice"
+            },
+            "property_grid": {
+              "type": "SharedSlice"
+            },
+            "block_content": {
+              "type": "SharedSlice"
+            },
+            "image_grid": {
+              "type": "SharedSlice"
+            },
+            "lead_content_block": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

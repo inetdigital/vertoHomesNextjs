@@ -1,0 +1,51 @@
+{
+  "id": "typology_layout",
+  "type": "SharedSlice",
+  "name": "TypologyLayout",
+  "description": "TypologyLayout",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "map_image": {
+          "type": "Image",
+          "config": {
+            "label": "Map Image",
+            "constraint": {
+              "width": 1920,
+              "height": 1080
+            },
+            "thumbnails": [
+              {
+                "name": "square",
+                "width": 820,
+                "height": 820
+              }
+            ]
+          }
+        },
+        "key_image": {
+          "type": "Image",
+          "config": {
+            "label": "Key Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
