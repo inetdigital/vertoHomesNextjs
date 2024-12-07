@@ -124,7 +124,7 @@ export const Header = ({ data }) => {
           <div className="flex justify-between items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-4 flex-col lg:flex-row">
             {["Floor Plans", "Site Plans", "Map View", "All Photos"].map(
               (buttonText, index) => (
-                <div className="block w-full lg:w-auto">
+                <div className="block w-full lg:w-auto" key={index}>
                   <BlockButtonBlue key={index} label={buttonText} />
                 </div>
               )
