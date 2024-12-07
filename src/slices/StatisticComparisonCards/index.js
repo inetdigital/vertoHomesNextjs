@@ -3,7 +3,6 @@ import { PrismicRichText } from "@/components/PrismicRichText";
 import { PrismicNextImage } from "@prismicio/next";
 
 const EnergyComparison = ({ slice }) => {
-  console.log(slice);
   return (
     <Bounded as="section" paddingAs="fullWidthBlock">
       <div className="bg-vertoDarkBlue py-36">

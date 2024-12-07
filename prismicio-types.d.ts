@@ -520,10 +520,10 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | BlockContentSlice
+  | LeadContentBlockSlice
   | ImageSlice
-  | QuoteSlice
-  | TextSlice
-  | ContactFormSlice;
+  | TextSlice;
 
 /**
  * Content for Page documents
@@ -539,6 +539,28 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
+  /**
+   * Banner Image field in *Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.banner_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  banner_image: prismic.ImageField<never>;
+
+  /**
+   * Banner Caption field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.banner_caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  banner_caption: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -1022,7 +1044,49 @@ interface SettingsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  newsletterDisclaimer: prismic.RichTextField;
+  newsletterDisclaimer: prismic.RichTextField /**
+   * Homes Completed field in *Settings*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.homes_completed
+   * - **Tab**: Site Wide Statistics
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */;
+  homes_completed: prismic.NumberField;
+
+  /**
+   * Homes Coming Soon field in *Settings*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.homes_coming_soon
+   * - **Tab**: Site Wide Statistics
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  homes_coming_soon: prismic.NumberField;
+
+  /**
+   * CO2 produced by each home field in *Settings*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.co2_produced_by_each_home
+   * - **Tab**: Site Wide Statistics
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  co2_produced_by_each_home: prismic.NumberField;
+
+  /**
+   * Highest EPC rating field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.highest_epc_rating
+   * - **Tab**: Site Wide Statistics
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  highest_epc_rating: prismic.KeyTextField;
 }
 
 /**
@@ -2103,9 +2167,50 @@ export type EnergyComparisonSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *StatisticComparisonCards → withGlobalStatistics → Primary*
+ */
+export interface EnergyComparisonSliceWithGlobalStatisticsPrimary {
+  /**
+   * Title field in *StatisticComparisonCards → withGlobalStatistics → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.withGlobalStatistics.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image field in *StatisticComparisonCards → withGlobalStatistics → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.withGlobalStatistics.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * withGlobalStatistics variation for StatisticComparisonCards Slice
+ *
+ * - **API ID**: `withGlobalStatistics`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EnergyComparisonSliceWithGlobalStatistics =
+  prismic.SharedSliceVariation<
+    "withGlobalStatistics",
+    Simplify<EnergyComparisonSliceWithGlobalStatisticsPrimary>,
+    never
+  >;
+
+/**
  * Slice variation for *StatisticComparisonCards*
  */
-type EnergyComparisonSliceVariation = EnergyComparisonSliceDefault;
+type EnergyComparisonSliceVariation =
+  | EnergyComparisonSliceDefault
+  | EnergyComparisonSliceWithGlobalStatistics;
 
 /**
  * StatisticComparisonCards Shared Slice
@@ -3636,8 +3741,10 @@ declare module "@prismicio/client" {
       EnergyComparisonSlice,
       EnergyComparisonSliceDefaultPrimaryCardsItem,
       EnergyComparisonSliceDefaultPrimary,
+      EnergyComparisonSliceWithGlobalStatisticsPrimary,
       EnergyComparisonSliceVariation,
       EnergyComparisonSliceDefault,
+      EnergyComparisonSliceWithGlobalStatistics,
       FooterMenuSlice,
       FooterMenuSliceDefaultPrimaryLinksItem,
       FooterMenuSliceDefaultPrimary,

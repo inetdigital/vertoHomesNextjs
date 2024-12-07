@@ -6,12 +6,14 @@ import { formatPrice } from "@/lib/formatPrice";
 
 import { convertToSquareFeet } from "@/lib/convertToSquareFeet";
 
+import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
+
 export const Header = ({ data }) => {
   console.log(data);
   return (
     <section className="pt-16 bg-white">
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-0 pt-40 pb-32">
+      <div className="max-w-7xl mx-auto px-6 xl:px-0 pt-20 sm:pt-40 pb-16 sm:pb-32">
         {/* Title Section */}
         <div className="flex justify-between items-start">
           <div>
@@ -25,7 +27,7 @@ export const Header = ({ data }) => {
         </div>
 
         {/* Features Section */}
-        <div className="flex items-center gap-6 pt-6 pb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-0 sm:gap-6 pt-6 pb-8">
           <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,12 +91,12 @@ export const Header = ({ data }) => {
           </div>
         </div>
         {/* Price */}
-        <div className="flex items-center justify-between w-full">
-          <div className="bg-vertoDarkBlue text-white font-bold px-8 py-4 rounded-lg text-2xl tracking-wide inline">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full">
+          <div className="bg-vertoDarkBlue text-white font-bold px-8 py-4 rounded-lg text-2xl tracking-wide inline w-full sm:w-auto text-center">
             £ {formatPrice(data.price)}
           </div>
           {data.zero_bills && (
-            <div>
+            <div className="mt-16 sm:mt-0">
               <Image
                 src={`/assets/Zero_Bills_Navy_Blue_Pink-1-01.svg`}
                 alt="Zero Bills Verto Homes"
@@ -118,23 +120,18 @@ export const Header = ({ data }) => {
 
       {/* Button Section */}
       <div className="bg-vertoDarkBlue">
-        <div className="max-w-7xl mx-auto px-6 lg:px-0 py-8 flex justify-between">
-          <div className="flex flex-wrap justify-between items-center space-x-4">
+        <div className="max-w-7xl mx-auto px-6 xl:px-0 py-8 flex justify-between flex-col lg:flex-row">
+          <div className="flex justify-between items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-4 flex-col lg:flex-row">
             {["Floor Plans", "Site Plans", "Map View", "All Photos"].map(
               (buttonText, index) => (
-                <button
-                  key={index}
-                  className="text-white font-medium px-4 py-2 bg-white text-blue-900 rounded-lg hover:bg-blue-100 transition"
-                >
-                  {buttonText.toUpperCase()}
-                </button>
+                <div className="block w-full lg:w-auto">
+                  <BlockButtonBlue key={index} label={buttonText} />
+                </div>
               )
             )}
           </div>
-          <div>
-            <button className="bg-sky-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-sky-700 transition">
-              ARRANGE A VIEWING
-            </button>
+          <div className="mt-8 lg:mt-0">
+            <BlockButtonBlue label="Arrange a viewing" reverse />
           </div>
         </div>
       </div>

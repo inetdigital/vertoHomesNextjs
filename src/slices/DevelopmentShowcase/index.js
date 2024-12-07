@@ -42,10 +42,10 @@ const DevelopmentListing = ({ data }) => {
   }, [windowWidth]);
 
   return (
-    <div className="relative w-full h-dvh overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
       {/* Overlay Title */}
       <div
-        className="absolute top-20 left-1/2 transform -translate-x-1/2 w-9/12 lg:w-max"
+        className="absolute top-12 md:top-20 left-1/2 transform -translate-x-1/2 w-9/12 lg:w-max"
         style={{ zIndex: 2 }}
       >
         {data?.name && (
@@ -54,11 +54,11 @@ const DevelopmentListing = ({ data }) => {
           </h2>
         )}
         {data?.property_types && (
-          <p className="text-xl text-white text-center font-medium mb-2">
+          <p className="text-base md:text-xl text-white text-center font-medium mb-2">
             A collection of {data.property_types}
           </p>
         )}
-        <div className="h-1 w-20 bg-white mx-auto my-10" />
+        <div className="h-1 w-20 bg-white mx-auto my-5 md:my-10" />
         {data?.prices_from && (
           <p className="text-xl text-white text-center font-medium">
             Prices from £{data.prices_from?.toLocaleString("en-EN")}
@@ -111,7 +111,7 @@ const DevelopmentListing = ({ data }) => {
       )}
 
       <div
-        className="absolute flex items-center flex-col bottom-20 left-1/2 -translate-x-1/2"
+        className="absolute flex items-center flex-col bottom-20 left-1/2 -translate-x-1/2 w-full"
         style={{ zIndex: 2 }}
       >
         <div className="flex items-center flex-col mb-4">
@@ -123,7 +123,7 @@ const DevelopmentListing = ({ data }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-12 text-white"
+                className="size-6 md:size-12 text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -147,7 +147,7 @@ const DevelopmentListing = ({ data }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative px-4 py-2 font-medium text-sm tracking-button uppercase border border-white rounded text-white transition-colors duration-300 ease-in-out hover:bg-white hover:text-vertoBlack"
+                className="relative text-center px-4 py-2 font-medium text-sm tracking-button uppercase border border-white rounded text-white transition-colors duration-300 ease-in-out hover:bg-white hover:text-vertoBlack"
               >
                 View Development
               </motion.div>

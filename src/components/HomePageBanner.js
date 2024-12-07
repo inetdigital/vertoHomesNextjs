@@ -36,7 +36,7 @@ export default function HomePageBanner({ singleHomePage, banners }) {
     if (isBrowser) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % banners.length);
-      }, 8000);
+      }, 800000);
 
       return () => clearInterval(interval);
     }
@@ -150,7 +150,7 @@ export default function HomePageBanner({ singleHomePage, banners }) {
                   return <span>{children}</span>;
                 },
                 paragraph: ({ children }) => (
-                  <p className="text-xl lg:text-2xl">{children}</p>
+                  <p className="text-lg lg:text-xl mt-4">{children}</p>
                 ),
               }}
             />

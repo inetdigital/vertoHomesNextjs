@@ -120,7 +120,7 @@ export const Search = ({
 
   return (
     <div
-      className={`${background ? background : "bg-white"} rounded-lg p-12 transition-all duration-300 ease-in-out relative`}
+      className={`${background ? background : "bg-white"} rounded-lg p-6 sm:p-8 md:p-12 transition-all duration-300 ease-in-out relative`}
     >
       <div className="mb-4">
         <p className="text-center">Show me homes that match</p>

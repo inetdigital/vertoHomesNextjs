@@ -6,6 +6,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 
+import { BannerImage } from "@/components/BannerImage";
+
 import { fetchNavigation } from "@/lib/fetchNavigation";
 
 export async function generateMetadata({ params }) {
@@ -40,7 +42,12 @@ export default async function Page({ params }) {
 
   return (
     <Layout navigation={navigation} settings={settings}>
-      A PAGE
+      <BannerImage
+        image={page.data.banner_image}
+        title={page.data.title}
+        themeColor="vertoLightBlue"
+        caption={page.data.banner_caption}
+      />
       <SliceZone slices={page.data.slices} components={components} />
     </Layout>
   );

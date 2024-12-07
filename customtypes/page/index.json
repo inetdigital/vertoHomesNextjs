@@ -22,21 +22,36 @@
           "single": "heading1"
         }
       },
+      "banner_image": {
+        "type": "Image",
+        "config": {
+          "label": "Banner Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "banner_caption": {
+        "type": "Text",
+        "config": {
+          "label": "Banner Caption",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "block_content": {
+              "type": "SharedSlice"
+            },
+            "lead_content_block": {
+              "type": "SharedSlice"
+            },
             "image": {
               "type": "SharedSlice"
             },
-            "quote": {
-              "type": "SharedSlice"
-            },
             "text": {
-              "type": "SharedSlice"
-            },
-            "contact_form": {
               "type": "SharedSlice"
             }
           }

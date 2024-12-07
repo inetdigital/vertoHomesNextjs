@@ -22,11 +22,11 @@
           }
     
           h1 {
-              @apply text-h1 font-semibold;
+              @apply text-5xl md:text-6xl lg:text-h1 font-semibold;
           }
     
           h2 {
-              @apply text-h2 font-medium;
+              @apply text-3xl md:text-4xl lg:text-h2 font-medium;
           }
     
           h3 {

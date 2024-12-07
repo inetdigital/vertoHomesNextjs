@@ -88,7 +88,7 @@ const SearchVariant = ({ slice }) => {
           />
         </div>
       )}
-      <div className="max-w-6xl mx-auto mt-16">
+      <div className="max-w-7xl mx-auto mt-16">
         <Search withButton />
       </div>
     </>
@@ -172,7 +172,7 @@ const ContentList = ({ slice }) => {
                 />
               </div>
               {/* Content Div */}
-              <div className="flex w-full sm:w-3/5 text-left p-10 justify-center flex-col">
+              <div className="flex w-full sm:w-3/5 text-left px-0 md:px-10 py-10 justify-center flex-col">
                 <h3 className="mb-4 font-semibold">{item.title}</h3>
                 <PrismicRichText
                   field={item.content}
@@ -294,7 +294,7 @@ const Testimonial = ({ slice }) => {
                   </svg>
                 </div>
                 {/* Testimonial Content */}
-                <div className="px-4">
+                <div className="">
                   <PrismicRichText
                     field={item.content}
                     components={{

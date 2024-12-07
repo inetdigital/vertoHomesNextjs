@@ -53,6 +53,36 @@
           "multi": "paragraph,em,strong,hyperlink"
         }
       }
+    },
+    "Site Wide Statistics": {
+      "homes_completed": {
+        "type": "Number",
+        "config": {
+          "label": "Homes Completed",
+          "placeholder": ""
+        }
+      },
+      "homes_coming_soon": {
+        "type": "Number",
+        "config": {
+          "label": "Homes Coming Soon",
+          "placeholder": ""
+        }
+      },
+      "co2_produced_by_each_home": {
+        "type": "Number",
+        "config": {
+          "label": "CO2 produced by each home",
+          "placeholder": ""
+        }
+      },
+      "highest_epc_rating": {
+        "type": "Text",
+        "config": {
+          "label": "Highest EPC rating",
+          "placeholder": ""
+        }
+      }
     }
   }
 }

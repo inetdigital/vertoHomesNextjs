@@ -1,4 +1,4 @@
-import BlockButton from "@/components/ui/BlockButton";
+import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 
 export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
   return (
@@ -23,8 +23,8 @@ export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
 
         {/* Right Buttons */}
         <div className="flex flex-col space-y-4">
-          <BlockButton label="Arrange a viewing" />
-          <BlockButton label="Get a free info pack" />
+          <BlockButtonBlue label="Arrange a viewing" />
+          <BlockButtonBlue label="Get a free info pack" />
         </div>
       </div>
     </section>

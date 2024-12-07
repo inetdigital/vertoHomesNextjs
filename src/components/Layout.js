@@ -6,7 +6,7 @@ export async function Layout({ navigation, settings, children }) {
   return (
     <div>
       <Header navigation={navigation} settings={settings} />
-      <main>{children}</main>
+      <main className="overflow-x-hidden">{children}</main>
       <Footer navigation={serializedNavigation} />
       <div className="fixed w-[50px] h-[50px] bg-black text-white flex items-center justify-center right-10 bottom-10">
         {/* Below 'sm' (Mobile) */}

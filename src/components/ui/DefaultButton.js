@@ -30,7 +30,7 @@ const DefaultButton = ({ link, theme, size, padding }) => {
         whileTap={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
         className={clsx(
-          "relative py-2 font-medium tracking-button uppercase rounded transition-colors duration-300 ease-in-out",
+          "relative py-2 font-medium tracking-button uppercase rounded transition-colors duration-300 ease-in-out text-center",
           themeClasses,
           sizeClass,
           paddingClass
