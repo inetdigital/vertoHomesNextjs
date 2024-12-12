@@ -36,14 +36,7 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
   const [sortedProperties, setSortedProperties] = useState([]);
   const [restrictToDevelopmentCounty, setRestrictToDevelopmentCounty] =
     useState("");
-
-  const GetDevelopmentFromUid = ({ uid }) => {
-    // Find the development with the matching UID
-    const matchingDevelopment = developments.find(
-      (development) => development.data.uid === uid
-    );
-    return matchingDevelopment || null; // Return the matching development or null if not found
-  };
+  const [developmentName, setDevelopmentName] = useState("");
 
   const orderByOptions = [
     { key: "price", label: "Price" },
@@ -71,10 +64,8 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
   // Memoize filtered properties to avoid re-calculation on every render
   const filteredProperties = useMemo(() => {
     return properties.filter((doc) => {
-      console.log(doc);
       const price = doc.data.price;
       const developmentUID = doc.data.development.uid;
-
       // Check if the property matches the restrictToDevelopment condition
       const matchesDevelopment =
         !restrictToDevelopment || developmentUID === restrictToDevelopment;
@@ -136,12 +127,28 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
   }, [orderBy, orderByType, filteredProperties]);
 
   useEffect(() => {
-    if (GetDevelopmentFromUid(restrictToDevelopment) && restrictToDevelopment) {
-      setRestrictToDevelopmentCounty(
-        GetDevelopmentFromUid(restrictToDevelopment)?.data?.location_county?.uid
+    if (developments.length > 0) {
+      //console.log(developments);
+      //console.log(restrictToDevelopment);
+      const matchingDevelopment = developments.find(
+        (development) => development.uid === restrictToDevelopment
       );
+      //console.log(matchingDevelopment);
     }
-  });
+  }, [restrictToDevelopment, developments]);
+
+  useEffect(() => {
+    if (developments.length > 0 && restrictToDevelopment) {
+      const matchingDevelopment = developments.find(
+        (development) => development.uid === restrictToDevelopment
+      );
+      setRestrictToDevelopmentCounty(
+        matchingDevelopment.data?.location_county?.uid
+      );
+
+      setDevelopmentName(matchingDevelopment.data?.name);
+    }
+  }, [restrictToDevelopment, developments]);
 
   // Check if any of the variables are null
   const hasNullValues =
@@ -174,10 +181,8 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
 
                 <p className="text-sm">
                   Currently showing all properties
-                  {restrictToDevelopment
-                    ? ` for ${GetDevelopmentFromUid(restrictToDevelopment)?.data?.name}`
-                    : ""}
-                  . Use the filters above to refine your search
+                  {restrictToDevelopment ? ` for ${developmentName}` : ""}. Use
+                  the filters above to refine your search
                 </p>
               </div>
             </div>

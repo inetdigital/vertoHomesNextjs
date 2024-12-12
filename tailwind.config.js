@@ -20,7 +20,7 @@ module.exports = {
         h4: "1.25rem", // ~20px
         h5: "1.125rem", // ~18px
         h6: "1rem", // ~16px
-        paragraph: "1.5rem", // Default paragraph size, often the same as base
+        paragraph: "1.1rem", // Default paragraph size, often the same as base
       },
       letterSpacing: {
         logo: "0.15em",

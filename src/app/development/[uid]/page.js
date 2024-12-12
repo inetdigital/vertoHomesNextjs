@@ -45,11 +45,15 @@ export default async function Development({ params }) {
   return (
     <Layout navigation={navigation} settings={settings}>
       {prismic.isFilled.image(page.data.banner_image) && (
-        <BannerImage image={page.data.banner_image} title={page.data.name} />
+        <BannerImage
+          image={page.data.banner_image}
+          title={page.data.name}
+          status={page.data.development_status}
+        />
       )}
       <HeadingDetails page={page} />
       <SliceZone slices={page.data.slices4} components={components} />
-      <FooterContact />
+      <FooterContact themeColor="vertoDarkGreen" />
     </Layout>
   );
 }

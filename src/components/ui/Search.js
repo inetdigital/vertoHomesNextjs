@@ -123,7 +123,9 @@ export const Search = ({
       className={`${background ? background : "bg-white"} rounded-lg p-6 sm:p-8 md:p-12 transition-all duration-300 ease-in-out relative`}
     >
       <div className="mb-4">
-        <p className="text-center">Show me homes that match</p>
+        <p className="text-center text-2xl font-normal">
+          Show me homes that match
+        </p>
       </div>
       <div
         className={`grid grid-cols-1 md:grid-cols-2 ${hideLocationFilter ? "lg:grid-cols-4" : "lg:grid-cols-5"} gap-2 md:gap-4 lg:gap-6`}

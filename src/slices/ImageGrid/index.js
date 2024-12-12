@@ -34,7 +34,7 @@ const ImageGrid = ({ slice }) => {
       >
         {/* Large Image */}
         <PrismicNextImage
-          field={imageGroup[0].image}
+          field={imageGroup[0]?.image}
           className="object-cover w-full h-full"
           fallbackAlt=""
         />
@@ -44,7 +44,7 @@ const ImageGrid = ({ slice }) => {
         {/* Small Image 1 */}
         <div className="aspect-w-8 aspect-h-5">
           <PrismicNextImage
-            field={imageGroup[1].image}
+            field={imageGroup[1]?.image}
             className="object-cover w-full h-full"
             fallbackAlt=""
           />
@@ -53,7 +53,7 @@ const ImageGrid = ({ slice }) => {
         {/* Small Image 2 */}
         <div className="aspect-w-8 aspect-h-5">
           <PrismicNextImage
-            field={imageGroup[2].image}
+            field={imageGroup[2]?.image}
             className="object-cover w-full h-full"
             fallbackAlt=""
           />
@@ -64,21 +64,23 @@ const ImageGrid = ({ slice }) => {
 
   return (
     <Bounded as="section" size="widest" paddingAs="contentSection">
-      <div className="flex-col gap-8 hidden md:flex">
-        {slice.primary.images
-          .reduce((result, image, index) => {
-            const groupIndex = Math.floor(index / 3);
-            if (!result[groupIndex]) result[groupIndex] = [];
-            result[groupIndex].push(image);
-            return result;
-          }, [])
-          .map(
-            (imageGroup, idx) =>
-              imageGroup.length === 3
-                ? renderImageGrid(imageGroup, idx % 2 !== 0, idx)
-                : null // Ensures only groups of 3 are displayed
-          )}
-      </div>
+      {slice.primary.images.length > 0 && (
+        <div className="flex-col gap-8 hidden md:flex">
+          {slice.primary.images
+            .reduce((result, image, index) => {
+              const groupIndex = Math.floor(index / 3);
+              if (!result[groupIndex]) result[groupIndex] = [];
+              result[groupIndex].push(image);
+              return result;
+            }, [])
+            .map(
+              (imageGroup, idx) =>
+                imageGroup.length === 3
+                  ? renderImageGrid(imageGroup, idx % 2 !== 0, idx)
+                  : null // Ensures only groups of 3 are displayed
+            )}
+        </div>
+      )}
 
       <div className="relative w-full overflow-hidden block md:hidden">
         {/* Left arrow button */}

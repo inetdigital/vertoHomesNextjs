@@ -30,22 +30,25 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
   const { statusSelected, setStatusSelected } = useStatusSelected();
 
   /** Filter all developments to selected tab */
+  /** Filter all developments to selected tab */
   const filteredDevelopments = developments.filter(
     (doc) =>
-      doc.data.location_county?.uid === selectedLocationTab &&
+      (selectedLocationTab === "all" ||
+        doc.data.location_county?.uid === selectedLocationTab) &&
       (statusSelected === "all" ||
         doc.data.development_status?.uid === statusSelected)
   );
 
   // Prepare tabs from locations data
-  const [tabs] = useState(
-    locations
+  const [tabs] = useState([
+    { name: "All", key: "all" }, // Add "All" item at the start
+    ...locations
       .map((item) => ({
         name: item.data.name,
         key: item.uid,
       }))
-      .sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically by name
-  );
+      .sort((a, b) => a.name.localeCompare(b.name)), // Sort alphabetically by name
+  ]);
 
   // Ref for buttons to measure dimensions dynamically
   const tabRefs = useRef([]);
@@ -100,7 +103,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                   {statusSelected !== "all"
                     ? status.find((item) => item.uid === statusSelected)?.data
                         .name
-                    : "All"}
+                    : "Status"}
                 </span>
                 <ChevronUpDownIcon className="w-5 h-5 text-white" />
               </ListboxButton>
@@ -190,16 +193,16 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                   "relative z-[1] rounded-md px-3 py-2 text-base lg:text-xl font-normal flex items-center"
                 )}
               >
-                {tab.key === selectedLocationTab && (
+                {tab.key === selectedLocationTab && tab.key !== "all" && (
                   <Image
                     src={`/assets/${tab.key}OutlineIconWhite.png`}
                     alt="Verto Homes"
                     width={20}
                     height={20}
-                    className="hidden lg:block"
+                    className="hidden lg:block mr-0 lg:mr-2"
                   />
                 )}
-                <span className="ml-0 lg:ml-2">{tab.name}</span>
+                <span className="">{tab.name}</span>
               </button>
             ))}
 
@@ -225,7 +228,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 gap-4"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-4"
             >
               {filteredDevelopments.map((item, index) => {
                 return (
@@ -233,9 +236,9 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                     <motion.div
                       initial={{ opacity: 0, y: 0 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 1 }} // Staggered animation
+                      transition={{ duration: 0.3, delay: index * 0.5 }} // Staggered animation
                     >
-                      <div className="aspect-h-1 aspect-w-1 md:aspect-h-3 md:aspect-w-5 lg:aspect-h-2 lg:aspect-w-5 relative group">
+                      <div className="aspect-h-1 aspect-w-1 relative group">
                         <div className="absolute z-[1] w-full h-full inset-0 bg-black opacity-50 border-0 border-solid border-vertoDarkBlue transition-all duration-500 ease-in-out group-hover:opacity-75 group-hover:border-8"></div>
                         {prismic.isFilled.image(item.data.banner_image) && (
                           <PrismicNextImage

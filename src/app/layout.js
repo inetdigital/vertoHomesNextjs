@@ -16,6 +16,7 @@ import { StatusSelectedProvider } from "@/context/StatusSelected";
 import { PriceRangeProvider } from "@/context/TaxonomyPriceRange";
 import { RoomsProvider } from "@/context/TaxonomyRooms";
 import { HouseTypesProvider } from "@/context/TaxonomyHouseType";
+import { SettingsProvider } from "@/context/Settings";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -41,13 +42,15 @@ export default function RootLayout({ children }) {
                         <PriceRangeProvider>
                           <RoomsProvider>
                             <HouseTypesProvider>
-                              <BodyClassManager />
-                              <main>
-                                {children}
-                                <PrismicPreview
-                                  repositoryName={repositoryName}
-                                />
-                              </main>
+                              <SettingsProvider>
+                                <BodyClassManager />
+                                <main>
+                                  {children}
+                                  <PrismicPreview
+                                    repositoryName={repositoryName}
+                                  />
+                                </main>
+                              </SettingsProvider>
                             </HouseTypesProvider>
                           </RoomsProvider>
                         </PriceRangeProvider>

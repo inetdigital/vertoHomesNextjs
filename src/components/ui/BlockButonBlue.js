@@ -8,7 +8,7 @@ export const BlockButtonBlue = ({ label, reverse = false }) => {
     ? "bg-white text-vertoDarkBlue hover:bg-vertoLightBlue hover:text-white"
     : "bg-vertoLightBlue hover:bg-white text-white hover:text-vertoDarkBlue";
   return (
-    <motion.div
+    <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -18,6 +18,6 @@ export const BlockButtonBlue = ({ label, reverse = false }) => {
       )}
     >
       {label}
-    </motion.div>
+    </motion.button>
   );
 };

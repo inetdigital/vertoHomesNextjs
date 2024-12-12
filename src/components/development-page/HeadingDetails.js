@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import {
   MapPinIcon,
   HomeIcon,
@@ -6,7 +10,10 @@ import {
 
 import BlockButton from "@/components/ui/BlockButton";
 
+import ArrangeViewing from "@/components/ui/ArrangeViewing";
+
 export const HeadingDetails = ({ page }) => {
+  const [showArrangeViewingForm, setShowArrangeViewingForm] = useState(false);
   return (
     <section className="py-12 bg-vertoDarkGreen">
       <div className="max-w-6xl mx-auto px-6 xl:px-0">
@@ -20,7 +27,7 @@ export const HeadingDetails = ({ page }) => {
                 <MapPinIcon className="h-6 w-6 text-vertoLightGreen" />
                 <div>
                   <h3 className="text-sm font-semibold uppercase">Location</h3>
-                  <p className="text-base">
+                  <p className="text-base text-white">
                     {page.data.location_town}, {page.data.location_city}{" "}
                     {page.data.location_postcode}
                   </p>
@@ -32,7 +39,9 @@ export const HeadingDetails = ({ page }) => {
                   <h3 className="text-sm font-semibold uppercase">
                     Property Types
                   </h3>
-                  <p className="text-base">{page.data.property_types}</p>
+                  <p className="text-base text-white">
+                    {page.data.property_types}
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -43,7 +52,9 @@ export const HeadingDetails = ({ page }) => {
                   <h3 className="text-sm font-semibold uppercase">
                     What3Words
                   </h3>
-                  <p className="text-base">{page.data.what_three_words}</p>
+                  <p className="text-base text-white">
+                    {page.data.what_three_words}
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -52,12 +63,17 @@ export const HeadingDetails = ({ page }) => {
                   <h3 className="text-sm font-semibold uppercase">
                     Development Size
                   </h3>
-                  <p className="text-base">{page.data.development_size}</p>
+                  <p className="text-base text-white">
+                    {page.data.development_size}
+                  </p>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
-              <BlockButton label="Arrange a viewing" />
+              <button onClick={() => setShowArrangeViewingForm(true)}>
+                <BlockButton label="Arrange a viewing" />
+              </button>
+              {showArrangeViewingForm && <ArrangeViewing />}
               <BlockButton label="Download Brochure" />
             </div>
           </div>

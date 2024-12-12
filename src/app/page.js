@@ -1,7 +1,6 @@
 import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
-import Image from "next/image";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 
 import { Layout } from "@/components/Layout";

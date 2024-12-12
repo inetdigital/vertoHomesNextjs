@@ -38,7 +38,7 @@
           }
     
           p {
-            @apply text-paragraph font-light;
+            @apply text-paragraph font-extralight tracking-wide text-vertoBlack;
             font-family: "motiva-sans", sans-serif;
           }
         .o {

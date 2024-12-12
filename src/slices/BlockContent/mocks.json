@@ -28,6 +28,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "VertoBlue",
 				"type": "Select"
+			},
+			"show_search": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []
@@ -367,6 +371,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "VertoBlue",
 				"type": "Select"
+			},
+			"link_label": {
+				"__TYPE__": "FieldContent",
+				"value": "bell",
+				"type": "Text"
 			}
 		},
 		"items": [
@@ -413,6 +422,44 @@
 				"__TYPE__": "FieldContent",
 				"value": "said",
 				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withImage",
+		"primary": {
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "VertoBlue",
+				"type": "Select"
+			},
+			"image": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
+					"width": 2545,
+					"height": 2545
+				},
+				"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
+				"width": 2545,
+				"height": 2545,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"thumbnails": {}
 			}
 		},
 		"items": [

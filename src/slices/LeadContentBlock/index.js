@@ -12,7 +12,7 @@ const LeadContentBlock = ({ slice }) => {
   return (
     <Bounded
       as="section"
-      size={slice.variation === "default" ? "wide" : "base"}
+      size="wide"
       paddingAs="contentSection"
       className="text-center"
     >
@@ -26,7 +26,7 @@ const LeadContentBlock = ({ slice }) => {
 
       {slice.primary.title && (
         <>
-          <h2 className="uppercase text-vertoBlack tracking-widest">
+          <h2 className="uppercase text-vertoBlack tracking-widest text-6xl">
             {slice.primary.title}
           </h2>
           <div

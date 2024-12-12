@@ -150,7 +150,9 @@ export default function HomePageBanner({ singleHomePage, banners }) {
                   return <span>{children}</span>;
                 },
                 paragraph: ({ children }) => (
-                  <p className="text-lg lg:text-xl mt-4">{children}</p>
+                  <p className="text-lg font-normal lg:text-xl mt-4 text-white">
+                    {children}
+                  </p>
                 ),
               }}
             />

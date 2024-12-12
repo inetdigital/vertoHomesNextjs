@@ -481,11 +481,11 @@ const DevelopmentThumbnail = ({ item }) => {
 
         {/* Link Text Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 transition-all duration-500 ease-in-out group-hover:translate-y-[-10px]">
-          <p className="text-2xl font-medium">{item.data.name}</p>
+          <p className="text-2xl font-medium text-white">{item.data.name}</p>
 
           {/* Caption (Fades in on hover) */}
           <div className="opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">
-            <p className="mt-2 text-sm flex items-center">
+            <p className="mt-2 text-sm flex items-center text-white">
               <span className="mr-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

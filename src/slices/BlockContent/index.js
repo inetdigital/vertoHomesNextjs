@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 import { Bounded } from "@/components/Bounded";
 import { PrismicRichText } from "@/components/PrismicRichText";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 import { Search } from "@/components/ui/Search";
 
@@ -34,9 +34,13 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
         {slice.variation === "contentList" && <ContentList slice={slice} />}
         {slice.variation === "testimonial" && <Testimonial slice={slice} />}
         {slice.variation === "withRegisterInterestForm" && (
-          <WithRegistrationForm slice={slice} />
+          <WithRegistrationForm
+            slice={slice}
+            themeColor={slice.primary.background_color}
+          />
         )}
         {slice.variation === "splitGrid" && <SplitGrid slice={slice} />}
+        {slice.variation === "withImage" && <WithImage slice={slice} />}
       </div>
     </Bounded>
   );
@@ -77,7 +81,7 @@ const SearchVariant = ({ slice }) => {
         </>
       )}
       {slice.primary.content && (
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-white">
           <PrismicRichText
             field={slice.primary.content}
             components={{
@@ -88,9 +92,11 @@ const SearchVariant = ({ slice }) => {
           />
         </div>
       )}
-      <div className="max-w-7xl mx-auto mt-16">
-        <Search withButton />
-      </div>
+      {slice.primary.show_search && (
+        <div className="max-w-7xl mx-auto mt-16">
+          <Search withButton />
+        </div>
+      )}
     </>
   );
 };
@@ -343,19 +349,38 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
   const BtnColorClasses =
     {
       VertoBlue:
-        "border-vertoDarkBlue text-vertoBlack hover:bg-vertoDarkBlue hover:text-white",
+        "border-0 bg-white text-vertoBlack hover:bg-vertoLightBlue hover:text-white",
       White:
         "text-white bg-vertoDarkBlue hover:bg-vertoLightBlue hover:text-white",
+      VertoGreen:
+        "border-0 bg-white text-vertoDarkBlue hover:bg-vertoLightGreen hover:text-white",
     }[themeColor] ||
-    "border-vertoDarkBlue text-vertoDarkBlue hover:bg-vertoDarkBlue hover:text-white"; // Fallback if undefined
+    "border-vertoDarkBlue text-vertoDarkBlue hover:bg-vertoDarkBlue hover:text-white";
+
+  const textColorClass =
+    {
+      VertoBlue: "white",
+      VertoGreen: "white",
+    }[themeColor] || "vertoDarkBlue";
+
+  const highlightColorClass =
+    {
+      VertoBlue: "vertoLightBlue",
+      VertoGreen: "vertoLightGreen",
+    }[themeColor] || "vertoLightBlue";
+
   return (
     <div className="text-left max-w-7xl mx-auto">
       {slice.primary.title && (
         <>
-          <p className="uppercase text-vertoDarkBlue tracking-widest font-heading font-semibold text-3xl">
+          <p
+            className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl`}
+          >
             {slice.primary.title}
           </p>
-          <div className="bg-vertoLightBlue w-[100px] h-[4px] mr-auto my-10" />
+          <div
+            className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
+          />
         </>
       )}
       {slice.primary.content && (
@@ -364,7 +389,7 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             field={slice.primary.content}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-vertoDarkBlue text-xl">{children}</p>
+                <p className={`text-${textColorClass} text-xl`}>{children}</p>
               ),
             }}
           />
@@ -378,7 +403,9 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             className={`${BtnColorClasses} relative px-4 py-2 font-medium text-lg tracking-button uppercase border rounded transition-colors duration-300 ease-in-out`}
           >
-            Register your interest
+            {slice.primary.link_label
+              ? slice.primary.link_label
+              : "Register your interest"}
           </motion.div>
         </button>
       </div>
@@ -387,30 +414,65 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
 };
 
 const SplitGrid = ({ slice }) => {
+  const highlightColorClass =
+    {
+      VertoGrey: "vertoDarkBlue",
+      VertoGreen: "vertoLightGreen",
+      VertoBlue: "vertoLightBlue",
+    }[slice.primary.background_color] || "vertoLightGreen";
+  const textColorClass =
+    {
+      VertoGrey: "vertoBlack",
+      VertoGreen: "white",
+      VertoBlue: "white",
+    }[slice.primary.background_color] || "white";
   return (
     <div className="max-w-7xl mx-auto text-white text-left">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left Section */}
         <div className="flex items-left justify-start">
-          <h2 className="text-vertoLightGreen text-4xl font-bold uppercase">
+          <h2 className={`text-${highlightColorClass} text-4xl uppercase`}>
             {slice.primary.title_lead}
           </h2>
         </div>
 
         {/* Right Section */}
         <div>
-          <h3 className="text-xl font-bold mb-4 text-left">
-            {slice.primary.title}
-          </h3>
-          <hr className="bg-vertoLightGreen h-[4px] w-20 my-10" />
+          {slice.primary.title && (
+            <>
+              <h3 className="text-xl font-bold mb-4 text-left">
+                {slice.primary.title}
+              </h3>
+              <hr className={`bg-${highlightColorClass} h-[4px] w-20 my-10`} />
+            </>
+          )}
           <div className="text-left text-base">
-            <PrismicRichText field={slice.primary.content} />
+            <PrismicRichText
+              field={slice.primary.content}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className={`text-${textColorClass}`}>{children}</p>
+                ),
+              }}
+            />
           </div>
-          <div className="mt-10 text-left flex">
-            <BlockButton label={slice.primary.link?.text} />
-          </div>
+          {slice.primary.link?.text && (
+            <div className="mt-10 text-left flex">
+              <PrismicNextLink field={slice.primary.link}>
+                <BlockButton label={slice.primary.link?.text} />
+              </PrismicNextLink>
+            </div>
+          )}
         </div>
       </div>
+    </div>
+  );
+};
+
+const WithImage = ({ slice }) => {
+  return (
+    <div className="max-w-7xl mx-auto">
+      <PrismicNextImage field={slice.primary.image} fallbackAlt="" />
     </div>
   );
 };

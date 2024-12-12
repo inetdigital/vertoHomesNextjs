@@ -7,6 +7,7 @@ import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
 
 import { BannerImage } from "@/components/BannerImage";
+import { BannerBlockColor } from "@/components/BannerBlockColor";
 
 import { fetchNavigation } from "@/lib/fetchNavigation";
 
@@ -40,15 +41,46 @@ export default async function Page({ params }) {
   const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
 
+  const enhancedSlices = page.data.slices.map((slice, index, slices) => {
+    const isConsecutive =
+      slice.slice_type === "block_content" &&
+      slices[index - 1]?.slice_type === "block_content";
+
+    return { ...slice, isConsecutive };
+  });
+
   return (
     <Layout navigation={navigation} settings={settings}>
-      <BannerImage
-        image={page.data.banner_image}
-        title={page.data.title}
-        themeColor="vertoLightBlue"
-        caption={page.data.banner_caption}
+      {(page.data.banner_block_color === null ||
+        page.data.banner_block_color === "None") && (
+        <BannerImage
+          image={page.data.banner_image}
+          title={page.data.title}
+          themeColor="vertoLightBlue"
+          caption={page.data.banner_caption}
+        />
+      )}
+
+      {page.data.banner_block_color &&
+        page.data.banner_block_color !== "None" && (
+          <BannerBlockColor
+            theme={page.data.banner_block_color}
+            title={page.data.title}
+            caption={page.data.banner_caption}
+          />
+        )}
+      <SliceZone
+        slices={enhancedSlices}
+        components={{
+          ...components,
+          block_content: (props) => (
+            <components.block_content
+              {...props}
+              isConsecutive={props.slice.isConsecutive}
+            />
+          ),
+        }}
       />
-      <SliceZone slices={page.data.slices} components={components} />
     </Layout>
   );
 }

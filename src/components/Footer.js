@@ -22,14 +22,14 @@ export const Footer = ({ navigation }) => {
             {navigation.data.slices1.map((item, index) => {
               return (
                 <div key={index}>
-                  <p className="text-vertoDarkBlue font-normal mb-4">
+                  <p className="text-vertoDarkBlue text-xl font-medium mb-4">
                     {item.primary.title}
                   </p>
                   {item.variation === "default" && (
                     <ul>
                       {item.primary.links.map((item, index) => {
                         return (
-                          <li key={index} className="mb-2 sm:mb-6">
+                          <li key={index} className="mb-2 sm:mb-2">
                             <PrismicNextLink
                               field={item.link}
                               className="font-sans text-base font-extralight text-vertoBlack"
@@ -41,7 +41,7 @@ export const Footer = ({ navigation }) => {
                   )}
                   {item.variation === "contactDetails" && (
                     <ul>
-                      <li className="mb-2 sm:mb-6">
+                      <li className="mb-2 sm:mb-2">
                         <PrismicNextLink
                           field={item.primary.link}
                           className="font-sans text-base font-extralight text-vertoBlack"

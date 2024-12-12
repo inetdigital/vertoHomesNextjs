@@ -6,7 +6,7 @@
   "variations": [
     {
       "id": "default",
-      "name": "Search",
+      "name": "withSearchOption",
       "docURL": "...",
       "version": "initial",
       "description": "Default",
@@ -47,6 +47,15 @@
               "VertoGreen"
             ],
             "default_value": "VertoBlue"
+          }
+        },
+        "show_search": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Search",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
           }
         }
       },
@@ -366,6 +375,13 @@
             ],
             "default_value": "VertoBlue"
           }
+        },
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
         }
       },
       "items": {}
@@ -423,6 +439,39 @@
             "allowTargetBlank": true,
             "select": null,
             "allowText": true
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "withImage",
+      "name": "withImage",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "background_color": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "VertoBlue",
+              "VertoGrey",
+              "White",
+              "VertoGreen"
+            ],
+            "default_value": "VertoBlue"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },

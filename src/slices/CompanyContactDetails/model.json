@@ -1,0 +1,57 @@
+{
+  "id": "company_contact_details",
+  "type": "SharedSlice",
+  "name": "CompanyContactDetails",
+  "description": "CompanyContactDetails",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "office_address": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Office Address",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "office_hours": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Office Hours",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "telephone_number": {
+          "type": "Text",
+          "config": {
+            "label": "Telephone Number",
+            "placeholder": ""
+          }
+        },
+        "email_address": {
+          "type": "Text",
+          "config": {
+            "label": "Email Address",
+            "placeholder": ""
+          }
+        },
+        "office_location": {
+          "type": "GeoPoint",
+          "config": {
+            "label": "Office Location"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

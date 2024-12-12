@@ -1,0 +1,48 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"office_address": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Qui in et magna cillum Lorem Lorem occaecat adipisicing incididunt cupidatat id consectetur laborum. Pariatur sint consequat exercitation consequat dolor. Est minim eu pariatur consequat exercitation."
+						}
+					}
+				]
+			},
+			"office_hours": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do commodo elit cillum ex minim aliqua."
+						}
+					}
+				]
+			},
+			"telephone_number": {
+				"__TYPE__": "FieldContent",
+				"value": "thee",
+				"type": "Text"
+			},
+			"email_address": {
+				"__TYPE__": "FieldContent",
+				"value": "leave",
+				"type": "Text"
+			},
+			"office_location": {
+				"position": {
+					"lat": 48.8841267,
+					"lng": 2.3300579
+				},
+				"__TYPE__": "GeoPointContent"
+			}
+		},
+		"items": []
+	}
+]

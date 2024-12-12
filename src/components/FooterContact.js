@@ -1,4 +1,5 @@
 import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
+import BlockButton from "@/components/ui/BlockButton";
 
 export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
   return (
@@ -23,10 +24,28 @@ export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
 
         {/* Right Buttons */}
         <div className="flex flex-col space-y-4">
-          <BlockButtonBlue label="Arrange a viewing" />
-          <BlockButtonBlue label="Get a free info pack" />
+          {themeColor === "vertoDarkBlue" && <FooterButtonsBlue />}
+          {themeColor === "vertoDarkGreen" && <FooterButtonsStandard />}
         </div>
       </div>
     </section>
+  );
+};
+
+const FooterButtonsStandard = () => {
+  return (
+    <>
+      <BlockButton label="Arrange a viewing" />
+      <BlockButton label="Get a free info pack" />
+    </>
+  );
+};
+
+const FooterButtonsBlue = () => {
+  return (
+    <>
+      <BlockButtonBlue label="Arrange a viewing" />
+      <BlockButtonBlue label="Get a free info pack" />
+    </>
   );
 };

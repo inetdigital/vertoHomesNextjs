@@ -38,13 +38,13 @@ export const SingleSubMenu = ({ navItems, openSubMenuIndex }) => {
 
                 {/* Link Text Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 transition-all duration-500 ease-in-out group-hover:translate-y-[-10px]">
-                  <p className="text-2xl font-medium">
+                  <p className="text-2xl font-medium text-white">
                     {item.primary.link.text}
                   </p>
 
                   {/* Caption (Fades in on hover) */}
                   <div className="opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">
-                    <p className="mt-2 text-sm">Caption</p>
+                    <p className="mt-2 text-sm text-white">Caption</p>
                   </div>
                 </div>
               </PrismicNextLink>

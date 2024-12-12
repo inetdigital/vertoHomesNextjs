@@ -36,6 +36,51 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "withImageInGrid",
+      "name": "WithImageInGrid",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content_block": {
+          "type": "Group",
+          "config": {
+            "label": "Content Block",
+            "repeat": true,
+            "fields": {
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Content",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "secondary_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Secondary Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

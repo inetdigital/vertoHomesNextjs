@@ -3,8 +3,10 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  accordion_content: dynamic(() => import("./AccordionContent")),
   block_content: dynamic(() => import("./BlockContent")),
   check_list: dynamic(() => import("./CheckList")),
+  company_contact_details: dynamic(() => import("./CompanyContactDetails")),
   contact_form: dynamic(() => import("./ContactForm")),
   development_showcase: dynamic(() => import("./DevelopmentShowcase")),
   energy_comparison: dynamic(() => import("./StatisticComparisonCards")),
@@ -18,9 +20,11 @@ export const components = {
   property_grid: dynamic(() => import("./PropertyGrid")),
   quote: dynamic(() => import("./Quote")),
   rich_content_block: dynamic(() => import("./RichContentBlock")),
+  savings_calculator: dynamic(() => import("./SavingsCalculator")),
   split_content_block: dynamic(() => import("./SplitContentBlock")),
   standard_text_block: dynamic(() => import("./StandardTextBlock")),
   sub_menu_item: dynamic(() => import("./SubMenuItem")),
   text: dynamic(() => import("./Text")),
+  timeline: dynamic(() => import("./Timeline")),
   typology_layout: dynamic(() => import("./TypologyLayout")),
 };

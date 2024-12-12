@@ -520,6 +520,14 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | ContactFormSlice
+  | CompanyContactDetailsSlice
+  | SavingsCalculatorSlice
+  | AccordionContentSlice
+  | TimelineSlice
+  | ImageGridSlice
+  | RichContentBlockSlice
+  | EnergyComparisonSlice
   | BlockContentSlice
   | LeadContentBlockSlice
   | ImageSlice
@@ -530,17 +538,6 @@ type PageDocumentDataSlicesSlice =
  */
 interface PageDocumentData {
   /**
-   * Title field in *Page*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: Title for the page
-   * - **API ID Path**: page.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.TitleField;
-
-  /**
    * Banner Image field in *Page*
    *
    * - **Field Type**: Image
@@ -550,6 +547,32 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   banner_image: prismic.ImageField<never>;
+
+  /**
+   * Banner Block Colour (Overrides img) field in *Page*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: None
+   * - **API ID Path**: page.banner_block_color
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  banner_block_color: prismic.SelectField<
+    "None" | "VertoBlue" | "VertoGreen",
+    "filled"
+  >;
+
+  /**
+   * Title field in *Page*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Title for the page
+   * - **API ID Path**: page.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
 
   /**
    * Banner Caption field in *Page*
@@ -1086,7 +1109,93 @@ interface SettingsDocumentData {
    * - **Tab**: Site Wide Statistics
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  highest_epc_rating: prismic.KeyTextField;
+  highest_epc_rating: prismic.KeyTextField /**
+   * Office Address field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.office_address
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */;
+  office_address: prismic.RichTextField;
+
+  /**
+   * Phone Number field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.phone_number
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  phone_number: prismic.KeyTextField;
+
+  /**
+   * Email Address field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.email_address
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_address: prismic.KeyTextField;
+
+  /**
+   * Office Hours field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.office_hours
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  office_hours: prismic.RichTextField;
+
+  /**
+   * Instagram field in *Settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.instagram
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  instagram: prismic.LinkField;
+
+  /**
+   * LinkedIn field in *Settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.linkedin
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  linkedin: prismic.LinkField;
+
+  /**
+   * Map Location field in *Settings*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.map_location
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  map_location: prismic.GeoPointField;
+
+  /**
+   * Contact welcome field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact_welcome
+   * - **Tab**: Verto Contact Details
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  contact_welcome: prismic.RichTextField;
 }
 
 /**
@@ -1338,6 +1447,88 @@ export type AllDocumentTypes =
   | TaxonomyStatusDocument;
 
 /**
+ * Item in *AccordionContent → Default → Primary → Items*
+ */
+export interface AccordionContentSliceDefaultPrimaryItemsItem {
+  /**
+   * Label field in *AccordionContent → Default → Primary → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion_content.default.primary.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Content field in *AccordionContent → Default → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion_content.default.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *AccordionContent → Default → Primary*
+ */
+export interface AccordionContentSliceDefaultPrimary {
+  /**
+   * Title field in *AccordionContent → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion_content.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Items field in *AccordionContent → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion_content.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<AccordionContentSliceDefaultPrimaryItemsItem>
+  >;
+}
+
+/**
+ * Default variation for AccordionContent Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionContentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AccordionContentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AccordionContent*
+ */
+type AccordionContentSliceVariation = AccordionContentSliceDefault;
+
+/**
+ * AccordionContent Shared Slice
+ *
+ * - **API ID**: `accordion_content`
+ * - **Description**: AccordionContent
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionContentSlice = prismic.SharedSlice<
+  "accordion_content",
+  AccordionContentSliceVariation
+>;
+
+/**
  * Item in *BlockContent → Testimonial → Primary → Testimonials*
  */
 export interface BlockContentSliceTestimonialPrimaryTestimonialsItem {
@@ -1453,11 +1644,11 @@ export interface BlockContentSliceContentListPrimaryContentBlockItem {
 }
 
 /**
- * Primary content in *BlockContent → Search → Primary*
+ * Primary content in *BlockContent → withSearchOption → Primary*
  */
 export interface BlockContentSliceDefaultPrimary {
   /**
-   * Title Lead field in *BlockContent → Search → Primary*
+   * Title Lead field in *BlockContent → withSearchOption → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1467,7 +1658,7 @@ export interface BlockContentSliceDefaultPrimary {
   title_lead: prismic.KeyTextField;
 
   /**
-   * Title field in *BlockContent → Search → Primary*
+   * Title field in *BlockContent → withSearchOption → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1477,7 +1668,7 @@ export interface BlockContentSliceDefaultPrimary {
   title: prismic.KeyTextField;
 
   /**
-   * Content field in *BlockContent → Search → Primary*
+   * Content field in *BlockContent → withSearchOption → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1487,7 +1678,7 @@ export interface BlockContentSliceDefaultPrimary {
   content: prismic.RichTextField;
 
   /**
-   * Background Color field in *BlockContent → Search → Primary*
+   * Background Color field in *BlockContent → withSearchOption → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -1499,10 +1690,21 @@ export interface BlockContentSliceDefaultPrimary {
     "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
+
+  /**
+   * Show Search field in *BlockContent → withSearchOption → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: block_content.default.primary.show_search
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  show_search: prismic.BooleanField;
 }
 
 /**
- * Search variation for BlockContent Slice
+ * withSearchOption variation for BlockContent Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -1795,6 +1997,16 @@ export interface BlockContentSliceWithRegisterInterestFormPrimary {
     "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
     "filled"
   >;
+
+  /**
+   * Link Label field in *BlockContent → With Register Interest Form → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withRegisterInterestForm.primary.link_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_label: prismic.KeyTextField;
 }
 
 /**
@@ -1884,6 +2096,48 @@ export type BlockContentSliceSplitGrid = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *BlockContent → withImage → Primary*
+ */
+export interface BlockContentSliceWithImagePrimary {
+  /**
+   * Background Color field in *BlockContent → withImage → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoBlue
+   * - **API ID Path**: block_content.withImage.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
+    "filled"
+  >;
+
+  /**
+   * Image field in *BlockContent → withImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withImage.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * withImage variation for BlockContent Slice
+ *
+ * - **API ID**: `withImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlockContentSliceWithImage = prismic.SharedSliceVariation<
+  "withImage",
+  Simplify<BlockContentSliceWithImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *BlockContent*
  */
 type BlockContentSliceVariation =
@@ -1893,7 +2147,8 @@ type BlockContentSliceVariation =
   | BlockContentSliceWithImageLead
   | BlockContentSliceContentList
   | BlockContentSliceWithRegisterInterestForm
-  | BlockContentSliceSplitGrid;
+  | BlockContentSliceSplitGrid
+  | BlockContentSliceWithImage;
 
 /**
  * BlockContent Shared Slice
@@ -1977,6 +2232,91 @@ type CheckListSliceVariation = CheckListSliceDefault;
 export type CheckListSlice = prismic.SharedSlice<
   "check_list",
   CheckListSliceVariation
+>;
+
+/**
+ * Primary content in *CompanyContactDetails → Default → Primary*
+ */
+export interface CompanyContactDetailsSliceDefaultPrimary {
+  /**
+   * Office Address field in *CompanyContactDetails → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: company_contact_details.default.primary.office_address
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  office_address: prismic.RichTextField;
+
+  /**
+   * Office Hours field in *CompanyContactDetails → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: company_contact_details.default.primary.office_hours
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  office_hours: prismic.RichTextField;
+
+  /**
+   * Telephone Number field in *CompanyContactDetails → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: company_contact_details.default.primary.telephone_number
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  telephone_number: prismic.KeyTextField;
+
+  /**
+   * Email Address field in *CompanyContactDetails → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: company_contact_details.default.primary.email_address
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_address: prismic.KeyTextField;
+
+  /**
+   * Office Location field in *CompanyContactDetails → Default → Primary*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: company_contact_details.default.primary.office_location
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  office_location: prismic.GeoPointField;
+}
+
+/**
+ * Default variation for CompanyContactDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CompanyContactDetailsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CompanyContactDetailsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CompanyContactDetails*
+ */
+type CompanyContactDetailsSliceVariation = CompanyContactDetailsSliceDefault;
+
+/**
+ * CompanyContactDetails Shared Slice
+ *
+ * - **API ID**: `company_contact_details`
+ * - **Description**: CompanyContactDetails
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CompanyContactDetailsSlice = prismic.SharedSlice<
+  "company_contact_details",
+  CompanyContactDetailsSliceVariation
 >;
 
 /**
@@ -2117,9 +2457,55 @@ export interface EnergyComparisonSliceDefaultPrimaryCardsItem {
 }
 
 /**
+ * Item in *StatisticComparisonCards → asStatisticsGrid → Primary → Statistic*
+ */
+export interface EnergyComparisonSliceAsStatisticsGridPrimaryStatisticItem {
+  /**
+   * Icon field in *StatisticComparisonCards → asStatisticsGrid → Primary → Statistic*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.statistic[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Value field in *StatisticComparisonCards → asStatisticsGrid → Primary → Statistic*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.statistic[].value
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  value: prismic.KeyTextField;
+
+  /**
+   * Caption field in *StatisticComparisonCards → asStatisticsGrid → Primary → Statistic*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.statistic[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *StatisticComparisonCards → Default → Primary*
  */
 export interface EnergyComparisonSliceDefaultPrimary {
+  /**
+   * Theme Color field in *StatisticComparisonCards → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoBlue
+   * - **API ID Path**: energy_comparison.default.primary.theme_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme_color: prismic.SelectField<"VertoBlue" | "VertoGreen", "filled">;
+
   /**
    * Title field in *StatisticComparisonCards → Default → Primary*
    *
@@ -2171,6 +2557,17 @@ export type EnergyComparisonSliceDefault = prismic.SharedSliceVariation<
  */
 export interface EnergyComparisonSliceWithGlobalStatisticsPrimary {
   /**
+   * Theme Color field in *StatisticComparisonCards → withGlobalStatistics → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoBlue
+   * - **API ID Path**: energy_comparison.withGlobalStatistics.primary.theme_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme_color: prismic.SelectField<"VertoBlue" | "VertoGreen", "filled">;
+
+  /**
    * Title field in *StatisticComparisonCards → withGlobalStatistics → Primary*
    *
    * - **Field Type**: Text
@@ -2206,11 +2603,64 @@ export type EnergyComparisonSliceWithGlobalStatistics =
   >;
 
 /**
+ * Primary content in *StatisticComparisonCards → asStatisticsGrid → Primary*
+ */
+export interface EnergyComparisonSliceAsStatisticsGridPrimary {
+  /**
+   * Theme Color field in *StatisticComparisonCards → asStatisticsGrid → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoGreen
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.theme_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme_color: prismic.SelectField<"VertoGreen" | "VertoBlue", "filled">;
+
+  /**
+   * Title field in *StatisticComparisonCards → asStatisticsGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Statistic field in *StatisticComparisonCards → asStatisticsGrid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: energy_comparison.asStatisticsGrid.primary.statistic[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  statistic: prismic.GroupField<
+    Simplify<EnergyComparisonSliceAsStatisticsGridPrimaryStatisticItem>
+  >;
+}
+
+/**
+ * asStatisticsGrid variation for StatisticComparisonCards Slice
+ *
+ * - **API ID**: `asStatisticsGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EnergyComparisonSliceAsStatisticsGrid =
+  prismic.SharedSliceVariation<
+    "asStatisticsGrid",
+    Simplify<EnergyComparisonSliceAsStatisticsGridPrimary>,
+    never
+  >;
+
+/**
  * Slice variation for *StatisticComparisonCards*
  */
 type EnergyComparisonSliceVariation =
   | EnergyComparisonSliceDefault
-  | EnergyComparisonSliceWithGlobalStatistics;
+  | EnergyComparisonSliceWithGlobalStatistics
+  | EnergyComparisonSliceAsStatisticsGrid;
 
 /**
  * StatisticComparisonCards Shared Slice
@@ -2513,9 +2963,40 @@ export type ImageSliceWide = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Image → fullScreenWidth → Primary*
+ */
+export interface ImageSliceFullScreenWidthPrimary {
+  /**
+   * Image field in *Image → fullScreenWidth → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image.fullScreenWidth.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * fullScreenWidth variation for Image Slice
+ *
+ * - **API ID**: `fullScreenWidth`
+ * - **Description**: Image
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageSliceFullScreenWidth = prismic.SharedSliceVariation<
+  "fullScreenWidth",
+  Simplify<ImageSliceFullScreenWidthPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Image*
  */
-type ImageSliceVariation = ImageSliceDefault | ImageSliceWide;
+type ImageSliceVariation =
+  | ImageSliceDefault
+  | ImageSliceWide
+  | ImageSliceFullScreenWidth;
 
 /**
  * Image Shared Slice
@@ -3138,6 +3619,41 @@ type QuoteSliceVariation = QuoteSliceDefault;
 export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
 
 /**
+ * Item in *RichContentBlock → WithImageInGrid → Primary → Content Block*
+ */
+export interface RichContentBlockSliceWithImageInGridPrimaryContentBlockItem {
+  /**
+   * Content field in *RichContentBlock → WithImageInGrid → Primary → Content Block*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.content_block[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Image field in *RichContentBlock → WithImageInGrid → Primary → Content Block*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.content_block[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Secondary Image field in *RichContentBlock → WithImageInGrid → Primary → Content Block*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.content_block[].secondary_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  secondary_image: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *RichContentBlock → Default → Primary*
  */
 export interface RichContentBlockSliceDefaultPrimary {
@@ -3177,9 +3693,41 @@ export type RichContentBlockSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *RichContentBlock → WithImageInGrid → Primary*
+ */
+export interface RichContentBlockSliceWithImageInGridPrimary {
+  /**
+   * Content Block field in *RichContentBlock → WithImageInGrid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.content_block[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  content_block: prismic.GroupField<
+    Simplify<RichContentBlockSliceWithImageInGridPrimaryContentBlockItem>
+  >;
+}
+
+/**
+ * WithImageInGrid variation for RichContentBlock Slice
+ *
+ * - **API ID**: `withImageInGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichContentBlockSliceWithImageInGrid = prismic.SharedSliceVariation<
+  "withImageInGrid",
+  Simplify<RichContentBlockSliceWithImageInGridPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *RichContentBlock*
  */
-type RichContentBlockSliceVariation = RichContentBlockSliceDefault;
+type RichContentBlockSliceVariation =
+  | RichContentBlockSliceDefault
+  | RichContentBlockSliceWithImageInGrid;
 
 /**
  * RichContentBlock Shared Slice
@@ -3191,6 +3739,61 @@ type RichContentBlockSliceVariation = RichContentBlockSliceDefault;
 export type RichContentBlockSlice = prismic.SharedSlice<
   "rich_content_block",
   RichContentBlockSliceVariation
+>;
+
+/**
+ * Primary content in *SavingsCalculator → Default → Primary*
+ */
+export interface SavingsCalculatorSliceDefaultPrimary {
+  /**
+   * Title field in *SavingsCalculator → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: savings_calculator.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *SavingsCalculator → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: savings_calculator.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for SavingsCalculator Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SavingsCalculatorSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SavingsCalculatorSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SavingsCalculator*
+ */
+type SavingsCalculatorSliceVariation = SavingsCalculatorSliceDefault;
+
+/**
+ * SavingsCalculator Shared Slice
+ *
+ * - **API ID**: `savings_calculator`
+ * - **Description**: SavingsCalculator
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SavingsCalculatorSlice = prismic.SharedSlice<
+  "savings_calculator",
+  SavingsCalculatorSliceVariation
 >;
 
 /**
@@ -3578,6 +4181,98 @@ type TextSliceVariation = TextSliceDefault;
 export type TextSlice = prismic.SharedSlice<"text", TextSliceVariation>;
 
 /**
+ * Item in *Timeline → Default → Primary → Timeline Item*
+ */
+export interface TimelineSliceDefaultPrimaryTimelineItemItem {
+  /**
+   * Icon field in *Timeline → Default → Primary → Timeline Item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.timeline_item[].icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Timeline → Default → Primary → Timeline Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.timeline_item[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Caption field in *Timeline → Default → Primary → Timeline Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.timeline_item[].caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Timeline → Default → Primary*
+ */
+export interface TimelineSliceDefaultPrimary {
+  /**
+   * Title field in *Timeline → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Timeline Item field in *Timeline → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.timeline_item[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  timeline_item: prismic.GroupField<
+    Simplify<TimelineSliceDefaultPrimaryTimelineItemItem>
+  >;
+}
+
+/**
+ * Default variation for Timeline Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelineSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TimelineSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Timeline*
+ */
+type TimelineSliceVariation = TimelineSliceDefault;
+
+/**
+ * Timeline Shared Slice
+ *
+ * - **API ID**: `timeline`
+ * - **Description**: Timeline
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelineSlice = prismic.SharedSlice<
+  "timeline",
+  TimelineSliceVariation
+>;
+
+/**
  * Primary content in *TypologyLayout → Default → Primary*
  */
 export interface TypologyLayoutSliceDefaultPrimary {
@@ -3706,6 +4401,11 @@ declare module "@prismicio/client" {
       TaxonomyStatusDocument,
       TaxonomyStatusDocumentData,
       AllDocumentTypes,
+      AccordionContentSlice,
+      AccordionContentSliceDefaultPrimaryItemsItem,
+      AccordionContentSliceDefaultPrimary,
+      AccordionContentSliceVariation,
+      AccordionContentSliceDefault,
       BlockContentSlice,
       BlockContentSliceDefaultPrimary,
       BlockContentSliceTestimonialPrimaryTestimonialsItem,
@@ -3717,6 +4417,7 @@ declare module "@prismicio/client" {
       BlockContentSliceContentListPrimary,
       BlockContentSliceWithRegisterInterestFormPrimary,
       BlockContentSliceSplitGridPrimary,
+      BlockContentSliceWithImagePrimary,
       BlockContentSliceVariation,
       BlockContentSliceDefault,
       BlockContentSliceTestimonial,
@@ -3725,11 +4426,16 @@ declare module "@prismicio/client" {
       BlockContentSliceContentList,
       BlockContentSliceWithRegisterInterestForm,
       BlockContentSliceSplitGrid,
+      BlockContentSliceWithImage,
       CheckListSlice,
       CheckListSliceDefaultPrimaryBulletPointsItem,
       CheckListSliceDefaultPrimary,
       CheckListSliceVariation,
       CheckListSliceDefault,
+      CompanyContactDetailsSlice,
+      CompanyContactDetailsSliceDefaultPrimary,
+      CompanyContactDetailsSliceVariation,
+      CompanyContactDetailsSliceDefault,
       ContactFormSlice,
       ContactFormSliceVariation,
       ContactFormSliceDefault,
@@ -3742,9 +4448,12 @@ declare module "@prismicio/client" {
       EnergyComparisonSliceDefaultPrimaryCardsItem,
       EnergyComparisonSliceDefaultPrimary,
       EnergyComparisonSliceWithGlobalStatisticsPrimary,
+      EnergyComparisonSliceAsStatisticsGridPrimaryStatisticItem,
+      EnergyComparisonSliceAsStatisticsGridPrimary,
       EnergyComparisonSliceVariation,
       EnergyComparisonSliceDefault,
       EnergyComparisonSliceWithGlobalStatistics,
+      EnergyComparisonSliceAsStatisticsGrid,
       FooterMenuSlice,
       FooterMenuSliceDefaultPrimaryLinksItem,
       FooterMenuSliceDefaultPrimary,
@@ -3760,9 +4469,11 @@ declare module "@prismicio/client" {
       ImageSlice,
       ImageSliceDefaultPrimary,
       ImageSliceWidePrimary,
+      ImageSliceFullScreenWidthPrimary,
       ImageSliceVariation,
       ImageSliceDefault,
       ImageSliceWide,
+      ImageSliceFullScreenWidth,
       ImageGridSlice,
       ImageGridSliceDefaultPrimaryImagesItem,
       ImageGridSliceDefaultPrimary,
@@ -3801,8 +4512,15 @@ declare module "@prismicio/client" {
       QuoteSliceDefault,
       RichContentBlockSlice,
       RichContentBlockSliceDefaultPrimary,
+      RichContentBlockSliceWithImageInGridPrimaryContentBlockItem,
+      RichContentBlockSliceWithImageInGridPrimary,
       RichContentBlockSliceVariation,
       RichContentBlockSliceDefault,
+      RichContentBlockSliceWithImageInGrid,
+      SavingsCalculatorSlice,
+      SavingsCalculatorSliceDefaultPrimary,
+      SavingsCalculatorSliceVariation,
+      SavingsCalculatorSliceDefault,
       SplitContentBlockSlice,
       SplitContentBlockSliceDefaultPrimary,
       SplitContentBlockSliceWithHouseFooterPrimary,
@@ -3828,6 +4546,11 @@ declare module "@prismicio/client" {
       TextSliceDefaultPrimary,
       TextSliceVariation,
       TextSliceDefault,
+      TimelineSlice,
+      TimelineSliceDefaultPrimaryTimelineItemItem,
+      TimelineSliceDefaultPrimary,
+      TimelineSliceVariation,
+      TimelineSliceDefault,
       TypologyLayoutSlice,
       TypologyLayoutSliceDefaultPrimary,
       TypologyLayoutSliceVariation,

@@ -6,7 +6,7 @@ const SearchTabContext = createContext();
 
 export const SearchTabProvider = ({ children }) => {
   const [selectedTab, setSelectedTab] = useState(1);
-  const [selectedLocationTab, setSelectedLocationTab] = useState("cornwall");
+  const [selectedLocationTab, setSelectedLocationTab] = useState("all");
 
   return (
     <SearchTabContext.Provider

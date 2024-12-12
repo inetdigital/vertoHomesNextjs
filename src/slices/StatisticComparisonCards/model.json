@@ -12,6 +12,18 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "theme_color": {
+          "type": "Select",
+          "config": {
+            "label": "Theme Color",
+            "placeholder": "",
+            "options": [
+              "VertoBlue",
+              "VertoGreen"
+            ],
+            "default_value": "VertoBlue"
+          }
+        },
         "title": {
           "type": "Text",
           "config": {
@@ -79,6 +91,18 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "theme_color": {
+          "type": "Select",
+          "config": {
+            "label": "Theme Color",
+            "placeholder": "",
+            "options": [
+              "VertoBlue",
+              "VertoGreen"
+            ],
+            "default_value": "VertoBlue"
+          }
+        },
         "title": {
           "type": "Text",
           "config": {
@@ -92,6 +116,67 @@
             "label": "Image",
             "constraint": {},
             "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "asStatisticsGrid",
+      "name": "asStatisticsGrid",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "theme_color": {
+          "type": "Select",
+          "config": {
+            "label": "Theme Color",
+            "placeholder": "",
+            "options": [
+              "VertoGreen",
+              "VertoBlue"
+            ],
+            "default_value": "VertoGreen"
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "statistic": {
+          "type": "Group",
+          "config": {
+            "label": "Statistic",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "Value",
+                  "placeholder": ""
+                }
+              },
+              "caption": {
+                "type": "Text",
+                "config": {
+                  "label": "Caption",
+                  "placeholder": ""
+                }
+              }
+            }
           }
         }
       },
