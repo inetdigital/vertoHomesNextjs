@@ -17,6 +17,8 @@ import { PriceRangeProvider } from "@/context/TaxonomyPriceRange";
 import { RoomsProvider } from "@/context/TaxonomyRooms";
 import { HouseTypesProvider } from "@/context/TaxonomyHouseType";
 import { SettingsProvider } from "@/context/Settings";
+import { ArticlesProvider } from "@/context/AllArticles";
+import { TaxonomyArticlesProvider } from "@/context/TaxonomyArticles";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -42,15 +44,19 @@ export default function RootLayout({ children }) {
                         <PriceRangeProvider>
                           <RoomsProvider>
                             <HouseTypesProvider>
-                              <SettingsProvider>
-                                <BodyClassManager />
-                                <main>
-                                  {children}
-                                  <PrismicPreview
-                                    repositoryName={repositoryName}
-                                  />
-                                </main>
-                              </SettingsProvider>
+                              <TaxonomyArticlesProvider>
+                                <SettingsProvider>
+                                  <ArticlesProvider>
+                                    <BodyClassManager />
+                                    <main>
+                                      {children}
+                                      <PrismicPreview
+                                        repositoryName={repositoryName}
+                                      />
+                                    </main>
+                                  </ArticlesProvider>
+                                </SettingsProvider>
+                              </TaxonomyArticlesProvider>
                             </HouseTypesProvider>
                           </RoomsProvider>
                         </PriceRangeProvider>

@@ -51,13 +51,19 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "articles_listing": {
+              "type": "SharedSlice"
+            },
+            "zero_bills_homes_slider": {
+              "type": "SharedSlice"
+            },
+            "steps": {
+              "type": "SharedSlice"
+            },
             "contact_form": {
               "type": "SharedSlice"
             },
             "company_contact_details": {
-              "type": "SharedSlice"
-            },
-            "savings_calculator": {
               "type": "SharedSlice"
             },
             "accordion_content": {

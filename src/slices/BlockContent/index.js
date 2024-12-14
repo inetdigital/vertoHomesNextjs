@@ -8,6 +8,7 @@ import { PrismicRichText } from "@/components/PrismicRichText";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 import { Search } from "@/components/ui/Search";
+import SavingsCalculator from "@/components/ui/SavingsCalculator";
 
 import DefaultButton from "@/components/ui/DefaultButton";
 import BlockButton from "@/components/ui/BlockButton";
@@ -41,8 +42,66 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
         )}
         {slice.variation === "splitGrid" && <SplitGrid slice={slice} />}
         {slice.variation === "withImage" && <WithImage slice={slice} />}
+        {slice.variation === "withSavingsCalculator" && (
+          <WithSavingsCalculator slice={slice} />
+        )}
       </div>
     </Bounded>
+  );
+};
+
+const WithSavingsCalculator = ({ slice }) => {
+  const textColorClass =
+    {
+      VertoBlue: "text-vertoLightBlue",
+      VertoGrey: "text-vertoDarkBlue",
+      White: "text-vertoDarkBlue",
+      VertoGreen: "text-vertoLightGreen",
+    }[slice.primary.background_color] || "text-vertoDarkBlue"; // Fallback if undefined
+  const bgColorClass =
+    {
+      VertoBlue: "bg-vertoLightBlue",
+      VertoGrey: "bg-vertoDarkBlue",
+      White: "bg-vertoDarkBlue",
+      VertoGreen: "bg-vertoLightGreen",
+    }[slice.primary.background_color] || "bg-vertoDarkBlue"; // Fallback if undefined
+
+  return (
+    <>
+      {slice.primary.title_lead && (
+        <p
+          className={`${textColorClass} uppercase tracking-wide font-medium text-xl`}
+        >
+          {slice.primary.title_lead}
+        </p>
+      )}
+
+      {slice.primary.title && (
+        <>
+          <h2 className="uppercase text-white tracking-widest">
+            {slice.primary.title}
+          </h2>
+          <div className={`${bgColorClass} w-[100px] h-[2px] mx-auto my-16`} />
+        </>
+      )}
+      {slice.primary.content && (
+        <div className="max-w-4xl mx-auto text-white">
+          <PrismicRichText
+            field={slice.primary.content}
+            components={{
+              paragraph: ({ children }) => (
+                <p className="text-white text-xl lg:text-2xl">{children}</p>
+              ),
+            }}
+          />
+        </div>
+      )}
+      {slice.primary.show_savings_calculator && (
+        <div className="max-w-7xl mx-auto mt-16">
+          <SavingsCalculator />
+        </div>
+      )}
+    </>
   );
 };
 

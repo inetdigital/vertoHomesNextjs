@@ -28,12 +28,31 @@ export const Footer = ({ navigation }) => {
                   {item.variation === "default" && (
                     <ul>
                       {item.primary.links.map((item, index) => {
+                        const linkType = item.link?.type;
+                        // Define static paths for single page types
+                        const singlePageRoutes = {
+                          search: "/find-your-new-home", // URL path for the single "Search" page type
+                        };
+
+                        // Determine the href for the link
+                        const href =
+                          singlePageRoutes[linkType] || item.link?.url || "#";
+
                         return (
                           <li key={index} className="mb-2 sm:mb-2">
-                            <PrismicNextLink
-                              field={item.link}
-                              className="font-sans text-base font-extralight text-vertoBlack"
-                            />
+                            {singlePageRoutes[linkType] ? (
+                              <a
+                                href={href}
+                                className="font-sans text-base font-extralight text-vertoBlack"
+                              >
+                                {item.link?.text}
+                              </a>
+                            ) : (
+                              <PrismicNextLink
+                                field={item.link}
+                                className="font-sans text-base font-extralight text-vertoBlack"
+                              />
+                            )}
                           </li>
                         );
                       })}

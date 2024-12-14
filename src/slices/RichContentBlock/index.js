@@ -34,7 +34,9 @@ const WithImageGrid = ({ slice }) => {
               }}
             />
           </div>
-          <div className={`${index % 2 === 0 ? "pl-24" : "pr-24"}`}>
+          <div
+            className={`mt-16 md:mt-0 ${index % 2 === 0 ? "pl-0 md:pl-24" : "pr-0 md:pr-24"}`}
+          >
             <PrismicNextImage
               field={section.image}
               imgixParams={{ ar: "1.5:1", fit: "crop" }}

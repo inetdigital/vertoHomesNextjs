@@ -36,8 +36,10 @@ export const PropertyCard = ({ property }) => {
       <div className="pt-4">
         <div>
           <p className="text-vertoDarkBlue font-medium mb-2 text-left">
-            {property.data.town}, {property.data.postcode}
+            {property.data.town ? property.data.town : property.data.title}
+            {property.data.postcode ? `, ${property.data.postcode}` : ""}
           </p>
+
           <p className="text-base flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,13 +54,13 @@ export const PropertyCard = ({ property }) => {
                 clipRule="evenodd"
               />
             </svg>
-            {property.data.type.data.name}
+            {property.data?.type?.data?.name}
           </p>
         </div>
         <div className="pt-4 grid grid-cols-2">
           <div className="flex items-center">
             <p className="bg-vertoDarkBlue inline-flex text-white text-xl font-medium px-4 py-2">
-              £{formatPrice(property.data.price)}
+              £{formatPrice(property.data?.price)}
             </p>
           </div>
           <div className="flex items-center justify-between">
@@ -76,7 +78,7 @@ export const PropertyCard = ({ property }) => {
               >
                 <path d="M63 43.4c0-3.2-2.1-6-5.1-7v-9.1c0-2-1.6-3.6-3.6-3.6H25.7c-2 0-3.6 1.6-3.6 3.6v9.1c-3 1-5.1 3.8-5.1 7v9.9h2.9v2.4c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-2.4h34.2v2.4c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-2.4h3zM25.7 26.7h28.6c.4 0 .6.3.6.6v8.8h-3.2v-4.5c0-.8-.7-1.5-1.5-1.5h-6.8c-.8 0-1.5.7-1.5 1.5v4.5h-4v-4.5c0-.8-.7-1.5-1.5-1.5h-6.8c-.8 0-1.5.7-1.5 1.5v4.5H25v-8.8c0-.3.3-.6.7-.6m34.5 23.8H19.8v-7.1c0-2.5 2-4.4 4.5-4.4h31.4c2.5 0 4.5 2 4.5 4.5z"></path>
               </svg>
-              {property.data.bedrooms.data.number_of_bedrooms}
+              {property.data?.bedrooms?.data.number_of_bedrooms}
             </div>
             <div className="flex">
               <svg
@@ -93,7 +95,7 @@ export const PropertyCard = ({ property }) => {
                 <path d="M60.3 39.8h-1.6V22.9c-.3-3.4-3.2-5.9-6.6-5.7-2 .2-3.8 1.3-4.9 3-.9-.4-2-.7-3-.6-4 0-7.3 3.2-7.3 7.3 0 .8.6 1.4 1.4 1.4H50c.8 0 1.4-.6 1.4-1.4 0-1.8-.6-3.5-1.8-4.8.8-1.6 2.7-2.2 4.2-1.4 1 .5 1.7 1.5 1.8 2.6v16.6H18.3c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5h1.6v5.6c0 6 4.5 11.1 10.4 11.8.9.2 16.8.2 17.8 0h.2c5.9-.8 10.4-5.8 10.4-11.8v-5.6h1.6c.8 0 1.5-.7 1.5-1.5s-.7-1.6-1.5-1.6M39.8 25.5c.8-2.4 3.3-3.7 5.7-2.9 1.4.4 2.5 1.5 2.9 2.9zm15.9 22.9c0 4.9-4 8.9-8.9 8.9H31.6c-4.8-.1-8.7-4.1-8.7-8.9v-5.6h32.8z"></path>
                 <path d="M38 31.2c-.3.3-.4.7-.4 1.1s.2.8.4 1.1c.6.6 1.5.6 2.1 0 .3-.3.4-.7.4-1.1s-.2-.8-.4-1.1c-.6-.6-1.5-.6-2.1 0M43.1 31.2c-.3.3-.4.7-.4 1.1s.2.8.4 1.1c.6.6 1.5.6 2.1 0 .3-.3.4-.7.4-1.1s-.2-.8-.4-1.1c-.6-.6-1.5-.6-2.1 0M48.2 33.3c.3.3.7.4 1.1.4s.8-.2 1.1-.4c.3-.3.4-.7.4-1.1s-.2-.8-.4-1.1c-.6-.6-1.5-.6-2.1 0-.3.3-.4.7-.4 1.1-.2.4 0 .8.3 1.1"></path>
               </svg>
-              {property.data.bathrooms}
+              {property.data?.bathrooms}
             </div>
             <div className="flex">
               <svg
@@ -112,7 +114,7 @@ export const PropertyCard = ({ property }) => {
                   d="M61 51.5h-5.9v-24H61c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6h-5.9v-5.9c0-.9-.7-1.6-1.6-1.6s-1.5.8-1.5 1.7v5.9H28v-5.9c0-.9-.7-1.6-1.6-1.6s-1.6.7-1.6 1.6v5.9H19c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6h5.9v24H19c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6h5.9v5.9c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6v-5.9h24v5.9c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6v-5.9H61c.9 0 1.6-.7 1.6-1.6s-.7-1.7-1.6-1.7m-9 0H28v-24h24z"
                 ></path>
               </svg>
-              {property.data.square_metres}m²
+              {property.data?.square_metres}m²
             </div>
           </div>
         </div>

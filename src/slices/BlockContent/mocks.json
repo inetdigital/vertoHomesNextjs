@@ -441,7 +441,6 @@
 				"type": "Select"
 			},
 			"image": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
@@ -459,7 +458,52 @@
 					},
 					"background": "transparent"
 				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withSavingsCalculator",
+		"primary": {
+			"title_lead": {
+				"__TYPE__": "FieldContent",
+				"value": "sale",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "problem",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Dolor enim sit commodo labore in do duis pariatur proident est est nostrud. Esse deserunt magna elit deserunt consectetur nulla ad commodo laborum. Est occaecat amet ut aliquip quis occaecat quis excepteur cupidatat."
+						}
+					}
+				]
+			},
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "VertoBlue",
+				"type": "Select"
+			},
+			"show_savings_calculator": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": [

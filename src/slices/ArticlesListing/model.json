@@ -1,0 +1,29 @@
+{
+  "id": "articles_listing",
+  "type": "SharedSlice",
+  "name": "ArticlesListing",
+  "description": "ArticlesListing",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "featured_article": {
+          "type": "Link",
+          "config": {
+            "label": "Featured Article",
+            "select": "document",
+            "customtypes": [
+              "article"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

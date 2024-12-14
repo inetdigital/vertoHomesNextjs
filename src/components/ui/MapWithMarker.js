@@ -87,7 +87,7 @@ const MapWithMarker = ({ geoLocation, companyLogo }) => {
   return (
     <div className="">
       <LoadScript
-        googleMapsApiKey="AIzaSyD7NSIDMerH91RrK6cwgBbJhji3_iXNEMc"
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
         onLoad={handleApiLoad}
       >
         {isApiLoaded && (

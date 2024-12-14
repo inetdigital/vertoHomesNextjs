@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   accordion_content: dynamic(() => import("./AccordionContent")),
+  articles_listing: dynamic(() => import("./ArticlesListing")),
   block_content: dynamic(() => import("./BlockContent")),
   check_list: dynamic(() => import("./CheckList")),
   company_contact_details: dynamic(() => import("./CompanyContactDetails")),
@@ -20,11 +21,12 @@ export const components = {
   property_grid: dynamic(() => import("./PropertyGrid")),
   quote: dynamic(() => import("./Quote")),
   rich_content_block: dynamic(() => import("./RichContentBlock")),
-  savings_calculator: dynamic(() => import("./SavingsCalculator")),
   split_content_block: dynamic(() => import("./SplitContentBlock")),
   standard_text_block: dynamic(() => import("./StandardTextBlock")),
+  steps: dynamic(() => import("./Steps")),
   sub_menu_item: dynamic(() => import("./SubMenuItem")),
   text: dynamic(() => import("./Text")),
   timeline: dynamic(() => import("./Timeline")),
   typology_layout: dynamic(() => import("./TypologyLayout")),
+  zero_bills_homes_slider: dynamic(() => import("./ZeroBillsHomesSlider")),
 };

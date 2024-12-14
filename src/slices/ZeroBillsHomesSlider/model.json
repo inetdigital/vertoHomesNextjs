@@ -1,0 +1,26 @@
+{
+  "id": "zero_bills_homes_slider",
+  "type": "SharedSlice",
+  "name": "ZeroBillsHomesSlider",
+  "description": "ZeroBillsHomesSlider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

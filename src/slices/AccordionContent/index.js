@@ -5,8 +5,9 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
+  Transition,
 } from "@headlessui/react";
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 const AccordionContent = ({ slice }) => {
   return (
@@ -22,25 +23,34 @@ const AccordionContent = ({ slice }) => {
             {slice.primary.items.map((item) => (
               <Disclosure key={item.label} as="div" className="pt-6">
                 <dt>
-                  <DisclosureButton className="group flex w-full items-start justify-between text-left text-gray-900">
-                    <span className="text-2xl font-extralight">
+                  <DisclosureButton className="group flex w-full items-start justify-between text-left text-gray-900 transition-all duration-300 ease-in-out">
+                    <span className="text-xl font-extralight">
                       {item.label}
                     </span>
                     <span className="ml-6 flex h-7 items-center">
-                      <PlusSmallIcon
+                      <PlusIcon
                         aria-hidden="true"
                         className="size-6 group-data-[open]:hidden"
                       />
-                      <MinusSmallIcon
+                      <MinusIcon
                         aria-hidden="true"
                         className="size-6 group-[&:not([data-open])]:hidden"
                       />
                     </span>
                   </DisclosureButton>
                 </dt>
-                <DisclosurePanel as="dd" className="mt-4 pr-12">
-                  <PrismicRichText field={item.content} />
-                </DisclosurePanel>
+                <Transition
+                  enter="transition-all duration-300 ease-out"
+                  enterFrom="opacity-0 max-h-0"
+                  enterTo="opacity-100 max-h-screen"
+                  leave="transition-all duration-300 ease-in"
+                  leaveFrom="opacity-100 max-h-screen"
+                  leaveTo="opacity-0 max-h-0"
+                >
+                  <DisclosurePanel as="dd" className="mt-4 pr-12 py-12">
+                    <PrismicRichText field={item.content} />
+                  </DisclosurePanel>
+                </Transition>
               </Disclosure>
             ))}
           </dl>

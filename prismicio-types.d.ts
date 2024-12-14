@@ -5,6 +5,10 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type ArticleDocumentDataSlicesSlice =
+  | ImageGridSlice
+  | RichContentBlockSlice
+  | StandardTextBlockSlice
+  | LeadContentBlockSlice
   | ImageSlice
   | QuoteSlice
   | TextSlice
@@ -46,6 +50,28 @@ interface ArticleDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   featuredImage: prismic.ImageField<never>;
+
+  /**
+   * Category field in *Article*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"taxonomy_news_article_category">;
+
+  /**
+   * Introduction field in *Article*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.introduction
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  introduction: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Article*
@@ -520,9 +546,11 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | ArticlesListingSlice
+  | ZeroBillsHomesSliderSlice
+  | StepsSlice
   | ContactFormSlice
   | CompanyContactDetailsSlice
-  | SavingsCalculatorSlice
   | AccordionContentSlice
   | TimelineSlice
   | ImageGridSlice
@@ -1324,6 +1352,38 @@ export type TaxonomyLocationDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for [Taxonomy] - News Article Category documents
+ */
+interface TaxonomyNewsArticleCategoryDocumentData {
+  /**
+   * Name field in *[Taxonomy] - News Article Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: taxonomy_news_article_category.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * [Taxonomy] - News Article Category document from Prismic
+ *
+ * - **API ID**: `taxonomy_news_article_category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TaxonomyNewsArticleCategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TaxonomyNewsArticleCategoryDocumentData>,
+    "taxonomy_news_article_category",
+    Lang
+  >;
+
+/**
  * Content for [Taxonomy] - Number of Bedrooms documents
  */
 interface TaxonomyNumberOfBedroomsDocumentData {
@@ -1442,6 +1502,7 @@ export type AllDocumentTypes =
   | SubMenuDocument
   | TaxonomyHouseTypeDocument
   | TaxonomyLocationDocument
+  | TaxonomyNewsArticleCategoryDocument
   | TaxonomyNumberOfBedroomsDocument
   | TaxonomyPriceRangeDocument
   | TaxonomyStatusDocument;
@@ -1526,6 +1587,51 @@ type AccordionContentSliceVariation = AccordionContentSliceDefault;
 export type AccordionContentSlice = prismic.SharedSlice<
   "accordion_content",
   AccordionContentSliceVariation
+>;
+
+/**
+ * Primary content in *ArticlesListing → Default → Primary*
+ */
+export interface ArticlesListingSliceDefaultPrimary {
+  /**
+   * Featured Article field in *ArticlesListing → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles_listing.default.primary.featured_article
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  featured_article: prismic.ContentRelationshipField<"article">;
+}
+
+/**
+ * Default variation for ArticlesListing Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticlesListingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticlesListingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ArticlesListing*
+ */
+type ArticlesListingSliceVariation = ArticlesListingSliceDefault;
+
+/**
+ * ArticlesListing Shared Slice
+ *
+ * - **API ID**: `articles_listing`
+ * - **Description**: ArticlesListing
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticlesListingSlice = prismic.SharedSlice<
+  "articles_listing",
+  ArticlesListingSliceVariation
 >;
 
 /**
@@ -2138,6 +2244,80 @@ export type BlockContentSliceWithImage = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *BlockContent → withSavingsCalculator → Primary*
+ */
+export interface BlockContentSliceWithSavingsCalculatorPrimary {
+  /**
+   * Title Lead field in *BlockContent → withSavingsCalculator → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withSavingsCalculator.primary.title_lead
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_lead: prismic.KeyTextField;
+
+  /**
+   * Title field in *BlockContent → withSavingsCalculator → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withSavingsCalculator.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *BlockContent → withSavingsCalculator → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withSavingsCalculator.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Background Color field in *BlockContent → withSavingsCalculator → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: VertoBlue
+   * - **API ID Path**: block_content.withSavingsCalculator.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "VertoBlue" | "VertoGrey" | "White" | "VertoGreen",
+    "filled"
+  >;
+
+  /**
+   * Show Savings Calculator field in *BlockContent → withSavingsCalculator → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: block_content.withSavingsCalculator.primary.show_savings_calculator
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  show_savings_calculator: prismic.BooleanField;
+}
+
+/**
+ * withSavingsCalculator variation for BlockContent Slice
+ *
+ * - **API ID**: `withSavingsCalculator`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlockContentSliceWithSavingsCalculator =
+  prismic.SharedSliceVariation<
+    "withSavingsCalculator",
+    Simplify<BlockContentSliceWithSavingsCalculatorPrimary>,
+    never
+  >;
+
+/**
  * Slice variation for *BlockContent*
  */
 type BlockContentSliceVariation =
@@ -2148,7 +2328,8 @@ type BlockContentSliceVariation =
   | BlockContentSliceContentList
   | BlockContentSliceWithRegisterInterestForm
   | BlockContentSliceSplitGrid
-  | BlockContentSliceWithImage;
+  | BlockContentSliceWithImage
+  | BlockContentSliceWithSavingsCalculator;
 
 /**
  * BlockContent Shared Slice
@@ -3742,61 +3923,6 @@ export type RichContentBlockSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *SavingsCalculator → Default → Primary*
- */
-export interface SavingsCalculatorSliceDefaultPrimary {
-  /**
-   * Title field in *SavingsCalculator → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: savings_calculator.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Content field in *SavingsCalculator → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: savings_calculator.default.primary.content
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  content: prismic.RichTextField;
-}
-
-/**
- * Default variation for SavingsCalculator Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type SavingsCalculatorSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<SavingsCalculatorSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *SavingsCalculator*
- */
-type SavingsCalculatorSliceVariation = SavingsCalculatorSliceDefault;
-
-/**
- * SavingsCalculator Shared Slice
- *
- * - **API ID**: `savings_calculator`
- * - **Description**: SavingsCalculator
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type SavingsCalculatorSlice = prismic.SharedSlice<
-  "savings_calculator",
-  SavingsCalculatorSliceVariation
->;
-
-/**
  * Primary content in *SplitContentBlock → withBicycleFooter → Primary*
  */
 export interface SplitContentBlockSliceDefaultPrimary {
@@ -4005,6 +4131,73 @@ export type StandardTextBlockSlice = prismic.SharedSlice<
   "standard_text_block",
   StandardTextBlockSliceVariation
 >;
+
+/**
+ * Item in *Steps → Default → Primary → Steps*
+ */
+export interface StepsSliceDefaultPrimaryStepsItem {
+  /**
+   * Step field in *Steps → Default → Primary → Steps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.steps[].step
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  step: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Steps → Default → Primary*
+ */
+export interface StepsSliceDefaultPrimary {
+  /**
+   * Title field in *Steps → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Steps field in *Steps → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: steps.default.primary.steps[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  steps: prismic.GroupField<Simplify<StepsSliceDefaultPrimaryStepsItem>>;
+}
+
+/**
+ * Default variation for Steps Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StepsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StepsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Steps*
+ */
+type StepsSliceVariation = StepsSliceDefault;
+
+/**
+ * Steps Shared Slice
+ *
+ * - **API ID**: `steps`
+ * - **Description**: Steps
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StepsSlice = prismic.SharedSlice<"steps", StepsSliceVariation>;
 
 /**
  * Item in *SubMenuItem → singleColumnMenu → Primary → Links*
@@ -4337,6 +4530,51 @@ export type TypologyLayoutSlice = prismic.SharedSlice<
   TypologyLayoutSliceVariation
 >;
 
+/**
+ * Primary content in *ZeroBillsHomesSlider → Default → Primary*
+ */
+export interface ZeroBillsHomesSliderSliceDefaultPrimary {
+  /**
+   * Title field in *ZeroBillsHomesSlider → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: zero_bills_homes_slider.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ZeroBillsHomesSlider Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ZeroBillsHomesSliderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ZeroBillsHomesSliderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ZeroBillsHomesSlider*
+ */
+type ZeroBillsHomesSliderSliceVariation = ZeroBillsHomesSliderSliceDefault;
+
+/**
+ * ZeroBillsHomesSlider Shared Slice
+ *
+ * - **API ID**: `zero_bills_homes_slider`
+ * - **Description**: ZeroBillsHomesSlider
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ZeroBillsHomesSliderSlice = prismic.SharedSlice<
+  "zero_bills_homes_slider",
+  ZeroBillsHomesSliderSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -4394,6 +4632,8 @@ declare module "@prismicio/client" {
       TaxonomyHouseTypeDocumentData,
       TaxonomyLocationDocument,
       TaxonomyLocationDocumentData,
+      TaxonomyNewsArticleCategoryDocument,
+      TaxonomyNewsArticleCategoryDocumentData,
       TaxonomyNumberOfBedroomsDocument,
       TaxonomyNumberOfBedroomsDocumentData,
       TaxonomyPriceRangeDocument,
@@ -4406,6 +4646,10 @@ declare module "@prismicio/client" {
       AccordionContentSliceDefaultPrimary,
       AccordionContentSliceVariation,
       AccordionContentSliceDefault,
+      ArticlesListingSlice,
+      ArticlesListingSliceDefaultPrimary,
+      ArticlesListingSliceVariation,
+      ArticlesListingSliceDefault,
       BlockContentSlice,
       BlockContentSliceDefaultPrimary,
       BlockContentSliceTestimonialPrimaryTestimonialsItem,
@@ -4418,6 +4662,7 @@ declare module "@prismicio/client" {
       BlockContentSliceWithRegisterInterestFormPrimary,
       BlockContentSliceSplitGridPrimary,
       BlockContentSliceWithImagePrimary,
+      BlockContentSliceWithSavingsCalculatorPrimary,
       BlockContentSliceVariation,
       BlockContentSliceDefault,
       BlockContentSliceTestimonial,
@@ -4427,6 +4672,7 @@ declare module "@prismicio/client" {
       BlockContentSliceWithRegisterInterestForm,
       BlockContentSliceSplitGrid,
       BlockContentSliceWithImage,
+      BlockContentSliceWithSavingsCalculator,
       CheckListSlice,
       CheckListSliceDefaultPrimaryBulletPointsItem,
       CheckListSliceDefaultPrimary,
@@ -4517,10 +4763,6 @@ declare module "@prismicio/client" {
       RichContentBlockSliceVariation,
       RichContentBlockSliceDefault,
       RichContentBlockSliceWithImageInGrid,
-      SavingsCalculatorSlice,
-      SavingsCalculatorSliceDefaultPrimary,
-      SavingsCalculatorSliceVariation,
-      SavingsCalculatorSliceDefault,
       SplitContentBlockSlice,
       SplitContentBlockSliceDefaultPrimary,
       SplitContentBlockSliceWithHouseFooterPrimary,
@@ -4533,6 +4775,11 @@ declare module "@prismicio/client" {
       StandardTextBlockSliceDefaultPrimary,
       StandardTextBlockSliceVariation,
       StandardTextBlockSliceDefault,
+      StepsSlice,
+      StepsSliceDefaultPrimaryStepsItem,
+      StepsSliceDefaultPrimary,
+      StepsSliceVariation,
+      StepsSliceDefault,
       SubMenuItemSlice,
       SubMenuItemSliceDefaultPrimary,
       SubMenuItemSliceWithDevelopmentReferencePrimary,
@@ -4555,6 +4802,10 @@ declare module "@prismicio/client" {
       TypologyLayoutSliceDefaultPrimary,
       TypologyLayoutSliceVariation,
       TypologyLayoutSliceDefault,
+      ZeroBillsHomesSliderSlice,
+      ZeroBillsHomesSliderSliceDefaultPrimary,
+      ZeroBillsHomesSliderSliceVariation,
+      ZeroBillsHomesSliderSliceDefault,
     };
   }
 }
