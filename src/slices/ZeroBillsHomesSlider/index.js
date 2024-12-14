@@ -62,7 +62,7 @@ const ZeroBillsHomesSlider = ({ slice }) => {
         {zeroBillsProperties.length > 0 ? (
           <Slider {...settings}>
             {zeroBillsProperties.map((property, index) => (
-              <div key={index} className="pr-12">
+              <div key={index} className="pr-0 md:pr-12">
                 <PropertyCard property={property} />
               </div>
             ))}

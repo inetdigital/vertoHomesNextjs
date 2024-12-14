@@ -190,7 +190,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                   tab.key === selectedLocationTab
                     ? "text-white"
                     : "text-vertoDarkBlue hover:text-vertoDarkBlue",
-                  "relative z-[1] rounded-md px-3 py-2 text-base lg:text-xl font-normal flex items-center"
+                  "relative z-[1] rounded-md px-3 py-2 text-sm md:text-base lg:text-xl font-normal flex items-center"
                 )}
               >
                 {tab.key === selectedLocationTab && tab.key !== "all" && (
@@ -249,7 +249,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                         )}
                         <div className="px-4 z-[2]">
                           <div className="relative left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-center">
-                            <p className="text-white text-xl inline-flex items-center">
+                            <p className="text-white text-sm md:text-base lg:text-xl inline-flex items-center">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -268,7 +268,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                             <h2 className="text-white uppercase tracking-widest font-bold text-center mb-4">
                               {item.data.name}
                             </h2>
-                            <p className="text-white text-lg">
+                            <p className="text-white text-sm md:text-base lg:text-lg">
                               {item.data.property_types}
                             </p>
                             <p className="text-white text-lg font-medium mt-4">

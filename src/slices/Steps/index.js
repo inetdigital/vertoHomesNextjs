@@ -32,7 +32,7 @@ const Steps = ({ slice }) => {
       <h2 className="text-2xl font-bold text-vertoDarkBlue mb-12 uppercase">
         Five steps to zero bills
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
         {slice.primary.steps.map((step, index) => (
           <StepItem key={index} step={step} index={index} />
         ))}

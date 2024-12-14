@@ -38,7 +38,9 @@ const LeadContentBlock = ({ slice }) => {
         <PrismicRichText
           field={slice.primary.content}
           components={{
-            paragraph: ({ children }) => <p className="text-xl">{children}</p>,
+            paragraph: ({ children }) => (
+              <p className="text-base lg:text-xl">{children}</p>
+            ),
           }}
         />
       )}

@@ -7,7 +7,7 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
     <div className="h-screen overflow-hidden relative">
       <div className="absolute bg-black/40 w-full h-full z-[1]" />
       {status?.uid === "available" && (
-        <div className="absolute z-[2] right-0 top-40 bg-vertoDarkGreen px-6 py-4">
+        <div className="absolute z-[2] right-0 top-40 bg-vertoDarkGreen px-6 py-4 hidden md:block">
           <p className="text-vertoLightGreen text-2xl font-semibold font-heading tracking-widest">
             HOMES FOR SALE
           </p>
