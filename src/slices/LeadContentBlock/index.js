@@ -18,7 +18,7 @@ const LeadContentBlock = ({ slice }) => {
     >
       {slice.primary.title_lead && (
         <p
-          className={`uppercase text-${highLightColor} tracking-wide font-medium text-xl`}
+          className={`uppercase text-${highLightColor} tracking-normal lg:tracking-wide font-medium text-base lg:text-xl`}
         >
           {slice.primary.title_lead}
         </p>
@@ -26,7 +26,7 @@ const LeadContentBlock = ({ slice }) => {
 
       {slice.primary.title && (
         <>
-          <h2 className="uppercase text-vertoBlack tracking-widest text-6xl">
+          <h2 className="uppercase text-vertoBlack tracking-widest text-2xl md:text-4xl lg:text-6xl">
             {slice.primary.title}
           </h2>
           <div

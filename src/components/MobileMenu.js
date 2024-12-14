@@ -107,15 +107,15 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                     }`}
                   >
                     {item.variation === "default" ? (
-                      <a
-                        href=""
+                      <PrismicNextLink
+                        field={item.primary.link}
                         className={clsx(
                           "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
                           "group flex rounded-md p-2 pl-3 text-xl"
                         )}
                       >
                         {item.primary.link_label}
-                      </a>
+                      </PrismicNextLink>
                     ) : (
                       <button
                         onClick={() => setActiveNavItem(item)}
