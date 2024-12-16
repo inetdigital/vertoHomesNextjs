@@ -114,7 +114,7 @@ const ImageGrid = ({ slice }) => {
               className="absolute w-full h-full flex justify-center items-center"
             >
               <PrismicNextImage
-                field={slice.primary.images[currentIndex].image}
+                field={slice.primary.images[currentIndex]?.image}
                 className="w-full h-auto object-cover"
                 fallbackAlt=""
               />

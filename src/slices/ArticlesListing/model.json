@@ -24,6 +24,27 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "pressReleases",
+      "name": "PressReleases",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "featured_press_release": {
+          "type": "Link",
+          "config": {
+            "label": "Featured Press Release",
+            "select": "document",
+            "customtypes": [
+              "press_release"
+            ]
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

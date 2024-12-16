@@ -11,6 +11,7 @@ export function Bounded({
   const paddingClasses = {
     default: "py-28 lg:py-32 px-6 md:px-12",
     contentSection: "pt-28 lg:pt-32 px-6 md:px-12",
+    contentSectionLast: "py-28 lg:py-32 px-6 md:px-12",
     fullWidthBlock: "mt-28 lg:mt-32",
     fullWidthBlockConsecutive: "mt-0",
     copyright: "py-6",

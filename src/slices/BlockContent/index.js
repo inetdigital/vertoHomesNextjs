@@ -21,6 +21,7 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       White: "bg-white",
       VertoGreen: "bg-vertoDarkGreen",
     }[slice.primary.background_color] || "bg-vertoDarkBlue"; // Fallback if undefined
+
   return (
     <Bounded
       as="section"
@@ -29,7 +30,9 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       }
       className="text-center"
     >
-      <div className={`${backgroundColorClass} py-28 md:py-32 px-6 md:px-12`}>
+      <div
+        className={`${backgroundColorClass} ${slice.variation === "contentList" && slice.primary.background_color === "White" ? "px-6 md:px-12" : "py-28 md:py-32 px-6 md:px-12"}`}
+      >
         {slice.variation === "default" && <SearchVariant slice={slice} />}
         {slice.variation === "withImageLead" && <WithImageLead slice={slice} />}
         {slice.variation === "contentList" && <ContentList slice={slice} />}
@@ -216,7 +219,7 @@ const ContentList = ({ slice }) => {
                 return <span>{children}</span>;
               },
               paragraph: ({ children }) => (
-                <p className="text-2xl">{children}</p>
+                <p className="text-base md:text-2xl">{children}</p>
               ),
             }}
           />
@@ -227,13 +230,13 @@ const ContentList = ({ slice }) => {
           {slice.primary.content_block.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col sm:flex-row w-full mb-10 cursor-pointer transition-all duration-500 hover:bg-slate-50 sm:hover:translate-x-0.5"
+              className="flex flex-col sm:flex-row w-full mb-10 cursor-pointer transition-all duration-500"
             >
               {/* Image Div */}
               <div className="image-div w-full sm:w-2/5">
                 <PrismicNextImage
                   field={item.image}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
               {/* Content Div */}

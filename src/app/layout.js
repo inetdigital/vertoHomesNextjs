@@ -19,6 +19,7 @@ import { HouseTypesProvider } from "@/context/TaxonomyHouseType";
 import { SettingsProvider } from "@/context/Settings";
 import { ArticlesProvider } from "@/context/AllArticles";
 import { TaxonomyArticlesProvider } from "@/context/TaxonomyArticles";
+import { PressProvider } from "@/context/AllPress";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -47,13 +48,15 @@ export default function RootLayout({ children }) {
                               <TaxonomyArticlesProvider>
                                 <SettingsProvider>
                                   <ArticlesProvider>
-                                    <BodyClassManager />
-                                    <main>
-                                      {children}
-                                      <PrismicPreview
-                                        repositoryName={repositoryName}
-                                      />
-                                    </main>
+                                    <PressProvider>
+                                      <BodyClassManager />
+                                      <main>
+                                        {children}
+                                        <PrismicPreview
+                                          repositoryName={repositoryName}
+                                        />
+                                      </main>
+                                    </PressProvider>
                                   </ArticlesProvider>
                                 </SettingsProvider>
                               </TaxonomyArticlesProvider>

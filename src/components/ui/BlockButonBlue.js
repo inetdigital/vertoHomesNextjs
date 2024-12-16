@@ -13,7 +13,7 @@ export const BlockButtonBlue = ({ label, reverse = false }) => {
       whileTap={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
       className={clsx(
-        "relative text-center cursor-pointer uppercase px-6 py-3 rounded-md shadow-md tracking-widest font-normal",
+        "relative text-center cursor-pointer uppercase px-6 py-3 rounded-md shadow-md tracking-widest font-normal w-full",
         colorClasses
       )}
     >

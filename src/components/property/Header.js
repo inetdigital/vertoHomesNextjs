@@ -109,7 +109,7 @@ export const Header = ({ data }) => {
       </div>
 
       {/* Main Image Section */}
-      <div className="relative w-full aspect-w-3 aspect-h-1">
+      <div className="relative w-full aspect-w-3 aspect-h-3 md:aspect-w-3 md:aspect-h-2 lg:aspect-w-3 lg:aspect-h-1">
         <PrismicNextImage
           field={data.property_images[0]?.image}
           fill={true}

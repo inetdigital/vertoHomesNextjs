@@ -62,6 +62,10 @@ export const Header = ({ navigation, settings }) => {
     setMenuStatus(false);
   };
 
+  const handleClick = () => {
+    setMobileMenuStatus((prevStatus) => !prevStatus);
+  };
+
   useEffect(() => {
     if (subMenuOpenStatus && subMenuInnerRef.current) {
       setTimeout(() => {
@@ -167,34 +171,61 @@ export const Header = ({ navigation, settings }) => {
                 </Link>
               </div>
             </div>
-            <nav className="block lg:hidden">
-              <div className="menu cross menu--1">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={mobileMenuStatus}
-                    onChange={() => {
-                      setMobileMenuStatus((prev) => !prev); // Toggle mobileMenuStatus
-                      setMenuStatus((prev) => !prev); // Toggle menuStatus
-                    }}
-                    className="hidden-checkbox"
-                  />
-                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="30" />
-                    <path
-                      className={`line--1 ${mobileMenuStatus ? "checked" : ""}`}
-                      d="M0 40h62c13 0 6 28-4 18L35 35"
-                    />
-                    <path
-                      className={`line--2 ${mobileMenuStatus ? "checked" : ""}`}
-                      d="M0 50h70"
-                    />
-                    <path
-                      className={`line--3 ${mobileMenuStatus ? "checked" : ""}`}
-                      d="M0 60h62c13 0 6-28-4-18L35 65"
-                    />
-                  </svg>
-                </label>
+            <nav className="block lg:hidden py-4">
+              <div className="menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="rgba(0,0,0,0)"
+                  stroke="#000"
+                  strokeLinecap="round"
+                  strokeWidth="0.6"
+                  className="hb"
+                  cursor="pointer"
+                  viewBox="0 0 10 10"
+                  onClick={handleClick}
+                >
+                  <path d="M2 3h6M2 5h6M2 7h6">
+                    <animate
+                      fill="freeze"
+                      attributeName="d"
+                      begin="start.begin"
+                      dur="0.2s"
+                      values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7"
+                    ></animate>
+                    <animate
+                      fill="freeze"
+                      attributeName="d"
+                      begin="reverse.begin"
+                      dur="0.2s"
+                      values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7"
+                    ></animate>
+                  </path>
+                  <path stroke="none" d="M0 0h10v10H0z">
+                    <animate
+                      id="reverse"
+                      attributeName="width"
+                      begin="click"
+                      dur="2s"
+                    ></animate>
+                  </path>
+                  <path stroke="none" d="M0 0h10v10H0z">
+                    <animate
+                      id="start"
+                      fill="freeze"
+                      attributeName="width"
+                      begin="click"
+                      dur="0.001s"
+                      values="10;0"
+                    ></animate>
+                    <animate
+                      fill="freeze"
+                      attributeName="width"
+                      begin="reverse.begin"
+                      dur="0.001s"
+                      values="0;10"
+                    ></animate>
+                  </path>
+                </svg>
               </div>
             </nav>
           </div>
@@ -258,59 +289,10 @@ export const Header = ({ navigation, settings }) => {
             transform: translateX(0);
           }
         }
-        .menu--1 {
-          position: relative;
-          width: 100px;
-          height: 100px;
-        }
-
-        .hidden-checkbox {
-          display: none;
-        }
-
-        circle {
-          fill: #132338;
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-
-        label:hover circle {
-          opacity: 1;
-        }
-
-        label:hover path {
-          stroke: #fff;
-        }
-
-        path {
-          fill: none;
-          stroke: #132338;
-          stroke-width: 2;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-          stroke-dasharray: var(--length, 24) var(--total-length, 100);
-          stroke-dashoffset: var(--offset, -38);
-          transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-        .line--1,
-        .line--3 {
-          --total-length: 126.64183044433594;
-        }
-
-        .line--2 {
-          --total-length: 70;
-        }
-
-        .menu--1 input:checked + svg .line--1,
-        .menu--1 input:checked + svg .line--3 {
-          --length: 22.627416998;
-          --offset: -94.1149185097;
-        }
-
-        .menu--1 input:checked + svg .line--2 {
-          --length: 0;
-          --offset: -50;
+        .hb {
+          width: 40px;
+          margin: 0 auto;
+          display: block;
         }
       `}</style>
     </Headroom>

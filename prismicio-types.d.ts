@@ -668,6 +668,71 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+/**
+ * Content for Press Release documents
+ */
+interface PressReleaseDocumentData {
+  /**
+   * Title field in *Press Release*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: press_release.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Press Release*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: press_release.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Featured Image field in *Press Release*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: press_release.featured_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  featured_image: prismic.ImageField<never>;
+
+  /**
+   * Link field in *Press Release*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: press_release.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Press Release document from Prismic
+ *
+ * - **API ID**: `press_release`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PressReleaseDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PressReleaseDocumentData>,
+    "press_release",
+    Lang
+  >;
+
 type PropertyDocumentDataSlicesSlice = never;
 
 /**
@@ -1496,6 +1561,7 @@ export type AllDocumentTypes =
   | HomePageDocument
   | NavigationDocument
   | PageDocument
+  | PressReleaseDocument
   | PropertyDocument
   | SearchDocument
   | SettingsDocument
@@ -1618,9 +1684,39 @@ export type ArticlesListingSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ArticlesListing → PressReleases → Primary*
+ */
+export interface ArticlesListingSlicePressReleasesPrimary {
+  /**
+   * Featured Press Release field in *ArticlesListing → PressReleases → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles_listing.pressReleases.primary.featured_press_release
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  featured_press_release: prismic.ContentRelationshipField<"press_release">;
+}
+
+/**
+ * PressReleases variation for ArticlesListing Slice
+ *
+ * - **API ID**: `pressReleases`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticlesListingSlicePressReleases = prismic.SharedSliceVariation<
+  "pressReleases",
+  Simplify<ArticlesListingSlicePressReleasesPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *ArticlesListing*
  */
-type ArticlesListingSliceVariation = ArticlesListingSliceDefault;
+type ArticlesListingSliceVariation =
+  | ArticlesListingSliceDefault
+  | ArticlesListingSlicePressReleases;
 
 /**
  * ArticlesListing Shared Slice
@@ -2514,9 +2610,24 @@ export type ContactFormSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * CareersEnquiry variation for ContactForm Slice
+ *
+ * - **API ID**: `careersEnquiry`
+ * - **Description**: ContactForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSliceCareersEnquiry = prismic.SharedSliceVariation<
+  "careersEnquiry",
+  Record<string, never>,
+  never
+>;
+
+/**
  * Slice variation for *ContactForm*
  */
-type ContactFormSliceVariation = ContactFormSliceDefault;
+type ContactFormSliceVariation =
+  | ContactFormSliceDefault
+  | ContactFormSliceCareersEnquiry;
 
 /**
  * ContactForm Shared Slice
@@ -3858,6 +3969,20 @@ export interface RichContentBlockSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   block_width_percentage: prismic.SelectField<"50" | "75" | "100", "filled">;
+
+  /**
+   * Background Color field in *RichContentBlock → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: White
+   * - **API ID Path**: rich_content_block.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "White" | "VertoGreen" | "VertoBlue",
+    "filled"
+  >;
 }
 
 /**
@@ -3887,6 +4012,20 @@ export interface RichContentBlockSliceWithImageInGridPrimary {
    */
   content_block: prismic.GroupField<
     Simplify<RichContentBlockSliceWithImageInGridPrimaryContentBlockItem>
+  >;
+
+  /**
+   * Background Color field in *RichContentBlock → WithImageInGrid → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: White
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "White" | "VertoGreen" | "VertoBlue",
+    "filled"
   >;
 }
 
@@ -4615,6 +4754,8 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PressReleaseDocument,
+      PressReleaseDocumentData,
       PropertyDocument,
       PropertyDocumentData,
       PropertyDocumentDataSlicesSlice,
@@ -4648,8 +4789,10 @@ declare module "@prismicio/client" {
       AccordionContentSliceDefault,
       ArticlesListingSlice,
       ArticlesListingSliceDefaultPrimary,
+      ArticlesListingSlicePressReleasesPrimary,
       ArticlesListingSliceVariation,
       ArticlesListingSliceDefault,
+      ArticlesListingSlicePressReleases,
       BlockContentSlice,
       BlockContentSliceDefaultPrimary,
       BlockContentSliceTestimonialPrimaryTestimonialsItem,
@@ -4685,6 +4828,7 @@ declare module "@prismicio/client" {
       ContactFormSlice,
       ContactFormSliceVariation,
       ContactFormSliceDefault,
+      ContactFormSliceCareersEnquiry,
       DevelopmentShowcaseSlice,
       DevelopmentShowcaseSliceDefaultPrimaryDevelopmentsItem,
       DevelopmentShowcaseSliceDefaultPrimary,

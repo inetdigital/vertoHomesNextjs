@@ -70,10 +70,7 @@ export const HeadingDetails = ({ page }) => {
               </div>
             </div>
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
-              <button onClick={() => setShowArrangeViewingForm(true)}>
-                <BlockButton label="Arrange a viewing" />
-              </button>
-              {showArrangeViewingForm && <ArrangeViewing />}
+              <BlockButton label="Arrange a viewing" />
               <BlockButton label="Download Brochure" />
             </div>
           </div>

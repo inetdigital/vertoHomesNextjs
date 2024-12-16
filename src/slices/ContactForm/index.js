@@ -5,7 +5,7 @@ import { Bounded } from "@/components/Bounded";
 import { useState } from "react";
 import { Field, Label, Switch } from "@headlessui/react";
 
-const ContactForm = () => {
+const ContactForm = ({ slice }) => {
   const [agreed, setAgreed] = useState(false);
   return (
     <Bounded as="section" paddingAs="fullWidthBlock">
@@ -24,12 +24,21 @@ const ContactForm = () => {
         </div>
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-semibold tracking-wide text-balance text-white sm:text-5xl uppercase font-heading">
-            Send us a message
+            {slice.variation === "default" && <>Send us a message</>}
+            {slice.variation === "careersEnquiry" && <>WANT TO JOIN US?</>}
           </h2>
-          <p className="mt-2 text-lg/8 text-white">
-            Whatever you want to know, use the form below or email
-            info@vertohomes.com
-          </p>
+          {slice.variation === "default" && (
+            <p className="mt-2 text-lg/8 text-white">
+              Whatever you want to know, use the form below or email
+              info@vertohomes.com
+            </p>
+          )}
+          {slice.variation === "careersEnquiry" && (
+            <p className="mt-2 text-lg/8 text-white">
+              We are always looking for people who can add something to our
+              team. Send a message below or email careers@vertohomes.com
+            </p>
+          )}
         </div>
         <form
           action="#"
@@ -71,23 +80,25 @@ const ContactForm = () => {
                 />
               </div>
             </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="company"
-                className="block text-xl font-extralight text-white"
-              >
-                Company
-              </label>
-              <div className="mt-2.5">
-                <input
-                  id="company"
-                  name="company"
-                  type="text"
-                  autoComplete="organization"
-                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-vertoBlack outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-vertoLightBlue"
-                />
+            {slice.variation === "default" && (
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="company"
+                  className="block text-xl font-extralight text-white"
+                >
+                  Company
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    autoComplete="organization"
+                    className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-vertoBlack outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-vertoLightBlue"
+                  />
+                </div>
               </div>
-            </div>
+            )}
             <div className="sm:col-span-2">
               <label
                 htmlFor="email"
@@ -167,9 +178,9 @@ const ContactForm = () => {
           <div className="mt-10">
             <button
               type="submit"
-              className="block w-full rounded-md bg-vertoLightBlue px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-vertoDarkBlue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-md bg-vertoLightGreen px-3.5 py-2.5 text-center text-md font-semibold text-white shadow-xs hover:bg-vertoLightBlue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Let&apos;s talk
+              {slice.variation === "default" ? "Let's talk" : "Send Message"}
             </button>
           </div>
         </form>

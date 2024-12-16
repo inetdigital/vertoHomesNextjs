@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Bounded } from "@/components/Bounded";
 
 import { useArticles } from "@/context/AllArticles";
+import { usePress } from "@/context/AllPress";
 import { useTaxonomyArticles } from "@/context/TaxonomyArticles";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { asText } from "@prismicio/client";
@@ -20,7 +21,181 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 import clsx from "clsx";
 
+import { DateFormat } from "@/lib/DateFormat";
+
 const ArticlesListing = ({ slice }) => {
+  if (slice.variation === "default") {
+    return <Articles slice={slice} />;
+  }
+  if (slice.variation === "pressReleases") {
+    return <PressReleases slice={slice} />;
+  }
+  return null;
+};
+
+const PressReleases = ({ slice }) => {
+  const articles = usePress();
+
+  const [allArticles, setAllArticles] = useState([]);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+
+  const [displayedArticles, setDisplayedArticles] = useState([]);
+  const [itemsToShow, setItemsToShow] = useState(9);
+  const [featuredArticle, setFeaturedArticle] = useState(null);
+
+  useEffect(() => {
+    if (articles && articles.length > 0) {
+      console.log(articles);
+      const sortedArticles = articles.sort(
+        (a, b) => new Date(b.data.publishDate) - new Date(a.data.publishDate)
+      );
+      setAllArticles(sortedArticles);
+      setFilteredArticles(sortedArticles);
+    }
+  }, [articles]);
+
+  useEffect(() => {
+    if (
+      articles &&
+      articles.length > 0 &&
+      slice.primary?.featured_press_release?.uid
+    ) {
+      const featuredArticleObj = articles.find(
+        (item) => item.uid === slice.primary?.featured_press_release?.uid
+      );
+      setFeaturedArticle(featuredArticleObj);
+    }
+  }, [articles]);
+
+  useEffect(() => {
+    setDisplayedArticles(filteredArticles.slice(0, itemsToShow));
+  }, [filteredArticles, itemsToShow]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 500
+    ) {
+      setItemsToShow((prev) => prev + 9);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <Bounded as="section" size="widest" paddingAs="contentSection">
+      {/* Featured Article */}
+      {featuredArticle && (
+        <div className="mb-28">
+          <h2 className="mb-14 text-vertoBlack uppercase">In The Press</h2>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80">
+            <PrismicNextImage
+              field={featuredArticle.data.featured_image}
+              className="absolute inset-0 -z-10 size-full object-cover"
+            />
+            <div className="absolute inset-0 -z-10 bg-black opacity-40" />
+            <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
+
+            <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
+              <div className="-ml-4 flex items-center gap-x-4">
+                <svg
+                  viewBox="0 0 2 2"
+                  className="-ml-0.5 size-0.5 flex-none fill-white/50"
+                >
+                  <circle r={1} cx={1} cy={1} />
+                </svg>
+              </div>
+            </div>
+            <div className="mt-8 flex items-center gap-x-4 text-xs">
+              <p
+                className={clsx(
+                  `bg-vertoLightGreen text-white relative z-10 rounded-full tagColor px-3 py-1.5 font-medium uppercase`
+                )}
+              >
+                In the press
+              </p>
+              <span className="text-white">
+                <DateFormat
+                  dateString={featuredArticle.last_publication_date}
+                />
+              </span>
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold text-white">
+              <PrismicNextLink field={featuredArticle}>
+                <span className="absolute inset-0" />
+                {featuredArticle.data.title}
+              </PrismicNextLink>
+            </h3>
+            <p className="mt-5 line-clamp-5 text-md text-white">
+              {asText(featuredArticle.data.description)}
+            </p>
+          </article>
+        </div>
+      )}
+
+      {/* Articles Listing */}
+      <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <AnimatePresence>
+          {displayedArticles.map((post, index) => {
+            if (post.uid === slice.primary?.featured_press_release?.uid) {
+              return null;
+            }
+            return (
+              <motion.article
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: index * 0.3 }}
+                className="flex flex-col items-start"
+              >
+                <div className="relative w-full">
+                  <PrismicNextImage
+                    field={post.data.featured_image}
+                    className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
+                  />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset" />
+                </div>
+                <div className="max-w-xl">
+                  <div className="mt-8 flex items-center gap-x-4 text-xs">
+                    <p
+                      className={clsx(
+                        `bg-vertoLightGreen text-white relative z-10 rounded-full px-3 py-1.5 font-medium uppercase`
+                      )}
+                    >
+                      In the press
+                    </p>
+                    <span className="text-gray-500">
+                      <DateFormat
+                        dateString={featuredArticle.last_publication_date}
+                      />
+                    </span>
+                  </div>
+                  <div className="group relative">
+                    <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                      <PrismicNextLink field={post}>
+                        <span className="absolute inset-0" />
+                        {post.data.title}
+                      </PrismicNextLink>
+                    </h3>
+                    <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
+                      {asText(post.data.description)}
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+    </Bounded>
+  );
+};
+
+const Articles = ({ slice }) => {
   const articles = useArticles();
   const categories = useTaxonomyArticles();
   const [allArticles, setAllArticles] = useState([]);
@@ -28,6 +203,7 @@ const ArticlesListing = ({ slice }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [displayedArticles, setDisplayedArticles] = useState([]);
   const [itemsToShow, setItemsToShow] = useState(9);
+  const [featuredArticle, setFeaturedArticle] = useState(null);
 
   useEffect(() => {
     if (articles && articles.length > 0) {
@@ -36,6 +212,19 @@ const ArticlesListing = ({ slice }) => {
       );
       setAllArticles(sortedArticles);
       setFilteredArticles(sortedArticles);
+    }
+  }, [articles]);
+
+  useEffect(() => {
+    if (
+      articles &&
+      articles.length > 0 &&
+      slice.primary?.featured_article?.uid
+    ) {
+      const featuredArticleObj = articles.find(
+        (item) => item.uid === slice.primary?.featured_article?.uid
+      );
+      setFeaturedArticle(featuredArticleObj);
     }
   }, [articles]);
 
@@ -76,7 +265,57 @@ const ArticlesListing = ({ slice }) => {
   }, []);
 
   return (
-    <Bounded as="section" size="widest" paddingAs="contentSection">
+    <Bounded as="section" size="widest" paddingAs="contentSectionLast">
+      {/* Featured Article */}
+      {featuredArticle && (
+        <div className="mb-28">
+          <h2 className="mb-14 text-vertoBlack uppercase">Featured News</h2>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80">
+            <PrismicNextImage
+              field={featuredArticle.data.featuredImage}
+              className="absolute inset-0 -z-10 size-full object-cover"
+            />
+            <div className="absolute inset-0 -z-10 bg-black opacity-40" />
+            <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
+
+            <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
+              <div className="-ml-4 flex items-center gap-x-4">
+                <svg
+                  viewBox="0 0 2 2"
+                  className="-ml-0.5 size-0.5 flex-none fill-white/50"
+                >
+                  <circle r={1} cx={1} cy={1} />
+                </svg>
+              </div>
+            </div>
+            <div className="mt-8 flex items-center gap-x-4 text-xs">
+              <p
+                field={featuredArticle}
+                className={clsx(
+                  `bg-vertoLightGreen text-white hover:text-gray-600 relative z-10 rounded-full tagColor px-3 py-1.5 font-medium hover:bg-gray-100`
+                )}
+              >
+                {featuredArticle.data?.category?.data?.name}
+              </p>
+              <span className="text-white">
+                <DateFormat
+                  dateString={featuredArticle.last_publication_date}
+                />
+              </span>
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold text-white">
+              <PrismicNextLink field={featuredArticle}>
+                <span className="absolute inset-0" />
+                {asText(featuredArticle.data.title)}
+              </PrismicNextLink>
+            </h3>
+            <p className="mt-5 line-clamp-5 text-md text-white">
+              {asText(featuredArticle.data.introduction)}
+            </p>
+          </article>
+        </div>
+      )}
+
       {/* Filter Buttons */}
       <div className="gap-4 mb-20 hidden md:flex">
         <motion.button
@@ -173,6 +412,9 @@ const ArticlesListing = ({ slice }) => {
       <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         <AnimatePresence>
           {displayedArticles.map((post, index) => {
+            if (post.uid === slice.primary?.featured_article?.uid) {
+              return null;
+            }
             const tagColors =
               {
                 news: "bg-gray-50 text-gray-600",
@@ -199,18 +441,19 @@ const ArticlesListing = ({ slice }) => {
                 </div>
                 <div className="max-w-xl">
                   <div className="mt-8 flex items-center gap-x-4 text-xs">
-                    <span className="text-gray-500">
-                      {post.data.publishDate}
-                    </span>
-                    <PrismicNextLink
-                      field={post}
+                    <p
                       className={clsx(
                         tagColors,
                         `relative z-10 rounded-full tagColor px-3 py-1.5 font-medium hover:bg-gray-100`
                       )}
                     >
                       {post.data?.category?.data?.name}
-                    </PrismicNextLink>
+                    </p>
+                    <span className="text-gray-500">
+                      <DateFormat
+                        dateString={featuredArticle.last_publication_date}
+                      />
+                    </span>
                   </div>
                   <div className="group relative">
                     <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">

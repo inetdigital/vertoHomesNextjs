@@ -33,6 +33,19 @@
             ],
             "default_value": "50"
           }
+        },
+        "background_color": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "White",
+              "VertoGreen",
+              "VertoBlue"
+            ],
+            "default_value": "White"
+          }
         }
       },
       "items": {}
@@ -77,6 +90,19 @@
                 }
               }
             }
+          }
+        },
+        "background_color": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "White",
+              "VertoGreen",
+              "VertoBlue"
+            ],
+            "default_value": "White"
           }
         }
       },
