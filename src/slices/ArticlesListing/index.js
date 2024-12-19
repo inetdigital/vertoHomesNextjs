@@ -450,9 +450,7 @@ const Articles = ({ slice }) => {
                       {post.data?.category?.data?.name}
                     </p>
                     <span className="text-gray-500">
-                      <DateFormat
-                        dateString={featuredArticle.last_publication_date}
-                      />
+                      <DateFormat dateString={post.last_publication_date} />
                     </span>
                   </div>
                   <div className="group relative">

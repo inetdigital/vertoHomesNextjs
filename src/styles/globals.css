@@ -19,6 +19,10 @@
     h1, h2, h3, h4, h5, h6 {
         @apply font-heading;
     }
+    li {
+        @apply text-paragraph font-extralight tracking-wide;
+        font-family: "motiva-sans", sans-serif;
+    }
           body {
             @apply text-base;
             font-family: "motiva-sans", sans-serif;

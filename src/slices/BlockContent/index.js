@@ -230,7 +230,7 @@ const ContentList = ({ slice }) => {
           {slice.primary.content_block.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col sm:flex-row w-full mb-10 cursor-pointer transition-all duration-500"
+              className="flex flex-col sm:flex-row w-full mb-10 transition-all duration-500"
             >
               {/* Image Div */}
               <div className="image-div w-full sm:w-2/5">

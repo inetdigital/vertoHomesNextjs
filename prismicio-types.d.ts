@@ -4,15 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type ArticleDocumentDataSlicesSlice =
-  | ImageGridSlice
-  | RichContentBlockSlice
-  | StandardTextBlockSlice
-  | LeadContentBlockSlice
-  | ImageSlice
-  | QuoteSlice
-  | TextSlice
-  | ContactFormSlice;
+type ArticleDocumentDataSlicesSlice = never;
 
 /**
  * Content for Article documents
@@ -72,6 +64,17 @@ interface ArticleDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   introduction: prismic.RichTextField;
+
+  /**
+   * Content field in *Article*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Article*

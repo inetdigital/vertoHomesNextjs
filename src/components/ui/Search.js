@@ -386,10 +386,7 @@ export const Search = ({
                       className="group relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 data-[focus]:bg-vertoDarkBlue data-[focus]:text-white"
                     >
                       <span className="block truncate font-normal group-data-[selected]:font-semibold text-left">
-                        {item.data.number_of_bedrooms === 2
-                          ? "2/3"
-                          : item.data.number_of_bedrooms}{" "}
-                        Rooms
+                        {item.data.number_of_bedrooms} Rooms
                       </span>
 
                       <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-vertoDarkGreen group-data-[focus]:text-white [.group:not([data-selected])_&]:hidden">

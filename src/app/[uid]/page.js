@@ -49,6 +49,12 @@ export default async function Page({ params }) {
     return { ...slice, isConsecutive };
   });
 
+  // Check if the last slice has `primary.background_color` set to white
+  const lastSlice = enhancedSlices[enhancedSlices.length - 1];
+  const shouldAddMargin =
+    !lastSlice?.primary?.background_color ||
+    lastSlice.primary.background_color === "White";
+
   return (
     <Layout navigation={navigation} settings={settings}>
       {(page.data.banner_block_color === null ||
@@ -69,18 +75,21 @@ export default async function Page({ params }) {
             caption={page.data.banner_caption}
           />
         )}
-      <SliceZone
-        slices={enhancedSlices}
-        components={{
-          ...components,
-          block_content: (props) => (
-            <components.block_content
-              {...props}
-              isConsecutive={props.slice.isConsecutive}
-            />
-          ),
-        }}
-      />
+
+      <div className={`${shouldAddMargin ? "mb-28" : "mb-0"}`}>
+        <SliceZone
+          slices={enhancedSlices}
+          components={{
+            ...components,
+            block_content: (props) => (
+              <components.block_content
+                {...props}
+                isConsecutive={props.slice.isConsecutive}
+              />
+            ),
+          }}
+        />
+      </div>
     </Layout>
   );
 }
