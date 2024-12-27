@@ -31,7 +31,7 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       className="text-center"
     >
       <div
-        className={`${backgroundColorClass} ${slice.variation === "contentList" && slice.primary.background_color === "White" ? "px-6 md:px-12" : "py-28 md:py-32 px-6 md:px-12"}`}
+        className={`${backgroundColorClass} ${slice.variation === "contentList" && slice.primary.background_color === "White" ? "px-6 md:px-12 my-28 md:my-32" : "py-28 md:py-32 px-6 md:px-12"}`}
       >
         {slice.variation === "default" && <SearchVariant slice={slice} />}
         {slice.variation === "withImageLead" && <WithImageLead slice={slice} />}
