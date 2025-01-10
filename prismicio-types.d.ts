@@ -754,6 +754,8 @@ export interface PropertyDocumentDataPropertyImagesItem {
 }
 
 type PropertyDocumentDataSlices5Slice =
+  | SplitContentBlockSlice
+  | LeadContentBlockSlice
   | PropertyGridSlice
   | BlockContentSlice
   | RichContentBlockSlice

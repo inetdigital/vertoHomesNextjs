@@ -36,7 +36,7 @@ const FooterButtonsStandard = () => {
   return (
     <>
       <BlockButton label="Arrange a viewing" />
-      <BlockButton label="Get a free info pack" />
+      <BlockButton label="Download Brochure" />
     </>
   );
 };
@@ -45,7 +45,7 @@ const FooterButtonsBlue = () => {
   return (
     <>
       <BlockButtonBlue label="Arrange a viewing" />
-      <BlockButtonBlue label="Get a free info pack" />
+      <BlockButtonBlue label="Download Brochure" />
     </>
   );
 };

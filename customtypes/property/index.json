@@ -195,6 +195,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "split_content_block": {
+              "type": "SharedSlice"
+            },
+            "lead_content_block": {
+              "type": "SharedSlice"
+            },
             "property_grid": {
               "type": "SharedSlice"
             },

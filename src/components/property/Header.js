@@ -11,6 +11,32 @@ import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 export const Header = ({ data }) => {
   return (
     <section className="pt-16 bg-white">
+      {/* Main Image Section */}
+      <div className="relative w-full aspect-w-3 aspect-h-3 md:aspect-w-3 md:aspect-h-2 lg:aspect-w-3 lg:aspect-h-1">
+        <PrismicNextImage
+          field={data.property_images[0]?.image}
+          fill={true}
+          className="object-cover"
+        />
+      </div>
+
+      {/* Button Section */}
+      <div className="bg-vertoDarkBlue">
+        <div className="max-w-7xl mx-auto px-6 xl:px-0 py-8 flex justify-between flex-col lg:flex-row">
+          <div className="flex justify-between items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-4 flex-col lg:flex-row">
+            {["Floor Plans", "Site Plans", "Map View", "All Photos"].map(
+              (buttonText, index) => (
+                <div className="block w-full lg:w-auto" key={index}>
+                  <BlockButtonBlue key={index} label={buttonText} />
+                </div>
+              )
+            )}
+          </div>
+          <div className="mt-8 lg:mt-0">
+            <BlockButtonBlue label="Arrange a viewing" reverse />
+          </div>
+        </div>
+      </div>
       {/* Header Section */}
       <div className="max-w-7xl mx-auto px-6 xl:px-0 pt-20 sm:pt-40 pb-16 sm:pb-32">
         {/* Title Section */}
@@ -105,33 +131,6 @@ export const Header = ({ data }) => {
               />
             </div>
           )}
-        </div>
-      </div>
-
-      {/* Main Image Section */}
-      <div className="relative w-full aspect-w-3 aspect-h-3 md:aspect-w-3 md:aspect-h-2 lg:aspect-w-3 lg:aspect-h-1">
-        <PrismicNextImage
-          field={data.property_images[0]?.image}
-          fill={true}
-          className="object-cover"
-        />
-      </div>
-
-      {/* Button Section */}
-      <div className="bg-vertoDarkBlue">
-        <div className="max-w-7xl mx-auto px-6 xl:px-0 py-8 flex justify-between flex-col lg:flex-row">
-          <div className="flex justify-between items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-4 flex-col lg:flex-row">
-            {["Floor Plans", "Site Plans", "Map View", "All Photos"].map(
-              (buttonText, index) => (
-                <div className="block w-full lg:w-auto" key={index}>
-                  <BlockButtonBlue key={index} label={buttonText} />
-                </div>
-              )
-            )}
-          </div>
-          <div className="mt-8 lg:mt-0">
-            <BlockButtonBlue label="Arrange a viewing" reverse />
-          </div>
         </div>
       </div>
     </section>

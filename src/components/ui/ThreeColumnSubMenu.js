@@ -4,7 +4,7 @@ export const ThreeColumnSubMenu = ({ navItems, openSubMenuIndex }) => {
   const subMenus = navItems[openSubMenuIndex]?.primary?.sub_menus_group || [];
   return (
     <div className="pt-12 lg:pt-12 xl:pt-24 pb-32 w-full">
-      <div className="grid grid-cols-3 gap-12">
+      <div className="grid grid-cols-4 gap-12">
         {subMenus.map((item, index) => {
           return (
             <div key={index}>
