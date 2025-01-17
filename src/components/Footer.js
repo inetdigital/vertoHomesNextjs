@@ -103,7 +103,10 @@ export const Footer = ({ navigation }) => {
           <div>
             <p className="text-white text-xs">
               © Copyright Verto {new Date().getFullYear()}. All rights
-              reserved.
+              reserved.{" "}
+              <a href="https://www.inetdigital.co.uk" target="_blank">
+                Website by iNet Digital
+              </a>
             </p>
           </div>
         </div>

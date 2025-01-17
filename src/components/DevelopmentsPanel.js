@@ -273,10 +273,12 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                             </p>
                             <p className="text-white text-lg font-medium mt-4">
                               Prices from £
-                              {item.data.prices_from
+                              {item.data.prices_from &&
+                              item.data.prices_from > 0
                                 ? formatPrice(item.data.prices_from)
-                                : "N/A"}
+                                : "POA"}
                             </p>
+
                             <div className="hidden md:block z-[2] relative opacity-0 transition-all duration-500 ease-in-out translate-y-24 group-hover:translate-y-20 group-hover:opacity-100">
                               <p className="text-xl text-white inline-block rounded-full bg-vertoLightGreen py-2 px-4">
                                 View Development

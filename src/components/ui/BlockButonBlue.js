@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
-export const BlockButtonBlue = ({ label, reverse = false }) => {
+export const BlockButtonBlue = ({ label, reverse = false, onClick }) => {
   const colorClasses = !reverse
     ? "bg-white text-vertoDarkBlue hover:bg-vertoLightBlue hover:text-white"
     : "bg-vertoLightBlue hover:bg-white text-white hover:text-vertoDarkBlue";
@@ -16,6 +16,7 @@ export const BlockButtonBlue = ({ label, reverse = false }) => {
         "relative text-center cursor-pointer uppercase px-6 py-3 rounded-md shadow-md tracking-widest font-normal w-full",
         colorClasses
       )}
+      onClick={onClick}
     >
       {label}
     </motion.button>

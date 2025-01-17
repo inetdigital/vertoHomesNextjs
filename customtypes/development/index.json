@@ -128,6 +128,15 @@
           "thumbnails": []
         }
       },
+      "banner_caption": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Banner Caption",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
       "listing_images": {
         "type": "Group",
         "config": {
@@ -147,13 +156,12 @@
       }
     },
     "Downloads": {
-      "brochure": {
+      "site_plan": {
         "type": "Link",
         "config": {
-          "label": "Brochure",
+          "label": "Site Plan",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "select": null,
+          "select": "media",
           "allowText": true
         }
       }

@@ -329,6 +329,17 @@ interface DevelopmentDocumentData {
   banner_image: prismic.ImageField<never>;
 
   /**
+   * Banner Caption field in *Development*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: development.banner_caption
+   * - **Tab**: Images
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  banner_caption: prismic.RichTextField;
+
+  /**
    * Listing Images field in *Development*
    *
    * - **Field Type**: Group
@@ -340,15 +351,15 @@ interface DevelopmentDocumentData {
   listing_images: prismic.GroupField<
     Simplify<DevelopmentDocumentDataListingImagesItem>
   > /**
-   * Brochure field in *Development*
+   * Site Plan field in *Development*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: development.brochure
+   * - **API ID Path**: development.site_plan
    * - **Tab**: Downloads
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */;
-  brochure: prismic.LinkField /**
+  site_plan: prismic.LinkToMediaField /**
    * Slice Zone field in *Development*
    *
    * - **Field Type**: Slice Zone
@@ -918,6 +929,28 @@ interface PropertyDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never> /**
+   * Banner Image field in *Property*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.banner_image
+   * - **Tab**: Images
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */;
+  banner_image: prismic.ImageField<never>;
+
+  /**
+   * Banner Caption field in *Property*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.banner_caption
+   * - **Tab**: Images
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  banner_caption: prismic.RichTextField;
+
+  /**
    * Featured Image (Property listings) field in *Property*
    *
    * - **Field Type**: Image
@@ -925,7 +958,7 @@ interface PropertyDocumentData {
    * - **API ID Path**: property.featured_image
    * - **Tab**: Images
    * - **Documentation**: https://prismic.io/docs/field#image
-   */;
+   */
   featured_image: prismic.ImageField<never>;
 
   /**
@@ -940,6 +973,15 @@ interface PropertyDocumentData {
   property_images: prismic.GroupField<
     Simplify<PropertyDocumentDataPropertyImagesItem>
   > /**
+   * Floor Plans field in *Property*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.floor_plans
+   * - **Tab**: Downloads
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */;
+  floor_plans: prismic.LinkToMediaField /**
    * Map Location field in *Property*
    *
    * - **Field Type**: GeoPoint

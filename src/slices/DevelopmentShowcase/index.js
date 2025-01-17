@@ -61,7 +61,10 @@ const DevelopmentListing = ({ data }) => {
         <div className="h-1 w-20 bg-white mx-auto my-5 md:my-10" />
         {data?.prices_from && (
           <p className="text-xl text-white text-center font-medium">
-            Prices from £{data.prices_from?.toLocaleString("en-EN")}
+            Prices from{" "}
+            {data?.prices_from && data.prices_from > 0
+              ? `£${data.prices_from.toLocaleString("en-EN")}`
+              : "POA"}
           </p>
         )}
       </div>

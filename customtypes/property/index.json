@@ -118,6 +118,23 @@
       }
     },
     "Images": {
+      "banner_image": {
+        "type": "Image",
+        "config": {
+          "label": "Banner Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "banner_caption": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Banner Caption",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
       "featured_image": {
         "type": "Image",
         "config": {
@@ -144,7 +161,17 @@
         }
       }
     },
-    "Downloads": {},
+    "Downloads": {
+      "floor_plans": {
+        "type": "Link",
+        "config": {
+          "label": "Floor Plans",
+          "placeholder": "",
+          "select": "media",
+          "allowText": true
+        }
+      }
+    },
     "Location": {
       "map_location": {
         "type": "GeoPoint",

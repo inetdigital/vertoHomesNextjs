@@ -48,6 +48,7 @@ export default async function Development({ params }) {
         <BannerImage
           image={page.data.banner_image}
           title={page.data.name}
+          caption={page.data.banner_caption}
           status={page.data.development_status}
         />
       )}

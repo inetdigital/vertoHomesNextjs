@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { Layout } from "@/components/Layout";
-import { Header } from "@/components/property/Header";
+import { HeadingDetails } from "@/components/property/HeadingDetails";
+import { BannerImage } from "@/components/BannerImage";
 import { FooterContact } from "@/components/FooterContact";
 
 import { fetchNavigation } from "@/lib/fetchNavigation";
@@ -39,6 +40,7 @@ export default async function Development({ params }) {
       fetchLinks: [
         "development.uid",
         "development.name",
+        "development.site_plan",
         "type.uid",
         "taxonomy_house_type.name",
         "taxonomy_number_of_bedrooms.number_of_bedrooms",
@@ -50,12 +52,20 @@ export default async function Development({ params }) {
   const settings = await client.getSingle("settings");
   return (
     <Layout navigation={navigation} settings={settings}>
-      <Header data={page.data} />
+      {prismic.isFilled.image(page.data.banner_image) && (
+        <BannerImage
+          image={page.data.banner_image}
+          title={page.data.title}
+          caption={page.data.banner_caption}
+          status={page.data.development_status}
+        />
+      )}
+      <HeadingDetails page={page} />
       <SliceZone slices={page.data.slices5} components={components} />
       <FooterContact
         themeColor="vertoDarkBlue"
         highlightColor="vertoLightBlue"
-        marginTop="0"
+        marginTop="24"
       />
     </Layout>
   );

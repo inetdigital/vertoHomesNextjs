@@ -10,11 +10,7 @@ import {
 
 import BlockButton from "@/components/ui/BlockButton";
 
-import ArrangeViewing from "@/components/ui/ArrangeViewing";
-
 export const HeadingDetails = ({ page }) => {
-  console.log(page);
-  const [showArrangeViewingForm, setShowArrangeViewingForm] = useState(false);
   return (
     <section className="py-12 bg-vertoDarkGreen">
       <div className="max-w-6xl mx-auto px-6 xl:px-0">
@@ -77,7 +73,11 @@ export const HeadingDetails = ({ page }) => {
                 <>
                   <BlockButton label="Arrange a Viewing" />
                   <BlockButton label="Download Brochure" />
-                  <BlockButton label="Site Plan" />
+                  {page.data?.site_plan?.url && (
+                    <a href={page.data?.site_plan?.url} target="_blank">
+                      <BlockButton label="Site Plan" />
+                    </a>
+                  )}
                 </>
               )}
             </div>

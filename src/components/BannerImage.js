@@ -24,7 +24,7 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
             height: "100%",
             objectFit: "cover", // Ensures the image scales to cover the container
           }}
-          fallbackAlt=""
+          fallbackAlt="Verto Homes"
         />
       )}
       <div className="absolute flex flex-col items-center justify-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-[2]">
@@ -37,7 +37,7 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
         {caption && (
           <div className="max-w-xl mt-8">
             <p className="text-white font-normal text-lg lg:text-2xl text-center">
-              {caption}
+              {Array.isArray(caption) ? prismic.asText(caption) : caption}
             </p>
           </div>
         )}
