@@ -60,7 +60,7 @@ const StatsGrid = ({ slice }) => {
         >
           <p className="font-semibold flex items-center mb-4 text-white text-2xl">
             <span className="mr-4">
-              <PrismicNextImage field={stat.icon} />
+              <PrismicNextImage field={stat.icon} fallbackAlt="Verto Homes" />
             </span>
             {stat.value}
           </p>
@@ -108,7 +108,11 @@ const GlobalStats = ({ slice }) => {
         ))}
       </div>
       <div className="mt-24">
-        <PrismicNextImage field={slice.primary.image} loading="lazy" />
+        <PrismicNextImage
+          field={slice.primary.image}
+          fallbackAlt="Verto Homes"
+          loading="lazy"
+        />
       </div>
     </div>
   );
@@ -220,7 +224,10 @@ const StatsCards = ({ slice }) => {
                     </div>
                     <div className="flex items-center pt-12 pb-8">
                       <div>
-                        <PrismicNextImage field={item.icon} />
+                        <PrismicNextImage
+                          field={item.icon}
+                          fallbackAlt="Verto Homes"
+                        />
                       </div>
                       <div className="px-8">
                         <PrismicRichText

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { PrismicRichText } from "@/components/PrismicRichText";
 
 const SplitContentBlock = ({ slice }) => {
-  console.log(slice);
   const svgName =
     {
       default: "Bike_illo_Green-1.svg",

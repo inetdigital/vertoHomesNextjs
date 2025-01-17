@@ -45,7 +45,6 @@ const PressReleases = ({ slice }) => {
 
   useEffect(() => {
     if (articles && articles.length > 0) {
-      console.log(articles);
       const sortedArticles = articles.sort(
         (a, b) => new Date(b.data.publishDate) - new Date(a.data.publishDate)
       );
@@ -95,6 +94,7 @@ const PressReleases = ({ slice }) => {
             <PrismicNextImage
               field={featuredArticle.data.featured_image}
               className="absolute inset-0 -z-10 size-full object-cover"
+              fallbackAlt="Verto Homes"
             />
             <div className="absolute inset-0 -z-10 bg-black opacity-40" />
             <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
@@ -156,6 +156,7 @@ const PressReleases = ({ slice }) => {
                   <PrismicNextImage
                     field={post.data.featured_image}
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
+                    fallbackAlt="Verto Homes"
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset" />
                 </div>
@@ -274,6 +275,7 @@ const Articles = ({ slice }) => {
             <PrismicNextImage
               field={featuredArticle.data.featuredImage}
               className="absolute inset-0 -z-10 size-full object-cover"
+              fallbackAlt="Verto Homes"
             />
             <div className="absolute inset-0 -z-10 bg-black opacity-40" />
             <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-gray-900/10 ring-inset" />
@@ -436,6 +438,7 @@ const Articles = ({ slice }) => {
                   <PrismicNextImage
                     field={post.data.featuredImage}
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
+                    fallbackAlt="Verto Homes"
                   />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset" />
                 </div>

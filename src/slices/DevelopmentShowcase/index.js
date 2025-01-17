@@ -103,6 +103,7 @@ const DevelopmentListing = ({ data }) => {
             >
               <PrismicNextImage
                 field={img.image}
+                fallbackAlt="Verto Homes"
                 className="w-full h-full object-cover"
               />
             </div>

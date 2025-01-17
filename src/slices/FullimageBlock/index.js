@@ -25,6 +25,7 @@ const FullimageBlock = ({ slice }) => {
         </div>
         <PrismicNextImage
           field={slice.primary.image}
+          fallbackAlt="Verto Homes"
           className="object-cover w-full h-full"
           fill={true}
         />

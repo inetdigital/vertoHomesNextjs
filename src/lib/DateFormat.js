@@ -1,5 +1,4 @@
 export const DateFormat = ({ dateString }) => {
-  console.log(dateString);
   const formatDate = (inputDate) => {
     // Replace '+0000' with 'Z' for correct parsing
     const standardizedDate = inputDate?.replace("+0000", "Z");

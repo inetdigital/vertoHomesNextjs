@@ -27,7 +27,6 @@ const RichContentBlock = ({ slice }) => {
 };
 
 const WithImageGrid = ({ slice }) => {
-  console.log(slice);
   const backgroundColor =
     {
       White: "bg-white",
@@ -83,13 +82,17 @@ const WithImageGrid = ({ slice }) => {
               {section.image && (
                 <PrismicNextImage
                   field={section.image}
+                  fallbackAlt="Verto Homes"
                   imgixParams={{ ar: "1.5:1", fit: "crop" }}
                   className="h-4/6"
                 />
               )}
               {section.secondary_image && (
                 <div className="mt-12">
-                  <PrismicNextImage field={section.secondary_image} />
+                  <PrismicNextImage
+                    field={section.secondary_image}
+                    fallbackAlt="Verto Homes"
+                  />
                 </div>
               )}
             </div>

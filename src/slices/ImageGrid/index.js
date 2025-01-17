@@ -5,8 +5,11 @@ import { Bounded } from "@/components/Bounded";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import ReactPlayer from "react-player/vimeo";
+
 const ImageGrid = ({ slice }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -30,14 +33,34 @@ const ImageGrid = ({ slice }) => {
       <div
         className={`${
           isReversed ? "order-2" : ""
-        } col-span-2 lg:col-span-2 aspect-w-16 aspect-h-10`}
+        } col-span-2 lg:col-span-2 aspect-w-16 aspect-h-10 relative`}
       >
         {/* Large Image */}
         <PrismicNextImage
           field={imageGroup[0]?.image}
+          fallbackAlt="Verto Homes"
           className="object-cover w-full h-full"
-          fallbackAlt=""
         />
+        {/* Play Button for Video */}
+        {slice.variation === "withVideo" && index === 0 && (
+          <button
+            onClick={() => setShowVideo(true)}
+            className="absolute inset-0 flex items-center justify-center flex-col text-white text-2xl font-bold rounded-full bg-vertoDarkBlue hover:bg-vertoDarkGreen transition-all duration-300 ease-in-out w-[80px] h-[80px] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-12"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        )}
       </div>
 
       <div className="flex flex-col gap-4">
@@ -45,8 +68,8 @@ const ImageGrid = ({ slice }) => {
         <div className="aspect-w-8 aspect-h-5">
           <PrismicNextImage
             field={imageGroup[1]?.image}
+            fallbackAlt="Verto Homes"
             className="object-cover w-full h-full"
-            fallbackAlt=""
           />
         </div>
 
@@ -54,8 +77,8 @@ const ImageGrid = ({ slice }) => {
         <div className="aspect-w-8 aspect-h-5">
           <PrismicNextImage
             field={imageGroup[2]?.image}
+            fallbackAlt="Verto Homes"
             className="object-cover w-full h-full"
-            fallbackAlt=""
           />
         </div>
       </div>
@@ -115,8 +138,8 @@ const ImageGrid = ({ slice }) => {
             >
               <PrismicNextImage
                 field={slice.primary.images[currentIndex]?.image}
+                fallbackAlt="Verto Homes"
                 className="w-full h-auto object-cover"
-                fallbackAlt=""
               />
             </motion.div>
           </AnimatePresence>
@@ -141,6 +164,23 @@ const ImageGrid = ({ slice }) => {
           </svg>
         </button>
       </div>
+
+      {/* Video Overlay */}
+      {showVideo && (
+        <div
+          onClick={() => setShowVideo(false)}
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 w-full h-full"
+        >
+          <div className="relative w-full max-w-7xl aspect-w-16 aspect-h-9">
+            <ReactPlayer
+              url={slice.primary?.video_link?.embed_url}
+              controls={true}
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+      )}
     </Bounded>
   );
 };

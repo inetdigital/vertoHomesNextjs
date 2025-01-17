@@ -22,6 +22,7 @@ const Image = ({ slice }) => {
           <div className="bg-gray-100">
             <PrismicNextImage
               field={image}
+              fallbackAlt="Verto Homes"
               sizes="100vw"
               className="w-full"
               imgixParams={{ ar: aspect_ratio, fit: "crop" }}

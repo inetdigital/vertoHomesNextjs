@@ -57,6 +57,7 @@ const TypologyLayout = ({ slice }) => {
                 ? slice.primary.map_image.square
                 : slice.primary.map_image
             }
+            fallbackAlt="Verto Homes"
             className="w-full h-auto object-contain"
           />
           {/* Magnifying Glass Effect */}
@@ -79,6 +80,7 @@ const TypologyLayout = ({ slice }) => {
         <div className="flex justify-center items-start">
           <PrismicNextImage
             field={slice.primary.key_image}
+            fallbackAlt="Verto Homes"
             className="object-contain"
           />
         </div>

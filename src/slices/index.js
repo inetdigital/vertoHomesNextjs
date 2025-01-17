@@ -28,5 +28,6 @@ export const components = {
   text: dynamic(() => import("./Text")),
   timeline: dynamic(() => import("./Timeline")),
   typology_layout: dynamic(() => import("./TypologyLayout")),
+  video: dynamic(() => import("./Video")),
   zero_bills_homes_slider: dynamic(() => import("./ZeroBillsHomesSlider")),
 };

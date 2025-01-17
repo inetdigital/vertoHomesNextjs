@@ -128,7 +128,7 @@ const SearchVariant = ({ slice }) => {
     <>
       {slice.primary.title_lead && (
         <p
-          className={`${textColorClass} uppercase tracking-wide font-medium text-xl`}
+          className={`${textColorClass} uppercase tracking-wide font-medium text-xl mb-4`}
         >
           {slice.primary.title_lead}
         </p>
@@ -139,11 +139,13 @@ const SearchVariant = ({ slice }) => {
           <h2 className="uppercase text-white tracking-widest">
             {slice.primary.title}
           </h2>
-          <div className={`${bgColorClass} w-[100px] h-[2px] mx-auto my-16`} />
+          <div
+            className={`${bgColorClass} w-[100px] h-[2px] mx-auto mt-8 mb-16`}
+          />
         </>
       )}
       {slice.primary.content && (
-        <div className="max-w-4xl mx-auto text-white">
+        <div className="max-w-6xl mx-auto text-white">
           <PrismicRichText
             field={slice.primary.content}
             components={{
@@ -170,6 +172,7 @@ const WithImageLead = ({ slice }) => {
         <div className="flex justify-center mb-10">
           <PrismicNextImage
             field={slice.primary.image}
+            fallbackAlt="Verto Homes"
             sizes="100vw"
             className="max-w-96 mx-auto"
           />
@@ -236,6 +239,7 @@ const ContentList = ({ slice }) => {
               <div className="image-div w-full sm:w-2/5">
                 <PrismicNextImage
                   field={item.image}
+                  fallbackAlt="Verto Homes"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -302,7 +306,7 @@ const Testimonial = ({ slice }) => {
       <div>
         {slice.primary.title_lead && (
           <p
-            className={`${textColorClass} uppercase tracking-wide font-medium text-xl`}
+            className={`${textColorClass} uppercase tracking-wide font-medium text-xl mb-4`}
           >
             {slice.primary.title_lead}
           </p>
@@ -534,7 +538,7 @@ const SplitGrid = ({ slice }) => {
 const WithImage = ({ slice }) => {
   return (
     <div className="max-w-7xl mx-auto">
-      <PrismicNextImage field={slice.primary.image} fallbackAlt="" />
+      <PrismicNextImage field={slice.primary.image} fallbackAlt="Verto Homes" />
     </div>
   );
 };

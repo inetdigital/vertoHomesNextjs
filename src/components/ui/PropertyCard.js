@@ -13,6 +13,7 @@ export const PropertyCard = ({ property }) => {
               field={property.data.featured_image}
               fill={true}
               className="object-cover"
+              fallbackAlt="Verto Homes"
             />
           )}
 

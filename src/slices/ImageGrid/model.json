@@ -31,6 +31,41 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "withVideo",
+      "name": "WithVideo",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "video_link": {
+          "type": "Embed",
+          "config": {
+            "label": "Video Link",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

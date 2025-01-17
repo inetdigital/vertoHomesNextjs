@@ -23,7 +23,7 @@ const Timeline = ({ slice }) => {
                 key={index}
                 className="w-full flex items-center justify-center"
               >
-                <PrismicNextImage field={item.icon} fallbackAlt="" />
+                <PrismicNextImage field={item.icon} fallbackAlt="Verto Homes" />
               </div>
             ))}
           </div>
@@ -64,7 +64,10 @@ const Timeline = ({ slice }) => {
               return (
                 <div key={index} className="flex justify-center flex-col">
                   <div className="w-full flex items-center justify-center mb-4">
-                    <PrismicNextImage field={item.icon} fallbackAlt="" />
+                    <PrismicNextImage
+                      field={item.icon}
+                      fallbackAlt="Verto Homes"
+                    />
                   </div>
                   <div className="w-9/12 mx-auto items-center justify-center">
                     <p className="text-white font-medium text-center">

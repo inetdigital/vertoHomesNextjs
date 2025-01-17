@@ -164,6 +164,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "video": {
+              "type": "SharedSlice"
+            },
             "split_content_block": {
               "type": "SharedSlice"
             },

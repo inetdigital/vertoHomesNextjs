@@ -13,6 +13,7 @@ import BlockButton from "@/components/ui/BlockButton";
 import ArrangeViewing from "@/components/ui/ArrangeViewing";
 
 export const HeadingDetails = ({ page }) => {
+  console.log(page);
   const [showArrangeViewingForm, setShowArrangeViewingForm] = useState(false);
   return (
     <section className="py-12 bg-vertoDarkGreen">
@@ -67,9 +68,18 @@ export const HeadingDetails = ({ page }) => {
               </div>
             </div>
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
-              <BlockButton label="Arrange a Viewing" />
-              <BlockButton label="Download Brochure" />
-              <BlockButton label="Site Plan" />
+              {page.data?.development_status?.uid === "coming_soon" && (
+                <>
+                  <BlockButton label="Register your interest" />
+                </>
+              )}
+              {page.data?.development_status?.uid === "available" && (
+                <>
+                  <BlockButton label="Arrange a Viewing" />
+                  <BlockButton label="Download Brochure" />
+                  <BlockButton label="Site Plan" />
+                </>
+              )}
             </div>
           </div>
         </div>

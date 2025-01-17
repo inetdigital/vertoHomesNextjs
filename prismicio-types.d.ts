@@ -153,6 +153,7 @@ export interface DevelopmentDocumentDataListingImagesItem {
 }
 
 type DevelopmentDocumentDataSlices4Slice =
+  | VideoSlice
   | SplitContentBlockSlice
   | ImageSlice
   | FullimageBlockSlice
@@ -401,6 +402,11 @@ export interface HomePageDocumentDataHomePageBannerImagesItem {
 }
 
 type HomePageDocumentDataSlices2Slice =
+  | VideoSlice
+  | FullimageBlockSlice
+  | StepsSlice
+  | ImageGridSlice
+  | ImageSlice
   | StandardTextBlockSlice
   | DevelopmentShowcaseSlice
   | BlockContentSlice
@@ -549,6 +555,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | VideoSlice
   | ArticlesListingSlice
   | ZeroBillsHomesSliderSlice
   | StepsSlice
@@ -754,6 +761,9 @@ export interface PropertyDocumentDataPropertyImagesItem {
 }
 
 type PropertyDocumentDataSlices5Slice =
+  | VideoSlice
+  | ImageSlice
+  | ImageGridSlice
   | SplitContentBlockSlice
   | LeadContentBlockSlice
   | PropertyGridSlice
@@ -2460,6 +2470,21 @@ export interface CheckListSliceDefaultPrimaryBulletPointsItem {
 }
 
 /**
+ * Item in *CheckList → WithBlockColor → Primary → Bullet Points*
+ */
+export interface CheckListSliceWithBlockColorPrimaryBulletPointsItem {
+  /**
+   * Label field in *CheckList → WithBlockColor → Primary → Bullet Points*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.withBlockColor.primary.bullet_points[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *CheckList → Default → Primary*
  */
 export interface CheckListSliceDefaultPrimary {
@@ -2500,9 +2525,65 @@ export type CheckListSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *CheckList → WithBlockColor → Primary*
+ */
+export interface CheckListSliceWithBlockColorPrimary {
+  /**
+   * Background Color field in *CheckList → WithBlockColor → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: White
+   * - **API ID Path**: check_list.withBlockColor.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background_color: prismic.SelectField<
+    "White" | "VertoGreen" | "VertoBlue",
+    "filled"
+  >;
+
+  /**
+   * Title field in *CheckList → WithBlockColor → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.withBlockColor.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Bullet Points field in *CheckList → WithBlockColor → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: check_list.withBlockColor.primary.bullet_points[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  bullet_points: prismic.GroupField<
+    Simplify<CheckListSliceWithBlockColorPrimaryBulletPointsItem>
+  >;
+}
+
+/**
+ * WithBlockColor variation for CheckList Slice
+ *
+ * - **API ID**: `withBlockColor`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CheckListSliceWithBlockColor = prismic.SharedSliceVariation<
+  "withBlockColor",
+  Simplify<CheckListSliceWithBlockColorPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *CheckList*
  */
-type CheckListSliceVariation = CheckListSliceDefault;
+type CheckListSliceVariation =
+  | CheckListSliceDefault
+  | CheckListSliceWithBlockColor;
 
 /**
  * CheckList Shared Slice
@@ -3320,6 +3401,21 @@ export interface ImageGridSliceDefaultPrimaryImagesItem {
 }
 
 /**
+ * Item in *ImageGrid → WithVideo → Primary → Images*
+ */
+export interface ImageGridSliceWithVideoPrimaryImagesItem {
+  /**
+   * Image field in *ImageGrid → WithVideo → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.withVideo.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *ImageGrid → Default → Primary*
  */
 export interface ImageGridSliceDefaultPrimary {
@@ -3348,9 +3444,49 @@ export type ImageGridSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ImageGrid → WithVideo → Primary*
+ */
+export interface ImageGridSliceWithVideoPrimary {
+  /**
+   * Images field in *ImageGrid → WithVideo → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.withVideo.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<
+    Simplify<ImageGridSliceWithVideoPrimaryImagesItem>
+  >;
+
+  /**
+   * Video Link field in *ImageGrid → WithVideo → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_grid.withVideo.primary.video_link
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video_link: prismic.EmbedField;
+}
+
+/**
+ * WithVideo variation for ImageGrid Slice
+ *
+ * - **API ID**: `withVideo`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ImageGridSliceWithVideo = prismic.SharedSliceVariation<
+  "withVideo",
+  Simplify<ImageGridSliceWithVideoPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *ImageGrid*
  */
-type ImageGridSliceVariation = ImageGridSliceDefault;
+type ImageGridSliceVariation = ImageGridSliceDefault | ImageGridSliceWithVideo;
 
 /**
  * ImageGrid Shared Slice
@@ -4675,6 +4811,48 @@ export type TypologyLayoutSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Video → Default → Primary*
+ */
+export interface VideoSliceDefaultPrimary {
+  /**
+   * Video Link field in *Video → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.default.primary.video_link
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video_link: prismic.EmbedField;
+}
+
+/**
+ * Default variation for Video Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Video*
+ */
+type VideoSliceVariation = VideoSliceDefault;
+
+/**
+ * Video Shared Slice
+ *
+ * - **API ID**: `video`
+ * - **Description**: Video
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSlice = prismic.SharedSlice<"video", VideoSliceVariation>;
+
+/**
  * Primary content in *ZeroBillsHomesSlider → Default → Primary*
  */
 export interface ZeroBillsHomesSliderSliceDefaultPrimary {
@@ -4824,8 +5002,11 @@ declare module "@prismicio/client" {
       CheckListSlice,
       CheckListSliceDefaultPrimaryBulletPointsItem,
       CheckListSliceDefaultPrimary,
+      CheckListSliceWithBlockColorPrimaryBulletPointsItem,
+      CheckListSliceWithBlockColorPrimary,
       CheckListSliceVariation,
       CheckListSliceDefault,
+      CheckListSliceWithBlockColor,
       CompanyContactDetailsSlice,
       CompanyContactDetailsSliceDefaultPrimary,
       CompanyContactDetailsSliceVariation,
@@ -4872,8 +5053,11 @@ declare module "@prismicio/client" {
       ImageGridSlice,
       ImageGridSliceDefaultPrimaryImagesItem,
       ImageGridSliceDefaultPrimary,
+      ImageGridSliceWithVideoPrimaryImagesItem,
+      ImageGridSliceWithVideoPrimary,
       ImageGridSliceVariation,
       ImageGridSliceDefault,
+      ImageGridSliceWithVideo,
       InlineImagesSlice,
       InlineImagesSliceDefaultPrimaryImagesItem,
       InlineImagesSliceDefaultPrimary,
@@ -4951,6 +5135,10 @@ declare module "@prismicio/client" {
       TypologyLayoutSliceDefaultPrimary,
       TypologyLayoutSliceVariation,
       TypologyLayoutSliceDefault,
+      VideoSlice,
+      VideoSliceDefaultPrimary,
+      VideoSliceVariation,
+      VideoSliceDefault,
       ZeroBillsHomesSliderSlice,
       ZeroBillsHomesSliderSliceDefaultPrimary,
       ZeroBillsHomesSliderSliceVariation,

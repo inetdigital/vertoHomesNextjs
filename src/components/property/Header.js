@@ -17,6 +17,7 @@ export const Header = ({ data }) => {
           field={data.property_images[0]?.image}
           fill={true}
           className="object-cover"
+          fallbackAlt="Verto Homes"
         />
       </div>
 
