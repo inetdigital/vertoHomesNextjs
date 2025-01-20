@@ -28,7 +28,7 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
         />
       )}
       <div className="absolute flex flex-col items-center justify-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-[2]">
-        <div className="max-w-md">
+        <div className="max-w-4xl">
           <h1 className="text-white uppercase text-center tracking-widest leading-tight">
             {Array.isArray(title) ? prismic.asText(title) : title}
           </h1>
