@@ -506,7 +506,9 @@ const SplitGrid = ({ slice }) => {
         <div>
           {slice.primary.title && (
             <>
-              <h3 className="text-xl font-bold mb-4 text-left">
+              <h3
+                className={`text-xl font-bold mb-4 text-left text-${highlightColorClass}`}
+              >
                 {slice.primary.title}
               </h3>
               <hr className={`bg-${highlightColorClass} h-[4px] w-20 my-10`} />

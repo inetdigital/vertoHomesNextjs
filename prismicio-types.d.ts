@@ -153,6 +153,7 @@ export interface DevelopmentDocumentDataListingImagesItem {
 }
 
 type DevelopmentDocumentDataSlices4Slice =
+  | MapLocationSlice
   | VideoSlice
   | SplitContentBlockSlice
   | ImageSlice
@@ -566,6 +567,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | MapLocationSlice
   | VideoSlice
   | ArticlesListingSlice
   | ZeroBillsHomesSliderSlice
@@ -772,6 +774,7 @@ export interface PropertyDocumentDataPropertyImagesItem {
 }
 
 type PropertyDocumentDataSlices5Slice =
+  | MapLocationSlice
   | VideoSlice
   | ImageSlice
   | ImageGridSlice
@@ -3750,6 +3753,51 @@ export type LeadContentBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *MapLocation → Default → Primary*
+ */
+export interface MapLocationSliceDefaultPrimary {
+  /**
+   * Geolocation field in *MapLocation → Default → Primary*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: map_location.default.primary.geolocation
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  geolocation: prismic.GeoPointField;
+}
+
+/**
+ * Default variation for MapLocation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapLocationSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MapLocationSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MapLocation*
+ */
+type MapLocationSliceVariation = MapLocationSliceDefault;
+
+/**
+ * MapLocation Shared Slice
+ *
+ * - **API ID**: `map_location`
+ * - **Description**: MapLocation
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapLocationSlice = prismic.SharedSlice<
+  "map_location",
+  MapLocationSliceVariation
+>;
+
+/**
  * Item in *MenuItem → With multiple Sub Menus → Primary → Sub Menus Group*
  */
 export interface MenuItemSliceWithMultipleSubMenusPrimarySubMenusGroupItem {
@@ -5111,6 +5159,10 @@ declare module "@prismicio/client" {
       LeadContentBlockSliceVariation,
       LeadContentBlockSliceDefault,
       LeadContentBlockSliceGreenHighlight,
+      MapLocationSlice,
+      MapLocationSliceDefaultPrimary,
+      MapLocationSliceVariation,
+      MapLocationSliceDefault,
       MenuItemSlice,
       MenuItemSliceDefaultPrimary,
       MenuItemSliceMenuItemWithSubMenuPrimary,

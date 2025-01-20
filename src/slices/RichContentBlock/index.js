@@ -83,8 +83,6 @@ const WithImageGrid = ({ slice }) => {
                 <PrismicNextImage
                   field={section.image}
                   fallbackAlt="Verto Homes"
-                  imgixParams={{ ar: "1.5:1", fit: "crop" }}
-                  className="h-4/6"
                 />
               )}
               {section.secondary_image && (

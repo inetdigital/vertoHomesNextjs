@@ -10,7 +10,6 @@ import { formatPrice } from "@/lib/formatPrice";
 import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 
 export const HeadingDetails = ({ page }) => {
-  console.log(page);
   const [isSliderOpen, setSliderOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -170,7 +169,11 @@ export const HeadingDetails = ({ page }) => {
                 page.data?.property_images?.length > 0 && (
                   <BlockButtonBlue label="All Photos" onClick={openSlider} />
                 )}
-              <BlockButtonBlue label="Floor Plans" />
+              {page.data?.floor_plans?.url && (
+                <a href={page.data?.floor_plans?.url} target="_blank">
+                  <BlockButtonBlue label="Floor Plans" />
+                </a>
+              )}
               {page.data?.development?.data?.site_plan?.url && (
                 <a
                   href={page.data?.development?.data?.site_plan?.url}

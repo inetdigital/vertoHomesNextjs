@@ -17,6 +17,7 @@ export const components = {
   image_grid: dynamic(() => import("./ImageGrid")),
   inline_images: dynamic(() => import("./InlineImages")),
   lead_content_block: dynamic(() => import("./LeadContentBlock")),
+  map_location: dynamic(() => import("./MapLocation")),
   menu_item: dynamic(() => import("./MenuItem")),
   property_grid: dynamic(() => import("./PropertyGrid")),
   quote: dynamic(() => import("./Quote")),

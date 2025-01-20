@@ -172,6 +172,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "map_location": {
+              "type": "SharedSlice"
+            },
             "video": {
               "type": "SharedSlice"
             },

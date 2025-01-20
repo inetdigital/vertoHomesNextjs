@@ -1,0 +1,25 @@
+{
+  "id": "map_location",
+  "type": "SharedSlice",
+  "name": "MapLocation",
+  "description": "MapLocation",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "geolocation": {
+          "type": "GeoPoint",
+          "config": {
+            "label": "Geolocation"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

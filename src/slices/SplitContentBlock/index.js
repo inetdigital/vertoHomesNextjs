@@ -13,7 +13,7 @@ const SplitContentBlock = ({ slice }) => {
     <Bounded as="section" size="widest" paddingAs="contentSection">
       <div className="flex flex-col">
         {/* Title */}
-        <div className="grid grid-cols-1 md:grid-cols-2 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>
               <h2 className="text-2xl text-vertoBlack text-left mb-8 uppercase">

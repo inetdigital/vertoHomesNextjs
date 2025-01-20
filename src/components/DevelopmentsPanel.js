@@ -228,7 +228,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {filteredDevelopments.map((item, index) => {
                 return (
@@ -245,6 +245,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                             field={item.data.banner_image}
                             fill={true}
                             className="object-cover"
+                            fallbackAlt="Verto Homes"
                           />
                         )}
                         <div className="px-4 z-[2]">

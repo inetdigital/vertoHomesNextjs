@@ -1,15 +1,55 @@
 import { Bounded } from "@/components/Bounded";
 
 const CheckList = ({ slice }) => {
+  const backgroundColorClass =
+    {
+      VertoBlue: "bg-vertoDarkBlue",
+      VertoGrey: "bg-vertoLightGrey",
+      White: "bg-white",
+      VertoGreen: "bg-vertoDarkGreen",
+    }[slice.primary.background_color] || "bg-white"; // Fallback if undefined
   return (
-    <Bounded as="section" paddingAs="contentSection" size="widest">
-      <h2 className="text-4xl font-semibold text-vertoLightBlue uppercase mb-14 tracking-widest">
+    <Bounded as="section" paddingAs="fullWidthBlock">
+      <div
+        className={`${backgroundColorClass} ${slice.variation === "default" ? "px-6 md:px-12" : "py-28 md:py-32 px-6 md:px-12"}`}
+      >
+        {slice.variation === "default" && <DefaultSlice slice={slice} />}
+        {slice.variation === "withBlockColor" && <DefaultSlice slice={slice} />}
+      </div>
+    </Bounded>
+  );
+};
+
+export default CheckList;
+
+const DefaultSlice = ({ slice }) => {
+  const textColorClass =
+    {
+      VertoBlue: "text-white",
+      VertoGrey: "text-white",
+      White: "text-vertoDarkBlue",
+      VertoGreen: "text-white",
+    }[slice.primary.background_color] || "text-vertoDarkBlue"; // Fallback if undefined
+
+  const iconColorClass =
+    {
+      VertoBlue: "text-vertoLightBlue",
+      VertoGrey: "text-vertoLightBlue",
+      White: "text-vertoDarkBlue",
+      VertoGreen: "text-vertoLightGreen",
+    }[slice.primary.background_color] || "text-vertoLightBlue"; // Fallback if undefined
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      <h2
+        className={`${textColorClass} text-4xl font-semibold uppercase mb-14 tracking-widest`}
+      >
         Key Features
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-11">
         {slice.primary.bullet_points.map((feature, index) => (
           <div key={index} className="flex items-start gap-4">
-            <span className="flex-shrink-0 text-vertoLightBlue">
+            <span className={`${iconColorClass} flex-shrink-0`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -25,12 +65,10 @@ const CheckList = ({ slice }) => {
                 />
               </svg>
             </span>
-            <p className="text-vertoDarkBlue text-base">{feature.label}</p>
+            <p className={`${textColorClass} text-base`}>{feature.label}</p>
           </div>
         ))}
       </div>
-    </Bounded>
+    </div>
   );
 };
-
-export default CheckList;
