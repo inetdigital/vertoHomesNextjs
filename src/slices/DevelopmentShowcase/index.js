@@ -108,6 +108,7 @@ const DevelopmentListing = ({ data }) => {
                 field={img.image}
                 fallbackAlt="Verto Homes"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           ))}

@@ -116,7 +116,7 @@ export const Header = ({ navigation, settings }) => {
                   alt="Verto Homes"
                   width={150}
                   height={50}
-                  loading="lazy"
+                  priority
                 />
               </Link>
             </div>

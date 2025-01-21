@@ -25,6 +25,7 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
             objectFit: "cover", // Ensures the image scales to cover the container
           }}
           fallbackAlt="Verto Homes"
+          priority
         />
       )}
       <div className="absolute flex flex-col items-center justify-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-[2]">
