@@ -83,7 +83,6 @@ const PressReleases = ({ slice }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <Bounded as="section" size="widest" paddingAs="contentSection">
       {/* Featured Article */}
@@ -124,10 +123,10 @@ const PressReleases = ({ slice }) => {
               </span>
             </div>
             <h3 className="mt-3 text-2xl font-semibold text-white">
-              <PrismicNextLink field={featuredArticle}>
+              <a href={featuredArticle.data?.link?.url} target="_blank">
                 <span className="absolute inset-0" />
                 {featuredArticle.data.title}
-              </PrismicNextLink>
+              </a>
             </h3>
             <p className="mt-5 line-clamp-5 text-md text-white">
               {asText(featuredArticle.data.description)}
@@ -177,10 +176,10 @@ const PressReleases = ({ slice }) => {
                   </div>
                   <div className="group relative">
                     <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                      <PrismicNextLink field={post}>
+                      <a href={post.data?.link?.url} target="_blank">
                         <span className="absolute inset-0" />
                         {post.data.title}
-                      </PrismicNextLink>
+                      </a>
                     </h3>
                     <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">
                       {asText(post.data.description)}
