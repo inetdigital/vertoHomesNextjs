@@ -9,7 +9,6 @@ import { convertToSquareFeet } from "@/lib/convertToSquareFeet";
 import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 
 export const Header = ({ data }) => {
-  console.log(data);
   return (
     <section className="pt-16 bg-white">
       {/* Main Image Section */}

@@ -128,12 +128,9 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
 
   useEffect(() => {
     if (developments.length > 0) {
-      //console.log(developments);
-      //console.log(restrictToDevelopment);
       const matchingDevelopment = developments.find(
         (development) => development.uid === restrictToDevelopment
       );
-      //console.log(matchingDevelopment);
     }
   }, [restrictToDevelopment, developments]);
 
