@@ -21,6 +21,7 @@ const DevelopmentShowcase = ({ slice }) => {
 };
 
 const DevelopmentListing = ({ data }) => {
+  const [isBrowser, setIsBrowser] = useState(false); // Track if the app is in the browser
   const ref = useRef(null); // Reference for the container
   const [elementHeight, setElementHeight] = useState(0); // Height of the element
   const [elementTop, setElementTop] = useState(0); // Top position of the element relative to the viewport
@@ -37,20 +38,27 @@ const DevelopmentListing = ({ data }) => {
     [1, 1.2]
   );
 
+  // Ensure the component detects the browser environment
+  useEffect(() => {
+    setIsBrowser(true);
+  }, []);
+
   // Update element's dimensions and position on mount and resize
   useEffect(() => {
-    const updateElementPosition = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        setElementHeight(rect.height);
-        setElementTop(window.scrollY + rect.top); // Convert to absolute position
-      }
-    };
+    if (isBrowser) {
+      const updateElementPosition = () => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          setElementHeight(rect.height);
+          setElementTop(window.scrollY + rect.top); // Convert to absolute position
+        }
+      };
 
-    updateElementPosition(); // Initialize on mount
-    window.addEventListener("resize", updateElementPosition);
-    return () => window.removeEventListener("resize", updateElementPosition);
-  }, []);
+      updateElementPosition(); // Initialize on mount
+      window.addEventListener("resize", updateElementPosition);
+      return () => window.removeEventListener("resize", updateElementPosition);
+    }
+  }, [isBrowser]);
 
   const handleSwipe = (direction) => {
     if (direction === "left" && currentIndex < images.length - 1) {
