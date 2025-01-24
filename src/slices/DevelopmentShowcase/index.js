@@ -5,7 +5,6 @@ import {
   AnimatePresence,
   useScroll,
   useTransform,
-  useInView,
 } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { PrismicNextImage } from "@prismicio/next";

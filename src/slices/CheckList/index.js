@@ -1,4 +1,9 @@
+"use client";
+
 import { Bounded } from "@/components/Bounded";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const CheckList = ({ slice }) => {
   const backgroundColorClass =
@@ -13,8 +18,7 @@ const CheckList = ({ slice }) => {
       <div
         className={`${backgroundColorClass} ${slice.variation === "default" ? "px-6 md:px-12" : "py-28 md:py-32 px-6 md:px-12"}`}
       >
-        {slice.variation === "default" && <DefaultSlice slice={slice} />}
-        {slice.variation === "withBlockColor" && <DefaultSlice slice={slice} />}
+        <DefaultSlice slice={slice} />
       </div>
     </Bounded>
   );
@@ -39,6 +43,29 @@ const DefaultSlice = ({ slice }) => {
       VertoGreen: "text-vertoLightGreen",
     }[slice.primary.background_color] || "text-vertoLightBlue"; // Fallback if undefined
 
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Stagger each child by 0.2s
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  // Ref for in-view detection
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
   return (
     <div className="max-w-7xl mx-auto">
       <h2
@@ -46,9 +73,19 @@ const DefaultSlice = ({ slice }) => {
       >
         Key Features
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-11">
+      <motion.div
+        ref={ref}
+        className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-11"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"} // Only animate when in view
+        variants={containerVariants}
+      >
         {slice.primary.bullet_points.map((feature, index) => (
-          <div key={index} className="flex items-start gap-4">
+          <motion.div
+            key={index}
+            className="flex items-start gap-4"
+            variants={itemVariants}
+          >
             <span className={`${iconColorClass} flex-shrink-0`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +103,9 @@ const DefaultSlice = ({ slice }) => {
               </svg>
             </span>
             <p className={`${textColorClass} text-base`}>{feature.label}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

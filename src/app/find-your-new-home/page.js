@@ -62,7 +62,7 @@ export default async function SearchPage() {
           <SearchTabs />
         </Bounded>
       </div>
-      <Bounded as="section" size="widest" paddingAs="tight">
+      <Bounded as="section" size="widest" paddingAs="tight" className="mb-32">
         <SearchResults />
       </Bounded>
     </Layout>

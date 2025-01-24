@@ -65,17 +65,18 @@ export const HeadingDetails = ({ page }) => {
       <div className="max-w-6xl mx-auto px-6 xl:px-0">
         <div className="text-white py-8">
           <div className="flex flex-col lg:flex-row mb-16">
-            <div className="w-full lg:w-2/3">
+            <div className="flex w-full lg:w-2/3">
               <div className="bg-white text-vertoDarkBlue font-bold px-8 py-4 rounded-lg text-2xl tracking-wide inline w-full sm:w-auto text-center">
                 {page.data.price && page.data.price > 0
                   ? `£ ${formatPrice(page.data.price)}`
                   : "POA"}
               </div>
             </div>
-            <div className="w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
+            <div className="w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0 flex">
               <BlockButtonBlue label="Arrange a viewing" reverse />
             </div>
           </div>
+          <div className="w-full h-[1px] bg-vertoLightBlue mb-16" />
           <div className="flex flex-col lg:flex-row">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 w-full lg:w-2/3">
               <div className="flex items-start gap-4">

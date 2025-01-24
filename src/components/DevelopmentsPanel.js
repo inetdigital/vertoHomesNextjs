@@ -228,7 +228,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
             >
               {filteredDevelopments.map((item, index) => {
                 return (
@@ -239,7 +239,7 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                       transition={{ duration: 0.3, delay: index * 0.5 }} // Staggered animation
                     >
                       <div className="aspect-h-1 aspect-w-1 relative group">
-                        <div className="absolute z-[1] w-full h-full inset-0 bg-black opacity-50 border-0 border-solid border-vertoDarkBlue transition-all duration-500 ease-in-out group-hover:opacity-75 group-hover:border-8"></div>
+                        <div className="absolute z-[1] w-full h-full inset-0 bg-black opacity-60 border-0 border-solid border-vertoDarkBlue transition-all duration-500 ease-in-out group-hover:opacity-75 group-hover:border-8"></div>
                         {prismic.isFilled.image(item.data.banner_image) && (
                           <PrismicNextImage
                             field={item.data.banner_image}
@@ -250,12 +250,12 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                         )}
                         <div className="px-4 z-[2]">
                           <div className="relative left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-center">
-                            <p className="text-white text-sm md:text-base lg:text-xl inline-flex items-center">
+                            <p className="text-white text-sm md:text-base lg:text-xl inline-flex items-center flex-col">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
-                                className="size-6 mr-2 text-vertoLightGreen"
+                                className="size-6 mr-0 text-vertoLightGreen"
                               >
                                 <path
                                   fillRule="evenodd"
@@ -266,10 +266,10 @@ export const DevelopmentsPanel = ({ locations, developments }) => {
                               {item.data.location_town},{" "}
                               {item.data.location_city}
                             </p>
-                            <h2 className="text-white uppercase tracking-widest font-bold text-center mb-4">
+                            <h2 className="text-white uppercase tracking-widest font-bold text-center my-6">
                               {item.data.name}
                             </h2>
-                            <p className="text-white text-sm md:text-base lg:text-lg">
+                            <p className="text-white text-sm md:text-base lg:text-lg px-8">
                               {item.data.property_types}
                             </p>
                             <p className="text-white text-lg font-medium mt-4">

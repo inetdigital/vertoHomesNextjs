@@ -256,11 +256,11 @@ const ContentList = ({ slice }) => {
               className="flex flex-col sm:flex-row w-full mb-10 transition-all duration-500"
             >
               {/* Image Div */}
-              <div className="image-div w-full sm:w-2/5">
+              <div className="image-div w-full sm:w-2/5 flex justify-center">
                 <PrismicNextImage
                   field={item.image}
                   fallbackAlt="Verto Homes"
-                  className="w-full h-full object-contain"
+                  className="w-1/2 h-full object-contain"
                 />
               </div>
               {/* Content Div */}
@@ -466,15 +466,17 @@ const AnimatedTitle = ({ title, textColorClass, highlightColorClass }) => {
       <p
         className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl text-wrap`}
       >
-        {title.split("").map((char, index) => (
-          <motion.span
-            key={`${char}-${index}`}
-            variants={letterVariants}
-            className="inline-block"
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
+        {title.length > 25
+          ? title
+          : title.split("").map((char, index) => (
+              <motion.span
+                key={`${char}-${index}`}
+                variants={letterVariants}
+                className="inline-block"
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
       </p>
       <div
         className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
@@ -555,20 +557,41 @@ const SplitGrid = ({ slice }) => {
       VertoGreen: "vertoLightGreen",
       VertoBlue: "vertoLightBlue",
     }[slice.primary.background_color] || "vertoLightGreen";
+
   const textColorClass =
     {
       VertoGrey: "vertoBlack",
       VertoGreen: "white",
       VertoBlue: "white",
     }[slice.primary.background_color] || "white";
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
   return (
-    <div className="max-w-7xl mx-auto text-white text-left">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }} // Start fully transparent and slightly below
+      animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate to fully visible and in position
+      transition={{ duration: 0.8, ease: "easeOut" }} // Smooth fade-in and upward motion
+      className="max-w-7xl mx-auto text-white text-left"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left Section */}
-        <div className="flex items-left justify-start">
-          <h2 className={`text-${highlightColorClass} text-4xl uppercase`}>
+        <div className="flex flex-col items-left justify-between">
+          <h2
+            className={`text-${highlightColorClass} text-4xl uppercase text-center lg:text-left`}
+          >
             {slice.primary.title_lead}
           </h2>
+          {slice.primary?.image?.url && (
+            <div className="w-full flex justify-center lg:justify-start mt-12">
+              <PrismicNextImage
+                field={slice.primary.image}
+                fallbackAlt="Verto Homes"
+              />
+            </div>
+          )}
         </div>
 
         {/* Right Section */}
@@ -576,33 +599,43 @@ const SplitGrid = ({ slice }) => {
           {slice.primary.title && (
             <>
               <h3
-                className={`text-xl font-bold mb-4 text-left text-${highlightColorClass}`}
+                className={`text-xl font-bold mb-4 text-center lg:text-left text-${highlightColorClass}`}
               >
                 {slice.primary.title}
               </h3>
-              <hr className={`bg-${highlightColorClass} h-[4px] w-20 my-10`} />
+              <hr
+                className={`bg-${highlightColorClass} h-[4px] mx-auto lg:mx-0 w-1/2 lg:w-20 my-10`}
+              />
             </>
           )}
-          <div className="text-left text-base">
+          <div className="text-center lg:text-left text-base">
             <PrismicRichText
               field={slice.primary.content}
               components={{
                 paragraph: ({ children }) => (
                   <p className={`text-${textColorClass}`}>{children}</p>
                 ),
+                image: ({ node }) => (
+                  <div className="flex justify-center lg:justify-start">
+                    <PrismicNextImage field={node} />
+                  </div>
+                ),
               }}
             />
           </div>
           {slice.primary.link?.text && (
-            <div className="mt-10 text-left flex">
-              <PrismicNextLink field={slice.primary.link}>
+            <div className="mt-10 text-center lg:text-left flex">
+              <PrismicNextLink
+                field={slice.primary.link}
+                className="m-auto lg:m-0"
+              >
                 <BlockButton label={slice.primary.link?.text} />
               </PrismicNextLink>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -17,8 +17,10 @@ export const HeadingDetails = ({ page }) => {
         <div className="text-white py-8">
           <div className="flex flex-col lg:flex-row">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 w-full lg:w-2/3">
-              <div className="flex items-start gap-4">
-                <HomeIcon className="h-auto w-12 text-vertoLightGreen" />
+              <div className="grid grid-cols-[auto,1fr] gap-4">
+                <div className="w-8">
+                  <HomeIcon className="h-auto w-6 text-vertoLightGreen" />
+                </div>
                 <div>
                   <h3 className="text-sm font-semibold uppercase">
                     Property Types
@@ -28,8 +30,10 @@ export const HeadingDetails = ({ page }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <MapPinIcon className="h-6 w-6 text-vertoLightGreen" />
+              <div className="grid grid-cols-[auto,1fr] gap-4">
+                <div className="w-8">
+                  <MapPinIcon className="h-6 w-6 text-vertoLightGreen" />
+                </div>
                 <div>
                   <h3 className="text-sm font-semibold uppercase">Location</h3>
                   <p className="text-base text-white">
@@ -38,8 +42,10 @@ export const HeadingDetails = ({ page }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <Squares2X2Icon className="h-6 w-6 text-vertoLightGreen" />
+              <div className="grid grid-cols-[auto,1fr] gap-4">
+                <div className="w-8">
+                  <Squares2X2Icon className="h-6 w-6 text-vertoLightGreen" />
+                </div>
                 <div>
                   <h3 className="text-sm font-semibold uppercase">
                     Development Size
@@ -49,19 +55,23 @@ export const HeadingDetails = ({ page }) => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl text-vertoLightGreen w-6">
-                  {"///"}
-                </span>
-                <div>
-                  <h3 className="text-sm font-semibold uppercase">
-                    What3Words
-                  </h3>
-                  <p className="text-base text-white">
-                    {page.data.what_three_words}
-                  </p>
+              {page.data?.what_three_words && (
+                <div className="grid grid-cols-[auto,1fr] gap-4">
+                  <div className="w-8">
+                    <span className="text-xl text-vertoLightGreen w-6">
+                      {"///"}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase">
+                      What3Words
+                    </h3>
+                    <p className="text-base text-white">
+                      {page.data.what_three_words}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
               {page.data?.development_status?.uid === "coming_soon" && (

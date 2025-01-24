@@ -2314,6 +2314,16 @@ export interface BlockContentSliceSplitGridPrimary {
   title_lead: prismic.KeyTextField;
 
   /**
+   * Image field in *BlockContent → SplitGrid → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.splitGrid.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
    * Title field in *BlockContent → SplitGrid → Primary*
    *
    * - **Field Type**: Text
