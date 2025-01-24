@@ -2,7 +2,8 @@
 
 import { Bounded } from "@/components/Bounded";
 import { PrismicRichText } from "@/components/PrismicRichText";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const StandardTextBlock = ({ slice }) => {
   return (
@@ -18,8 +19,16 @@ const StandardTextBlock = ({ slice }) => {
 };
 
 const WithRegisterInterest = ({ slice }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
   return (
-    <div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }} // Component starts fully transparent and below its position
+      animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate to fully visible and in position
+      transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
+    >
       <div>
         {slice.primary?.content && (
           <PrismicRichText
@@ -44,7 +53,7 @@ const WithRegisterInterest = ({ slice }) => {
           </motion.div>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

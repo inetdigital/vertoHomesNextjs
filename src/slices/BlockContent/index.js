@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 import { Bounded } from "@/components/Bounded";
 import { PrismicRichText } from "@/components/PrismicRichText";
@@ -41,6 +41,7 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
               : "py-28 md:py-32 px-6 md:px-12"
         }
         ${slice.variation === "withRegisterInterestForm" && isConsecutive && "pt-28 md:pt-32"}
+        ${slice.variation === "default" && isConsecutive && "pt-28 md:pt-32"}
         `}
       >
         {slice.variation === "default" && <SearchVariant slice={slice} />}
@@ -176,8 +177,17 @@ const SearchVariant = ({ slice }) => {
 };
 
 const WithImageLead = ({ slice }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
   return (
-    <div className="max-w-4xl mx-auto">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }} // Start fully transparent and move upwards
+      animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate to visible and in place
+      transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
+      className="max-w-4xl mx-auto"
+    >
       {slice?.primary?.image && (
         <div className="flex justify-center mb-10">
           <PrismicNextImage
@@ -203,7 +213,7 @@ const WithImageLead = ({ slice }) => {
           <DefaultButton link={slice.primary.link} />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -421,6 +431,58 @@ const Testimonial = ({ slice }) => {
   );
 };
 
+const AnimatedTitle = ({ title, textColorClass, highlightColorClass }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.05, // Delay between letters
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { scale: 1, opacity: 0.5 },
+    visible: {
+      scale: [1, 1.3, 1],
+      opacity: 1,
+      transition: {
+        duration: 0.6, // Duration for each letter animation
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
+      <p
+        className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl text-wrap`}
+      >
+        {title.split("").map((char, index) => (
+          <motion.span
+            key={`${char}-${index}`}
+            variants={letterVariants}
+            className="inline-block"
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </p>
+      <div
+        className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
+      />
+    </motion.div>
+  );
+};
+
 const WithRegistrationForm = ({ slice, themeColor }) => {
   const BtnColorClasses =
     {
@@ -448,17 +510,12 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
   return (
     <div className="text-left max-w-7xl mx-auto">
       {slice.primary.title && (
-        <div className="mr-auto max-w-4xl">
-          <>
-            <p
-              className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl`}
-            >
-              {slice.primary.title}
-            </p>
-            <div
-              className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
-            />
-          </>
+        <div className="mr-auto max-w-2xl">
+          <AnimatedTitle
+            title={slice.primary.title}
+            textColorClass={textColorClass}
+            highlightColorClass={highlightColorClass}
+          />
         </div>
       )}
       {slice.primary.content && (

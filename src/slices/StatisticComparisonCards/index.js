@@ -6,6 +6,9 @@ import { PrismicNextImage } from "@prismicio/next";
 
 import { useSettings } from "@/context/Settings";
 
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
 const EnergyComparison = ({ slice }) => {
   const backgroundColorClass =
     {
@@ -45,6 +48,28 @@ const EnergyComparison = ({ slice }) => {
 };
 
 const StatsGrid = ({ slice }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Time delay between children animations
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   const borderColorClass =
     {
       VertoBlue: "vertoLightBlue",
@@ -52,11 +77,18 @@ const StatsGrid = ({ slice }) => {
     }[slice.primary.theme_color] || "vertoLightBlue";
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 text-white">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+      className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 text-white"
+    >
       {slice.primary.statistic.map((stat, index) => (
-        <div
+        <motion.div
           key={index}
           className={`border-t-4 border-${borderColorClass} pt-6`}
+          variants={itemVariants}
         >
           <p className="font-semibold flex items-center mb-4 text-white text-2xl">
             <span className="mr-4">
@@ -65,13 +97,35 @@ const StatsGrid = ({ slice }) => {
             {stat.value}
           </p>
           <p className="text-base text-white">{stat.caption}</p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
 const GlobalStats = ({ slice }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Time delay between children animations
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   const settings = useSettings();
   const stats = [
     {
@@ -95,18 +149,29 @@ const GlobalStats = ({ slice }) => {
       label: "highest EPC rating",
     },
   ];
+
   return (
     <div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 text-white">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 text-white"
+      >
         {stats.map((stat, index) => (
-          <div key={index} className="border-t-4 border-vertoLightBlue pt-6">
+          <motion.div
+            key={index}
+            className="border-t-4 border-vertoLightBlue pt-6"
+            variants={itemVariants}
+          >
             <p className="font-semibold flex items-center mb-4 text-white">
               {stat.icon} {stat.value}
             </p>
             <p className="text-base text-white">{stat.label}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <div className="mt-24">
         <PrismicNextImage
           field={slice.primary.image}

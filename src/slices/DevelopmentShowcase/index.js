@@ -91,7 +91,7 @@ const DevelopmentListing = ({ data }) => {
             A collection of {data.property_types}
           </p>
         )}
-        <div className="h-1 w-20 bg-white mx-auto my-5 md:my-10" />
+        <div className="h-1 w-20 bg-vertoLightBlue mx-auto my-5 md:my-10" />
         {data?.prices_from && (
           <p className="text-xl text-white text-center font-medium">
             Prices from{" "}
