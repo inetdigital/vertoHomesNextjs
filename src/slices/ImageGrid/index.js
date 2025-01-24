@@ -23,85 +23,108 @@ const ImageGrid = ({ slice }) => {
     );
   };
 
-  const renderImageGrid = (imageGroup, isReversed, index) => (
-    <div
-      key={index}
-      className={`grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4 gap-y-4 md:gap-y-0 ${
-        isReversed ? "grid-flow-dense" : ""
-      }`}
-    >
+  const renderImageGrid = (imageGroup, isReversed, index, reverse_order) => {
+    return (
       <div
-        className={`${
-          isReversed ? "order-2" : ""
-        } col-span-2 lg:col-span-2 aspect-w-16 aspect-h-10 relative`}
+        key={index}
+        className={`grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4 gap-y-4 md:gap-y-0 ${
+          isReversed || reverse_order ? "grid-flow-dense" : ""
+        }`}
       >
-        {/* Large Image */}
-        <PrismicNextImage
-          field={imageGroup[0]?.image}
-          fallbackAlt="Verto Homes"
-          className="object-cover w-full h-full"
-        />
-        {/* Play Button for Video */}
-        {slice.variation === "withVideo" && index === 0 && (
-          <button
-            onClick={() => setShowVideo(true)}
-            className="absolute inset-0 flex items-center justify-center flex-col text-white text-2xl font-bold rounded-full bg-vertoDarkBlue hover:bg-vertoDarkGreen transition-all duration-300 ease-in-out w-[80px] h-[80px] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-12"
+        <div
+          className={`${
+            isReversed || reverse_order ? "order-2" : ""
+          } col-span-2 lg:col-span-2 aspect-w-16 aspect-h-10 relative`}
+        >
+          {/* Large Image */}
+          <PrismicNextImage
+            field={imageGroup[0]?.image}
+            fallbackAlt="Verto Homes"
+            className="object-cover w-full h-full"
+          />
+          {/* Play Button for Video */}
+          {slice.variation === "withVideo" && index === 0 && (
+            <button
+              onClick={() => setShowVideo(true)}
+              className="absolute inset-0 flex items-center justify-center flex-col text-white text-2xl font-bold rounded-full bg-vertoDarkBlue hover:bg-vertoDarkGreen transition-all duration-300 ease-in-out w-[80px] h-[80px] top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "
             >
-              <path
-                fillRule="evenodd"
-                d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-4">
-        {/* Small Image 1 */}
-        <div className="aspect-w-8 aspect-h-5">
-          <PrismicNextImage
-            field={imageGroup[1]?.image}
-            fallbackAlt="Verto Homes"
-            className="object-cover w-full h-full"
-          />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-12"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          )}
         </div>
 
-        {/* Small Image 2 */}
-        <div className="aspect-w-8 aspect-h-5">
-          <PrismicNextImage
-            field={imageGroup[2]?.image}
-            fallbackAlt="Verto Homes"
-            className="object-cover w-full h-full"
-          />
+        <div className="flex flex-col gap-4">
+          {/* Small Image 1 */}
+          <div className="aspect-w-8 aspect-h-5">
+            <PrismicNextImage
+              field={imageGroup[1]?.image}
+              fallbackAlt="Verto Homes"
+              className="object-cover w-full h-full"
+            />
+          </div>
+
+          {/* Small Image 2 */}
+          <div className="aspect-w-8 aspect-h-5">
+            <PrismicNextImage
+              field={imageGroup[2]?.image}
+              fallbackAlt="Verto Homes"
+              className="object-cover w-full h-full"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <Bounded as="section" size="widest" paddingAs="contentSection">
-      {slice.primary.images.length > 0 && (
+      {slice.primary.images.length > 2 && (
         <div className="flex-col gap-8 hidden md:flex">
-          {slice.primary.images
-            .reduce((result, image, index) => {
-              const groupIndex = Math.floor(index / 3);
-              if (!result[groupIndex]) result[groupIndex] = [];
-              result[groupIndex].push(image);
-              return result;
-            }, [])
-            .map(
-              (imageGroup, idx) =>
-                imageGroup.length === 3
-                  ? renderImageGrid(imageGroup, idx % 2 !== 0, idx)
-                  : null // Ensures only groups of 3 are displayed
-            )}
+          {slice.primary.images.length > 2 &&
+            slice.primary.images
+              .reduce((result, image, index) => {
+                const groupIndex = Math.floor(index / 3);
+                if (!result[groupIndex]) result[groupIndex] = [];
+                result[groupIndex].push(image);
+                return result;
+              }, [])
+              .map(
+                (imageGroup, idx) =>
+                  imageGroup.length === 3
+                    ? renderImageGrid(
+                        imageGroup,
+                        idx % 2 !== 0,
+                        idx,
+                        slice.primary.reverse_order
+                      )
+                    : null // Ensures only groups of 3 are displayed
+              )}
+        </div>
+      )}
+
+      {slice.primary.images.length < 3 && (
+        <div className="w-full hidden md:grid grid-cols-2 gap-8">
+          {slice.primary.images.map((item, index) => {
+            return (
+              <PrismicNextImage
+                key={index}
+                field={item.image}
+                fallbackAlt="Verto Homes"
+                className="object-cover w-full h-full"
+              />
+            );
+          })}
         </div>
       )}
 

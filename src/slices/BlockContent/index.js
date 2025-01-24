@@ -28,10 +28,20 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       paddingAs={
         isConsecutive === false ? "fullWidthBlock" : "fullWidthBlockConsecutive"
       }
-      className="text-center"
+      className={`text-center`}
     >
       <div
-        className={`${backgroundColorClass} ${slice.variation === "contentList" && slice.primary.background_color === "White" ? "px-6 md:px-12 my-28 md:my-32" : "py-28 md:py-32 px-6 md:px-12"}`}
+        className={`${backgroundColorClass} 
+        ${
+          slice.variation === "contentList" &&
+          slice.primary.background_color === "White"
+            ? "px-6 md:px-12 my-28 md:my-32"
+            : isConsecutive
+              ? "px-6 md:px-12 pb-28 md:pb-32"
+              : "py-28 md:py-32 px-6 md:px-12"
+        }
+        ${slice.variation === "withRegisterInterestForm" && isConsecutive && "pt-28 md:pt-32"}
+        `}
       >
         {slice.variation === "default" && <SearchVariant slice={slice} />}
         {slice.variation === "withImageLead" && <WithImageLead slice={slice} />}
@@ -438,19 +448,21 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
   return (
     <div className="text-left max-w-7xl mx-auto">
       {slice.primary.title && (
-        <>
-          <p
-            className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl`}
-          >
-            {slice.primary.title}
-          </p>
-          <div
-            className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
-          />
-        </>
+        <div className="mr-auto max-w-4xl">
+          <>
+            <p
+              className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl`}
+            >
+              {slice.primary.title}
+            </p>
+            <div
+              className={`bg-${highlightColorClass} w-[100px] h-[4px] mr-auto my-10`}
+            />
+          </>
+        </div>
       )}
       {slice.primary.content && (
-        <div className="mr-auto">
+        <div className="mr-auto max-w-4xl">
           <PrismicRichText
             field={slice.primary.content}
             components={{

@@ -28,6 +28,15 @@
               }
             }
           }
+        },
+        "reverse_order": {
+          "type": "Boolean",
+          "config": {
+            "label": "Reverse Order",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}
@@ -62,6 +71,15 @@
           "config": {
             "label": "Video Link",
             "placeholder": ""
+          }
+        },
+        "reverse_order": {
+          "type": "Boolean",
+          "config": {
+            "label": "Reverse Order",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
           }
         }
       },

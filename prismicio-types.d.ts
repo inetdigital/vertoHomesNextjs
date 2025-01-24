@@ -3473,6 +3473,17 @@ export interface ImageGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   images: prismic.GroupField<Simplify<ImageGridSliceDefaultPrimaryImagesItem>>;
+
+  /**
+   * Reverse Order field in *ImageGrid → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: image_grid.default.primary.reverse_order
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  reverse_order: prismic.BooleanField;
 }
 
 /**
@@ -3513,6 +3524,17 @@ export interface ImageGridSliceWithVideoPrimary {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video_link: prismic.EmbedField;
+
+  /**
+   * Reverse Order field in *ImageGrid → WithVideo → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: image_grid.withVideo.primary.reverse_order
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  reverse_order: prismic.BooleanField;
 }
 
 /**
