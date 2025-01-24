@@ -1,7 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useInView,
+} from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { PrismicNextImage } from "@prismicio/next";
 
 const DevelopmentShowcase = ({ slice }) => {
@@ -15,9 +21,36 @@ const DevelopmentShowcase = ({ slice }) => {
 };
 
 const DevelopmentListing = ({ data }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(0); // Track window width
+  const ref = useRef(null); // Reference for the container
+  const [elementHeight, setElementHeight] = useState(0); // Height of the element
+  const [elementTop, setElementTop] = useState(0); // Top position of the element relative to the viewport
+  const { scrollY } = useScroll(); // Global scroll value
+
+  // Detect images from data
   const images = data?.listing_images || [];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Dynamically calculate scale based on the element's position and scroll
+  const scale = useTransform(
+    scrollY,
+    [elementTop, elementTop + elementHeight],
+    [1, 1.2]
+  );
+
+  // Update element's dimensions and position on mount and resize
+  useEffect(() => {
+    const updateElementPosition = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        setElementHeight(rect.height);
+        setElementTop(window.scrollY + rect.top); // Convert to absolute position
+      }
+    };
+
+    updateElementPosition(); // Initialize on mount
+    window.addEventListener("resize", updateElementPosition);
+    return () => window.removeEventListener("resize", updateElementPosition);
+  }, []);
 
   const handleSwipe = (direction) => {
     if (direction === "left" && currentIndex < images.length - 1) {
@@ -27,22 +60,8 @@ const DevelopmentListing = ({ data }) => {
     }
   };
 
-  // Set up event listener for resize and update windowWidth
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    handleResize(); // Initialize on mount
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Reset slider position on resize
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [windowWidth]);
-
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div ref={ref} className="relative w-full h-screen overflow-hidden">
       {/* Overlay Title */}
       <div
         className="absolute top-12 md:top-20 left-1/2 transform -translate-x-1/2 w-9/12 lg:w-max"
@@ -71,64 +90,69 @@ const DevelopmentListing = ({ data }) => {
 
       {/* Slider Container */}
       {images.length > 0 && (
-        <motion.div
-          className="absolute inset-0 flex"
-          animate={{ x: -currentIndex * windowWidth }}
-          transition={{
-            duration: 1,
-            ease: [0.42, 0, 0.58, 1],
-          }}
-          drag="x"
-          dragConstraints={{
-            left: -windowWidth * (images.length - 1),
-            right: 0,
-          }}
-          dragElastic={1}
-          onDragEnd={(event, info) => {
-            if (info.offset.x < -100) handleSwipe("left");
-            if (info.offset.x > 100) handleSwipe("right");
-          }}
-          style={{
-            display: "flex",
-            width: `${images.length * 100}vw`,
-          }}
-        >
-          {/* Overlay Color */}
-          <div
-            className="absolute w-full h-full inset-0 bg-black opacity-40"
-            style={{ zIndex: 1 }}
-          />
-          {images.map((img, index) => (
+        <AnimatePresence>
+          <motion.div
+            className="absolute inset-0 flex"
+            animate={{ x: -currentIndex * window.innerWidth }}
+            transition={{
+              duration: 1,
+              ease: [0.42, 0, 0.58, 1],
+            }}
+            drag="x"
+            dragConstraints={{
+              left: -window.innerWidth * (images.length - 1),
+              right: 0,
+            }}
+            dragElastic={1}
+            onDragEnd={(event, info) => {
+              if (info.offset.x < -100) handleSwipe("left");
+              if (info.offset.x > 100) handleSwipe("right");
+            }}
+            style={{
+              display: "flex",
+              width: `${images.length * 100}vw`,
+            }}
+          >
+            {/* Overlay Color */}
             <div
-              key={index}
-              className="w-full h-dvh flex-shrink-0"
-              style={{ width: "100vw" }}
-            >
-              <PrismicNextImage
-                field={img.image}
-                fallbackAlt="Verto Homes"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </motion.div>
+              className="absolute w-full h-full inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"
+              style={{ zIndex: 1 }}
+            />
+            {images.map((img, index) => (
+              <motion.div
+                key={index}
+                className="absolute inset-0 w-full h-full"
+                style={{ scale }}
+                transition={{
+                  duration: 1,
+                  ease: "easeInOut",
+                }}
+              >
+                <PrismicNextImage
+                  field={img.image}
+                  fallbackAlt="Verto Homes"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       )}
-
       <div
         className="absolute flex items-center flex-col bottom-20 left-1/2 -translate-x-1/2 w-full"
         style={{ zIndex: 2 }}
       >
         <div className="flex items-center flex-col mb-4">
           {data?.location_town && data?.location_city && (
-            <div className="flex items-center">
+            <div className="flex flex-col items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 md:size-12 text-white"
+                className="size-6 md:size-10 text-white mb-2"
               >
                 <path
                   strokeLinecap="round"
@@ -152,7 +176,7 @@ const DevelopmentListing = ({ data }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative text-center px-4 py-2 font-medium text-sm tracking-button uppercase border border-white rounded text-white transition-colors duration-300 ease-in-out hover:bg-white hover:text-vertoBlack"
+                className="relative text-center px-6 py-4 font-medium text-sm tracking-button uppercase border border-white rounded text-white transition-colors duration-300 ease-in-out hover:bg-white hover:text-vertoBlack"
               >
                 View Development
               </motion.div>
