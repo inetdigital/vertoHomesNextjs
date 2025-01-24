@@ -30,6 +30,7 @@ const DevelopmentListing = ({ data }) => {
   // Detect images from data
   const images = data?.listing_images || [];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0); // Track window width
 
   // Dynamically calculate scale based on the element's position and scroll
   const scale = useTransform(
@@ -42,6 +43,11 @@ const DevelopmentListing = ({ data }) => {
   useEffect(() => {
     setIsBrowser(true);
   }, []);
+
+  // Reset slider position on resize
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [windowWidth]);
 
   // Update element's dimensions and position on mount and resize
   useEffect(() => {
@@ -101,14 +107,14 @@ const DevelopmentListing = ({ data }) => {
         <AnimatePresence>
           <motion.div
             className="absolute inset-0 flex"
-            animate={{ x: -currentIndex * window.innerWidth }}
+            animate={{ x: -currentIndex * windowWidth }}
             transition={{
               duration: 1,
               ease: [0.42, 0, 0.58, 1],
             }}
             drag="x"
             dragConstraints={{
-              left: -window.innerWidth * (images.length - 1),
+              left: -windowWidth * (images.length - 1),
               right: 0,
             }}
             dragElastic={1}
