@@ -41,6 +41,7 @@ export default async function Development({ params }) {
         "development.uid",
         "development.name",
         "development.site_plan",
+        "development.brochure",
         "type.uid",
         "taxonomy_house_type.name",
         "taxonomy_number_of_bedrooms.number_of_bedrooms",
@@ -66,6 +67,8 @@ export default async function Development({ params }) {
         themeColor="vertoDarkBlue"
         highlightColor="vertoLightBlue"
         marginTop="24"
+        page={page}
+        property={true}
       />
     </Layout>
   );

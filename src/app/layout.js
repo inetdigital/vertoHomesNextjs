@@ -20,6 +20,7 @@ import { SettingsProvider } from "@/context/Settings";
 import { ArticlesProvider } from "@/context/AllArticles";
 import { TaxonomyArticlesProvider } from "@/context/TaxonomyArticles";
 import { PressProvider } from "@/context/AllPress";
+import { HubspotMainFormProvider } from "@/context/HubspotMainFormContext";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
@@ -49,13 +50,15 @@ export default function RootLayout({ children }) {
                                 <SettingsProvider>
                                   <ArticlesProvider>
                                     <PressProvider>
-                                      <BodyClassManager />
-                                      <main>
-                                        {children}
-                                        <PrismicPreview
-                                          repositoryName={repositoryName}
-                                        />
-                                      </main>
+                                      <HubspotMainFormProvider>
+                                        <BodyClassManager />
+                                        <main>
+                                          {children}
+                                          <PrismicPreview
+                                            repositoryName={repositoryName}
+                                          />
+                                        </main>
+                                      </HubspotMainFormProvider>
                                     </PressProvider>
                                   </ArticlesProvider>
                                 </SettingsProvider>

@@ -164,6 +164,15 @@
           "select": "media",
           "allowText": true
         }
+      },
+      "brochure": {
+        "type": "Link",
+        "config": {
+          "label": "Brochure",
+          "placeholder": "",
+          "select": "media",
+          "allowText": true
+        }
       }
     },
     "Content": {

@@ -382,6 +382,13 @@
             "label": "Link Label",
             "placeholder": ""
           }
+        },
+        "hubspot_form_id": {
+          "type": "Text",
+          "config": {
+            "label": "Hubspot Form Id",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

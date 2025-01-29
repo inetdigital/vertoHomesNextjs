@@ -1,19 +1,37 @@
+"use client";
+
+import { useRef } from "react";
 import { Bounded } from "./Bounded";
 import { PrismicNextLink } from "@prismicio/next";
+
+import { motion, useInView } from "framer-motion";
 
 import { FormatUKPhoneNumber } from "@/lib/formatUKPhoneNumber";
 
 export const Footer = ({ navigation }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   return (
     <div className="border-t-4 border-vertoDarkBlue">
       <Bounded as="footer" size="widest">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-          <div className="flex items-center">
+          <div ref={ref} className="flex items-center">
             <div>
-              <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex text-3xl md:text-4xl lg:text-6xl">
+              <span className="live-zero-logo text-vertoDarkBlue tracking-logo flex text-3xl md:text-4xl lg:text-6xl relative">
                 LIVE ZER
-                <span className="o text-vertoDarkBlue">
-                  O<div className="bg-vertoDarkBlue h-1 w-6/12 mx-auto"> </div>
+                <span className="relative flex flex-col items-center">
+                  {/* Animated "O" */}
+                  <motion.span
+                    className="o text-vertoDarkBlue"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={isInView ? { y: -10, opacity: 1 } : {}}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    O
+                  </motion.span>
+
+                  {/* Static Underline */}
+                  <div className="bg-vertoDarkBlue h-1 w-6/12 mx-auto mt-[-4px]"></div>
                 </span>
               </span>
             </div>

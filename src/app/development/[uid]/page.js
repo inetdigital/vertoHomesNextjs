@@ -54,7 +54,7 @@ export default async function Development({ params }) {
       )}
       <HeadingDetails page={page} />
       <SliceZone slices={page.data.slices4} components={components} />
-      <FooterContact themeColor="vertoDarkGreen" />
+      <FooterContact page={page} themeColor="vertoDarkGreen" />
     </Layout>
   );
 }

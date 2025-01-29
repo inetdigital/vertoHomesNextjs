@@ -1,7 +1,22 @@
+"use client";
+
 import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 import BlockButton from "@/components/ui/BlockButton";
 
-export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
+import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
+
+export const FooterContact = ({
+  page,
+  themeColor,
+  highlightColor,
+  marginTop,
+  property = false,
+}) => {
+  const { openForm, setFormId } = useHubspotMainForm();
+  const handleOpenForm = (formId) => {
+    setFormId(formId); // Set dynamic form ID
+    openForm(); // Open the modal
+  };
   return (
     <section
       className={`bg-${themeColor ? themeColor : "vertoDarkGreen"} text-white px-6 py-36 mt-${marginTop ? marginTop : "28"}`}
@@ -24,28 +39,66 @@ export const FooterContact = ({ themeColor, highlightColor, marginTop }) => {
 
         {/* Right Buttons */}
         <div className="flex flex-col space-y-4">
-          {themeColor === "vertoDarkBlue" && <FooterButtonsBlue />}
-          {themeColor === "vertoDarkGreen" && <FooterButtonsStandard />}
+          {themeColor === "vertoDarkBlue" && (
+            <FooterButtonsBlue
+              handleOpenForm={handleOpenForm}
+              page={page}
+              property={property}
+            />
+          )}
+          {themeColor === "vertoDarkGreen" && (
+            <FooterButtonsStandard
+              handleOpenForm={handleOpenForm}
+              page={page}
+              property={property}
+            />
+          )}
         </div>
       </div>
     </section>
   );
 };
 
-const FooterButtonsStandard = () => {
+const FooterButtonsStandard = ({ handleOpenForm, page, property }) => {
   return (
     <>
-      <BlockButton label="Arrange a viewing" />
-      <BlockButton label="Download Brochure" />
+      <BlockButton
+        label="Arrange a viewing"
+        onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
+      />
+
+      {property && page.data?.development?.data?.brochure?.url && (
+        <a href={page.data?.development?.data?.brochure?.url} target="_blank">
+          <BlockButton label="Download Brochure" />
+        </a>
+      )}
+
+      {page.data?.brochure?.url && (
+        <a href={page.data?.brochure?.url} target="_blank">
+          <BlockButton label="Download Brochure" />
+        </a>
+      )}
     </>
   );
 };
 
-const FooterButtonsBlue = () => {
+const FooterButtonsBlue = ({ handleOpenForm, page, property }) => {
   return (
     <>
-      <BlockButtonBlue label="Arrange a viewing" />
-      <BlockButtonBlue label="Download Brochure" />
+      <BlockButtonBlue
+        label="Arrange a viewing"
+        onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
+      />
+      {property && page.data?.development?.data?.brochure?.url && (
+        <a href={page.data?.development?.data?.brochure?.url} target="_blank">
+          <BlockButtonBlue label="Download Brochure" />
+        </a>
+      )}
+      {page.data?.brochure?.url && (
+        <a href={page.data?.brochure?.url} target="_blank">
+          <BlockButtonBlue label="Download Brochure" />
+        </a>
+      )}
     </>
   );
 };

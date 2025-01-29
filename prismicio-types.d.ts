@@ -360,7 +360,18 @@ interface DevelopmentDocumentData {
    * - **Tab**: Downloads
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */;
-  site_plan: prismic.LinkToMediaField /**
+  site_plan: prismic.LinkToMediaField;
+
+  /**
+   * Brochure field in *Development*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: development.brochure
+   * - **Tab**: Downloads
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  brochure: prismic.LinkToMediaField /**
    * Slice Zone field in *Development*
    *
    * - **Field Type**: Slice Zone
@@ -2269,6 +2280,16 @@ export interface BlockContentSliceWithRegisterInterestFormPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   link_label: prismic.KeyTextField;
+
+  /**
+   * Hubspot Form Id field in *BlockContent → With Register Interest Form → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: block_content.withRegisterInterestForm.primary.hubspot_form_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  hubspot_form_id: prismic.KeyTextField;
 }
 
 /**

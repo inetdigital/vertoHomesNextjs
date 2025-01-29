@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
+
 import Image from "next/image";
 
 import { convertToSquareFeet } from "@/lib/convertToSquareFeet";
@@ -12,6 +14,7 @@ import { BlockButtonBlue } from "@/components/ui/BlockButonBlue";
 export const HeadingDetails = ({ page }) => {
   const [isSliderOpen, setSliderOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { openForm, setFormId } = useHubspotMainForm();
 
   const openSlider = () => setSliderOpen(true);
   const closeSlider = () => setSliderOpen(false);
@@ -23,6 +26,11 @@ export const HeadingDetails = ({ page }) => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? page.data?.property_images.length - 1 : prevIndex - 1
     );
+
+  const handleOpenForm = (formId) => {
+    setFormId(formId); // Set dynamic form ID
+    openForm(); // Open the modal
+  };
 
   return (
     <section className="py-12 bg-vertoDarkBlue">
@@ -73,7 +81,13 @@ export const HeadingDetails = ({ page }) => {
               </div>
             </div>
             <div className="w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0 flex">
-              <BlockButtonBlue label="Arrange a viewing" reverse />
+              <BlockButtonBlue
+                label="Arrange a viewing"
+                reverse
+                onClick={() =>
+                  handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                }
+              />
             </div>
           </div>
           <div className="w-full h-[1px] bg-vertoLightBlue mb-16" />
@@ -181,6 +195,14 @@ export const HeadingDetails = ({ page }) => {
                   target="_blank"
                 >
                   <BlockButtonBlue label="Site Plan" />
+                </a>
+              )}
+              {page.data?.development?.data?.brochure?.url && (
+                <a
+                  href={page.data?.development?.data?.brochure?.url}
+                  target="_blank"
+                >
+                  <BlockButtonBlue label="Download Brochure" />
                 </a>
               )}
             </div>

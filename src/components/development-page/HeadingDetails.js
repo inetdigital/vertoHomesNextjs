@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
 
 import {
   MapPinIcon,
@@ -11,6 +11,13 @@ import {
 import BlockButton from "@/components/ui/BlockButton";
 
 export const HeadingDetails = ({ page }) => {
+  const { openForm, setFormId } = useHubspotMainForm();
+
+  const handleOpenForm = (formId) => {
+    setFormId(formId); // Set dynamic form ID
+    openForm(); // Open the modal
+  };
+
   return (
     <section className="py-12 bg-vertoDarkGreen">
       <div className="max-w-6xl mx-auto px-6 xl:px-0">
@@ -76,13 +83,27 @@ export const HeadingDetails = ({ page }) => {
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
               {page.data?.development_status?.uid === "coming_soon" && (
                 <>
-                  <BlockButton label="Register your interest" />
+                  <BlockButton
+                    label="Register your interest"
+                    onClick={() =>
+                      handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                    }
+                  />
                 </>
               )}
               {page.data?.development_status?.uid === "available" && (
                 <>
-                  <BlockButton label="Arrange a Viewing" />
-                  <BlockButton label="Download Brochure" />
+                  <BlockButton
+                    label="Arrange a Viewing"
+                    onClick={() =>
+                      handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                    }
+                  />
+                  {page.data?.brochure?.url && (
+                    <a href={page.data?.brochure?.url} target="_blank">
+                      <BlockButton label="Download Brochure" />
+                    </a>
+                  )}
                   {page.data?.site_plan?.url && (
                     <a href={page.data?.site_plan?.url} target="_blank">
                       <BlockButton label="Site Plan" />
