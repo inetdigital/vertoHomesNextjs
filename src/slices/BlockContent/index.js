@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 
 import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
 
@@ -556,7 +557,7 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             </motion.div>
           </button>
         ) : (
-          <a href="/lets-talk" className="flex">
+          <Link href="/lets-talk" className="flex">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
@@ -565,7 +566,7 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             >
               Get in touch
             </motion.div>
-          </a>
+          </Link>
         )}
       </div>
     </div>
