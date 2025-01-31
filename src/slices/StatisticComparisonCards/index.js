@@ -172,13 +172,15 @@ const GlobalStats = ({ slice }) => {
           </motion.div>
         ))}
       </motion.div>
-      <div className="mt-24">
-        <PrismicNextImage
-          field={slice.primary.image}
-          fallbackAlt="Verto Homes"
-          loading="lazy"
-        />
-      </div>
+      {slice.primary?.image?.url && (
+        <div className="mt-24">
+          <PrismicNextImage
+            field={slice.primary.image}
+            fallbackAlt="Verto Homes"
+            loading="lazy"
+          />
+        </div>
+      )}
     </div>
   );
 };

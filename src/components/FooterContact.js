@@ -12,6 +12,7 @@ export const FooterContact = ({
   marginTop,
   property = false,
 }) => {
+  console.log(page);
   const { openForm, setFormId } = useHubspotMainForm();
   const handleOpenForm = (formId) => {
     setFormId(formId); // Set dynamic form ID
@@ -24,14 +25,25 @@ export const FooterContact = ({
       <div className="flex flex-col md:flex-row justify-between items-left md:items-center md:items-start max-w-7xl mx-auto">
         {/* Left Content */}
         <div className="mb-8 md:mb-0">
-          <h2 className="text-4xl">
-            <span
-              className={`text-${highlightColor ? highlightColor : "vertoLightGreen"}`}
-            >
-              CONTACT
-            </span>{" "}
-            US FOR <br /> MORE INFORMATION
-          </h2>
+          {page.data?.development_status?.uid === "available" ? (
+            <h2 className="text-4xl">
+              <span
+                className={`text-${highlightColor ? highlightColor : "vertoLightGreen"}`}
+              >
+                CONTACT
+              </span>{" "}
+              US FOR <br /> MORE INFORMATION
+            </h2>
+          ) : (
+            <h2 className="text-4xl">
+              <span
+                className={`text-${highlightColor ? highlightColor : "vertoLightGreen"}`}
+              >
+                CONTACT
+              </span>{" "}
+              US TO <br /> REGSITER INTEREST
+            </h2>
+          )}
           <div
             className={`h-1 w-16 bg-${highlightColor ? highlightColor : "vertoLightGreen"} mt-4`}
           ></div>
@@ -63,7 +75,11 @@ const FooterButtonsStandard = ({ handleOpenForm, page, property }) => {
   return (
     <>
       <BlockButton
-        label="Arrange a viewing"
+        label={
+          page.data?.development_status?.uid === "available"
+            ? "Arrange a viewing"
+            : "Register your interest"
+        }
         onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
       />
 
@@ -86,7 +102,11 @@ const FooterButtonsBlue = ({ handleOpenForm, page, property }) => {
   return (
     <>
       <BlockButtonBlue
-        label="Arrange a viewing"
+        label={
+          page.data?.development_status?.uid === "available"
+            ? "Arrange a viewing"
+            : "Register your interest"
+        }
         onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
       />
       {property && page.data?.development?.data?.brochure?.url && (

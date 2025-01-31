@@ -78,7 +78,13 @@
                 "config": {
                   "label": "Image",
                   "constraint": {},
-                  "thumbnails": []
+                  "thumbnails": [
+                    {
+                      "name": "square",
+                      "width": 400,
+                      "height": 400
+                    }
+                  ]
                 }
               },
               "secondary_image": {

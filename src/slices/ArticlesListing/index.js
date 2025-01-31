@@ -117,7 +117,9 @@ const PressReleases = ({ slice }) => {
                 In the press
               </p>
               <span className="text-white">
-                <DateFormat dateString={featuredArticle.data.publishDate} />
+                <DateFormat
+                  dateString={featuredArticle.last_publication_date}
+                />
               </span>
             </div>
             <h3 className="mt-3 text-2xl font-semibold text-white">
@@ -168,7 +170,7 @@ const PressReleases = ({ slice }) => {
                     </p>
                     <span className="text-gray-500">
                       <DateFormat
-                        dateString={featuredArticle.data.publishDate}
+                        dateString={featuredArticle.last_publication_date}
                       />
                     </span>
                   </div>
