@@ -117,9 +117,7 @@ const PressReleases = ({ slice }) => {
                 In the press
               </p>
               <span className="text-white">
-                <DateFormat
-                  dateString={featuredArticle.last_publication_date}
-                />
+                <DateFormat dateString={featuredArticle.data.publishDate} />
               </span>
             </div>
             <h3 className="mt-3 text-2xl font-semibold text-white">
@@ -170,7 +168,7 @@ const PressReleases = ({ slice }) => {
                     </p>
                     <span className="text-gray-500">
                       <DateFormat
-                        dateString={featuredArticle.last_publication_date}
+                        dateString={featuredArticle.data.publishDate}
                       />
                     </span>
                   </div>
@@ -423,7 +421,7 @@ const Articles = ({ slice }) => {
                   "bg-vertoLightGreen text-white hover:text-gray-600",
                 "buying-guides":
                   "bg-vertoLightBlue text-white hover:text-gray-600",
-              }[post.data.category.data.uid] || "gray-50 text-gray-600";
+              }[post.data.category?.data?.uid] || "gray-50 text-gray-600";
             return (
               <motion.article
                 key={index}
@@ -446,13 +444,13 @@ const Articles = ({ slice }) => {
                     <p
                       className={clsx(
                         tagColors,
-                        `relative z-10 rounded-full tagColor px-3 py-1.5 font-medium hover:bg-gray-100`
+                        `relative z-1 rounded-full tagColor px-3 py-1.5 font-medium hover:bg-gray-100`
                       )}
                     >
                       {post.data?.category?.data?.name}
                     </p>
                     <span className="text-gray-500">
-                      <DateFormat dateString={post.last_publication_date} />
+                      <DateFormat dateString={post.data.publishDate} />
                     </span>
                   </div>
                   <div className="group relative">

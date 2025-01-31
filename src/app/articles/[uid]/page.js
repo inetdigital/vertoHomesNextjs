@@ -136,9 +136,23 @@ export default async function Page({ params }) {
           <h1 className="mb-6 text-3xl font-light tracking-wide text-vertoBlack md:text-4xl lg:text-5xl text-center uppercase">
             <PrismicText field={article.data.title} />
           </h1>
-          <p className="tracking-tighter text-vertoDarkGreen text-center mb-24">
+          <p className="tracking-tighter text-vertoDarkGreen text-center mb-12">
             {dateFormatter.format(date)}
           </p>
+          <p className={clsx(`text-md mb-12 text-center underline`)}>
+            {article.data?.category?.data?.name}
+          </p>
+          <HorizontalDivider />
+          <div className="my-24">
+            <div className="relative w-full aspect-video min-h-[500px]">
+              <PrismicNextImage
+                field={article.data.featuredImage}
+                className="absolute inset-0 object-cover"
+                fallbackAlt="Verto Homes"
+                fill
+              />
+            </div>
+          </div>
           <HorizontalDivider />
         </div>
         <div>
