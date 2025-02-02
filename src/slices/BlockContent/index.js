@@ -44,6 +44,7 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
               : "py-28 md:py-32 px-6 md:px-12"
         }
         ${slice.variation === "withRegisterInterestForm" && isConsecutive && "pt-28 md:pt-32"}
+        ${slice.variation === "splitGrid" && isConsecutive && "pt-28 md:pt-32"}
         ${slice.variation === "default" && isConsecutive && "pt-28 md:pt-32"}
         `}
       >

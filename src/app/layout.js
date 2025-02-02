@@ -24,6 +24,8 @@ import { HubspotMainFormProvider } from "@/context/HubspotMainFormContext";
 
 import BodyClassManager from "@/components/BodyClassManager";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // Include any weights you need
@@ -57,6 +59,7 @@ export default function RootLayout({ children }) {
                                           <PrismicPreview
                                             repositoryName={repositoryName}
                                           />
+                                          <SpeedInsights />
                                         </main>
                                       </HubspotMainFormProvider>
                                     </PressProvider>

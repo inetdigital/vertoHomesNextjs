@@ -2,6 +2,7 @@ import * as prismic from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import { notFound } from "next/navigation";
 
 import { Layout } from "@/components/Layout";
 import HomePageBanner from "@/components/HomePageBanner";
@@ -11,9 +12,19 @@ import { fetchNavigation } from "@/lib/fetchNavigation";
 export async function generateMetadata() {
   const client = createClient();
   const settings = await client.getSingle("settings");
+  const page = await client.getSingle("home_page").catch(() => notFound());
 
   return {
-    title: prismic.asText(settings.data.name),
+    title: `${page.data.meta_title} | ${prismic.asText(settings.data.name)}`,
+    description: page.data.meta_description,
+    openGraph: {
+      title: page.data.meta_title,
+      images: [
+        {
+          url: page.data.meta_image.url,
+        },
+      ],
+    },
   };
 }
 

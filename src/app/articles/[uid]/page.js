@@ -144,12 +144,11 @@ export default async function Page({ params }) {
           </p>
           <HorizontalDivider />
           <div className="my-24">
-            <div className="relative w-full aspect-video min-h-[500px]">
+            <div className="max-w-4xl px-6 mx-auto">
               <PrismicNextImage
                 field={article.data.featuredImage}
-                className="absolute inset-0 object-cover"
+                className="object-contain"
                 fallbackAlt="Verto Homes"
-                fill
               />
             </div>
           </div>

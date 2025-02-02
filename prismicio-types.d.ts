@@ -4216,7 +4216,7 @@ export interface RichContentBlockSliceWithImageInGridPrimaryContentBlockItem {
    * - **API ID Path**: rich_content_block.withImageInGrid.primary.content_block[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image: prismic.ImageField<"square">;
 
   /**
    * Secondary Image field in *RichContentBlock → WithImageInGrid → Primary → Content Block*
