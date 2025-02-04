@@ -51,6 +51,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "team": {
+              "type": "SharedSlice"
+            },
             "map_location": {
               "type": "SharedSlice"
             },

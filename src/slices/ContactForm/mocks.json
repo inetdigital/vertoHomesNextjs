@@ -2,7 +2,19 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"form_header_content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Et deserunt exercitation adipisicing. Consectetur do aliquip incididunt ex et est."
+						}
+					}
+				]
+			}
+		},
 		"items": [
 			{
 				"__TYPE__": "GroupItemContent",
@@ -13,7 +25,19 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "careersEnquiry",
-		"primary": {},
+		"primary": {
+			"form_header_content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Sint sit anim do ut Lorem anim occaecat qui. Tempor excepteur aute sunt et officia esse elit laborum nisi culpa laboris sunt dolore."
+						}
+					}
+				]
+			}
+		},
 		"items": [
 			{
 				"__TYPE__": "GroupItemContent",

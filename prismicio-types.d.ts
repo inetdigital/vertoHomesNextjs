@@ -578,6 +578,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | TeamSlice
   | MapLocationSlice
   | VideoSlice
   | ArticlesListingSlice
@@ -2759,6 +2760,21 @@ export type CompanyContactDetailsSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *ContactForm → Default → Primary*
+ */
+export interface ContactFormSliceDefaultPrimary {
+  /**
+   * Form Header Content field in *ContactForm → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.default.primary.form_header_content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  form_header_content: prismic.RichTextField;
+}
+
+/**
  * Default variation for ContactForm Slice
  *
  * - **API ID**: `default`
@@ -2767,9 +2783,24 @@ export type CompanyContactDetailsSlice = prismic.SharedSlice<
  */
 export type ContactFormSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<ContactFormSliceDefaultPrimary>,
   never
 >;
+
+/**
+ * Primary content in *ContactForm → CareersEnquiry → Primary*
+ */
+export interface ContactFormSliceCareersEnquiryPrimary {
+  /**
+   * Form Header Content field in *ContactForm → CareersEnquiry → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.careersEnquiry.primary.form_header_content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  form_header_content: prismic.RichTextField;
+}
 
 /**
  * CareersEnquiry variation for ContactForm Slice
@@ -2780,7 +2811,7 @@ export type ContactFormSliceDefault = prismic.SharedSliceVariation<
  */
 export type ContactFormSliceCareersEnquiry = prismic.SharedSliceVariation<
   "careersEnquiry",
-  Record<string, never>,
+  Simplify<ContactFormSliceCareersEnquiryPrimary>,
   never
 >;
 
@@ -4755,6 +4786,105 @@ export type SubMenuItemSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Team → Default → Primary → Team Member*
+ */
+export interface TeamSliceDefaultPrimaryTeamMemberItem {
+  /**
+   * Image field in *Team → Default → Primary → Team Member*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Name field in *Team → Default → Primary → Team Member*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Position field in *Team → Default → Primary → Team Member*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[].position
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  position: prismic.KeyTextField;
+
+  /**
+   * Information field in *Team → Default → Primary → Team Member*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[].information
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  information: prismic.RichTextField;
+
+  /**
+   * LinkedIn field in *Team → Default → Primary → Team Member*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[].linkedin
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  linkedin: prismic.LinkField;
+}
+
+/**
+ * Primary content in *Team → Default → Primary*
+ */
+export interface TeamSliceDefaultPrimary {
+  /**
+   * Team Member field in *Team → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.team_member[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  team_member: prismic.GroupField<
+    Simplify<TeamSliceDefaultPrimaryTeamMemberItem>
+  >;
+}
+
+/**
+ * Default variation for Team Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TeamSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Team*
+ */
+type TeamSliceVariation = TeamSliceDefault;
+
+/**
+ * Team Shared Slice
+ *
+ * - **API ID**: `team`
+ * - **Description**: Team
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TeamSlice = prismic.SharedSlice<"team", TeamSliceVariation>;
+
+/**
  * Primary content in *Text → Default → Primary*
  */
 export interface TextSliceDefaultPrimary {
@@ -5155,6 +5285,8 @@ declare module "@prismicio/client" {
       CompanyContactDetailsSliceVariation,
       CompanyContactDetailsSliceDefault,
       ContactFormSlice,
+      ContactFormSliceDefaultPrimary,
+      ContactFormSliceCareersEnquiryPrimary,
       ContactFormSliceVariation,
       ContactFormSliceDefault,
       ContactFormSliceCareersEnquiry,
@@ -5269,6 +5401,11 @@ declare module "@prismicio/client" {
       SubMenuItemSliceDefault,
       SubMenuItemSliceWithDevelopmentReference,
       SubMenuItemSliceSingleColumnMenu,
+      TeamSlice,
+      TeamSliceDefaultPrimaryTeamMemberItem,
+      TeamSliceDefaultPrimary,
+      TeamSliceVariation,
+      TeamSliceDefault,
       TextSlice,
       TextSliceDefaultPrimary,
       TextSliceVariation,

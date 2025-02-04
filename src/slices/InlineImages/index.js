@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Bounded } from "@/components/Bounded";
 import PrismicImageComponent from "@/components/PrismicImageComponent";
+import { PrismicNextImage } from "@prismicio/next";
 
 const InlineImages = ({ slice }) => {
   const ref = useRef(null);
@@ -66,7 +67,7 @@ const InlineImages = ({ slice }) => {
               }}
               className="flex justify-center"
             >
-              <PrismicImageComponent imageField={item.image} />
+              <PrismicNextImage field={item.image} className="object-contain" />
             </motion.div>
           );
         })}

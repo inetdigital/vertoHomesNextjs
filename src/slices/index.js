@@ -26,6 +26,7 @@ export const components = {
   standard_text_block: dynamic(() => import("./StandardTextBlock")),
   steps: dynamic(() => import("./Steps")),
   sub_menu_item: dynamic(() => import("./SubMenuItem")),
+  team: dynamic(() => import("./Team")),
   text: dynamic(() => import("./Text")),
   timeline: dynamic(() => import("./Timeline")),
   typology_layout: dynamic(() => import("./TypologyLayout")),

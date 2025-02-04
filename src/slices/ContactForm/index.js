@@ -5,8 +5,10 @@ import { Bounded } from "@/components/Bounded";
 import { Field, Label, Switch } from "@headlessui/react";
 
 import { motion } from "framer-motion";
+import { PrismicRichText } from "@/components/PrismicRichText";
 
 const ContactForm = ({ slice }) => {
+  console.log(slice);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -151,7 +153,20 @@ const ContactForm = ({ slice }) => {
   return (
     <Bounded as="section" paddingAs="fullWidthBlock">
       <div className="isolate bg-vertoDarkBlue px-6 lg:px-8 py-24 sm:py-32">
-        <form onSubmit={handleSubmit} className="mx-auto max-w-xl sm:mt-20">
+        {slice.primary?.form_header_content &&
+          slice.primary?.form_header_content.length > 0 && (
+            <div className="mx-auto max-w-xl text-center text-white mb-20 pb-20 border-b-2 border-solid border-neutral-500">
+              <PrismicRichText
+                field={slice.primary.form_header_content}
+                components={{
+                  paragraph: ({ children }) => (
+                    <p className="text-white">{children}</p>
+                  ),
+                }}
+              />
+            </div>
+          )}
+        <form onSubmit={handleSubmit} className="mx-auto max-w-xl">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             {["firstName", "lastName", "email", "phone", "message"].map(
               (field) => (
