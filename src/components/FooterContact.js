@@ -41,7 +41,7 @@ export const FooterContact = ({
               >
                 CONTACT
               </span>{" "}
-              US TO <br /> REGSITER INTEREST
+              US TO <br /> REGISTER INTEREST
             </h2>
           )}
           <div

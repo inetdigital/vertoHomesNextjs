@@ -157,7 +157,16 @@ const PressReleases = ({ slice }) => {
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
                     fallbackAlt="Verto Homes"
                   />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset" />
+
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset">
+                    <a
+                      href={post.data?.link?.url}
+                      target="_blank"
+                      className="opacity-0 block w-full h-full"
+                    >
+                      {post.data?.title}
+                    </a>
+                  </div>
                 </div>
                 <div className="max-w-xl">
                   <div className="mt-8 flex items-center gap-x-4 text-xs">
@@ -419,10 +428,8 @@ const Articles = ({ slice }) => {
             const tagColors =
               {
                 news: "bg-gray-50 text-gray-600",
-                "sustainable-living":
-                  "bg-vertoLightGreen text-white hover:text-gray-600",
-                "buying-guides":
-                  "bg-vertoLightBlue text-white hover:text-gray-600",
+                "sustainable-living": "bg-vertoLightGreen text-white",
+                "buying-guides": "bg-vertoLightBlue text-white",
               }[post.data.category?.data?.uid] || "gray-50 text-gray-600";
             return (
               <motion.article
@@ -439,14 +446,19 @@ const Articles = ({ slice }) => {
                     className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
                     fallbackAlt="Verto Homes"
                   />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset" />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-vertoDarkBlue/10 ring-inset">
+                    <PrismicNextLink
+                      field={post}
+                      className="block w-full h-full"
+                    />
+                  </div>
                 </div>
                 <div className="max-w-xl">
                   <div className="mt-8 flex items-center gap-x-4 text-xs">
                     <p
                       className={clsx(
                         tagColors,
-                        `relative z-1 rounded-full tagColor px-3 py-1.5 font-medium hover:bg-gray-100`
+                        `relative z-1 rounded-full tagColor px-3 py-1.5 font-medium`
                       )}
                     >
                       {post.data?.category?.data?.name}
