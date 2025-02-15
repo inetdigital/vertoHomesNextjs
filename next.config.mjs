@@ -1,3 +1,7 @@
+import { setupDevPlatform } from "@cloudflare/next-on-pages/next-dev";
+
+setupDevPlatform().catch(console.error);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -15,4 +19,4 @@ const nextConfig = {
   swcMinify: true, // Enable SWC minification for faster builds and smaller JS bundles
 };
 
-module.exports = nextConfig;
+export default nextConfig; // ✅ Use ES Module syntax instead of CommonJS

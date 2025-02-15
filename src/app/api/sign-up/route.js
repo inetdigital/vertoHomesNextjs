@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 export async function POST(request) {
   // Get data submitted in request's form.
   const form = await request.formData();

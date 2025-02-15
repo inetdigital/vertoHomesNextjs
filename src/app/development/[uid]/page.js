@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import * as prismic from "@prismicio/client";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
@@ -57,14 +59,4 @@ export default async function Development({ params }) {
       <FooterContact page={page} themeColor="vertoDarkGreen" />
     </Layout>
   );
-}
-
-export async function generateStaticParams() {
-  const client = createClient();
-
-  const pages = await client.getAllByType("development");
-
-  return pages.map((page) => {
-    return { uid: page.uid };
-  });
 }

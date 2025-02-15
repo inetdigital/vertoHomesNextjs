@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import Link from "next/link";
 import * as prismic from "@prismicio/client";
 import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
@@ -178,14 +180,4 @@ export default async function Page({ params }) {
       )}
     </Layout>
   );
-}
-
-export async function generateStaticParams() {
-  const client = createClient();
-
-  const articles = await client.getAllByType("article");
-
-  return articles.map((article) => {
-    return { uid: article.uid };
-  });
 }

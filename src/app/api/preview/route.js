@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "@/prismicio";
 
