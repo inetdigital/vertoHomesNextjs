@@ -18,6 +18,24 @@
             "label": "Video Link",
             "placeholder": ""
           }
+        },
+        "video_controls": {
+          "type": "Boolean",
+          "config": {
+            "label": "Video Controls",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "autoplay_video": {
+          "type": "Boolean",
+          "config": {
+            "label": "Autoplay Video",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

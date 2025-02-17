@@ -5096,6 +5096,28 @@ export interface VideoSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video_link: prismic.EmbedField;
+
+  /**
+   * Video Controls field in *Video → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: video.default.primary.video_controls
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  video_controls: prismic.BooleanField;
+
+  /**
+   * Autoplay Video field in *Video → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: video.default.primary.autoplay_video
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  autoplay_video: prismic.BooleanField;
 }
 
 /**

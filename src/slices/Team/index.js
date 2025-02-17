@@ -12,18 +12,38 @@ const Team = ({ slice }) => {
             <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
               Meet our team
             </h2>
-            <p className="mt-6 text-lg/8 text-gray-400">Some content here</p>
           </div>
           <ul
             role="list"
             className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8"
           >
             {people.map((person) => (
-              <li key={person.name} className="rounded-2xl bg-white px-8 py-10">
-                <PrismicNextImage
-                  field={person.image}
-                  className="mx-auto size-48 md:size-56 object-cover rounded-full"
-                />
+              <li
+                key={person.name}
+                className="rounded-2xl bg-white px-8 py-10 transition-all duration-500 ease-in-out scale-100 hover:scale-[1.04]"
+              >
+                {person.image?.url ? (
+                  <PrismicNextImage
+                    field={person.image}
+                    className="mx-auto size-36 md:size-48 object-cover rounded-full border-4 border-vertoDarkBlue"
+                    fallbackAlt="People at verto homes"
+                  />
+                ) : (
+                  <div className="mx-auto size-48 md:size-56 object-cover rounded-full border-4 border-vertoDarkBlue relative bg-vertoDarkBlue">
+                    <svg
+                      className="w-12 h-12 text-gray-400 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 absolute"
+                      fill="#fff"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                )}
                 <h3 className="mt-6 text-base/7 font-semibold tracking-tight text-vertoDarkBlue uppercase">
                   {person.name}
                 </h3>
@@ -36,7 +56,7 @@ const Team = ({ slice }) => {
                       field={person.information}
                       components={{
                         paragraph: ({ children }) => (
-                          <p className="text-vertoDarkBlue text-sm">
+                          <p className="text-vertoDarkBlue text-sm mb-2">
                             {children}
                           </p>
                         ),
