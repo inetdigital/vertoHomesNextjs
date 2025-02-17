@@ -25,11 +25,11 @@ const Team = ({ slice }) => {
                 {person.image?.url ? (
                   <PrismicNextImage
                     field={person.image}
-                    className="mx-auto size-36 md:size-48 object-cover rounded-full border-4 border-vertoDarkBlue"
+                    className="mx-auto size-36 md:size-42 object-cover rounded-full border-4 border-vertoDarkBlue"
                     fallbackAlt="People at verto homes"
                   />
                 ) : (
-                  <div className="mx-auto size-48 md:size-56 object-cover rounded-full border-4 border-vertoDarkBlue relative bg-vertoDarkBlue">
+                  <div className="mx-auto size-36 md:size-42 object-cover rounded-full border-4 border-vertoDarkBlue relative bg-vertoDarkBlue">
                     <svg
                       className="w-12 h-12 text-gray-400 left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 absolute"
                       fill="#fff"
@@ -37,7 +37,7 @@ const Team = ({ slice }) => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                         clip-rule="evenodd"
                       ></path>
