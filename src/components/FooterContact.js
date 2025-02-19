@@ -12,7 +12,6 @@ export const FooterContact = ({
   marginTop,
   property = false,
 }) => {
-  console.log(page);
   const { openForm, setFormId } = useHubspotMainForm();
   const handleOpenForm = (formId) => {
     setFormId(formId); // Set dynamic form ID

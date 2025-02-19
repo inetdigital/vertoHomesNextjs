@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Development({ params }) {
+export default async function Property({ params }) {
   const { uid } = await params;
   const client = createClient();
 
@@ -52,7 +52,7 @@ export default async function Development({ params }) {
   const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
   return (
-    <Layout navigation={navigation} settings={settings}>
+    <Layout navigation={navigation} settings={settings} pageId="property">
       {prismic.isFilled.image(page.data.banner_image) && (
         <BannerImage
           image={page.data.banner_image}
@@ -77,7 +77,7 @@ export default async function Development({ params }) {
 export async function generateStaticParams() {
   const client = createClient();
 
-  const pages = await client.getAllByType("development");
+  const pages = await client.getAllByType("property");
 
   return pages.map((page) => {
     return { uid: page.uid };

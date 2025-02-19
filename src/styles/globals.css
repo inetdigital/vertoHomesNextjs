@@ -104,3 +104,11 @@
 .slick-dots li button:before {
     color: transparent;
 }
+
+.property-grid-action {
+    display: none;
+}
+
+#property .property-grid-action {
+    display: flex;
+}

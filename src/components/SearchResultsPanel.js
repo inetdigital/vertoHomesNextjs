@@ -11,6 +11,9 @@ import {
 } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
+import Link from "next/link";
+import { motion } from "framer-motion";
+
 import { capitalizeWords } from "@/lib/capitalizeWords";
 import { formatRange } from "@/lib/formatPriceRange";
 import { PropertyCard } from "@/components/ui/PropertyCard";
@@ -323,6 +326,20 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
           {sortedProperties.map((property, index) => {
             return <PropertyCard property={property} key={index} />;
           })}
+        </div>
+      )}
+      {restrictToDevelopment && (
+        <div className="mt-32 property-grid-action items-center justify-center">
+          <Link href={`/development/${restrictToDevelopment}`} className="">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              className="relative text-center cursor-pointer uppercase px-6 py-3 rounded-md shadow-md tracking-widest font-normal bg-vertoDarkBlue hover:bg-vertoLightBlue text-white"
+            >
+              Return to development
+            </motion.button>
+          </Link>
         </div>
       )}
       {filteredProperties.length === 0 && (

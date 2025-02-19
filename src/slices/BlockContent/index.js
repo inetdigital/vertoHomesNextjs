@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import clsx from "clsx";
 
 import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
 
@@ -34,19 +35,24 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       className={`text-center`}
     >
       <div
-        className={`${backgroundColorClass} 
-        ${
+        className={clsx(
+          backgroundColorClass,
           slice.variation === "contentList" &&
-          slice.primary.background_color === "White"
+            slice.primary.background_color === "White"
             ? "px-6 md:px-12 my-28 md:my-32"
             : isConsecutive
               ? "px-6 md:px-12 pb-28 md:pb-32"
-              : "py-28 md:py-32 px-6 md:px-12"
-        }
-        ${slice.variation === "withRegisterInterestForm" && isConsecutive && "pt-28 md:pt-32"}
-        ${slice.variation === "splitGrid" && isConsecutive && "pt-28 md:pt-32"}
-        ${slice.variation === "default" && isConsecutive && "pt-28 md:pt-32"}
-        `}
+              : "py-28 md:py-32 px-6 md:px-12",
+          {
+            "pt-28 md:pt-32":
+              [
+                "testimonial",
+                "withRegisterInterestForm",
+                "splitGrid",
+                "default",
+              ].includes(slice.variation) && isConsecutive,
+          }
+        )}
       >
         {slice.variation === "default" && <SearchVariant slice={slice} />}
         {slice.variation === "withImageLead" && <WithImageLead slice={slice} />}

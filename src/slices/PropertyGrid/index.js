@@ -33,6 +33,7 @@ const PropertyGrid = ({ slice }) => {
       <div className="mt-16">
         <SearchResultsPanel
           restrictToDevelopment={slice.primary.properties_from_development.uid}
+          type={slice.type}
         />
       </div>
     </Bounded>
