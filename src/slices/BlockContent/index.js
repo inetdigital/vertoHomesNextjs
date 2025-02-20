@@ -573,7 +573,7 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
             >
               {slice.primary.link_label
                 ? slice.primary.link_label
-                : "Get in touch"}
+                : "Register your interes"}
             </motion.div>
           </Link>
         )}
