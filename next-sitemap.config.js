@@ -9,7 +9,7 @@ if (fs.existsSync(prismicPagesFile)) {
 }
 
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://www.vertohomes.com",
+  siteUrl: "https://www.vertohomes.com",
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ["/preview", "/admin"],
