@@ -70,7 +70,7 @@ export const HeadingDetails = ({ page }) => {
           </div>
         </div>
       )}
-      <div className="max-w-6xl mx-auto px-6 xl:px-0">
+      <div className="max-w-7xl mx-auto px-6 xl:px-0">
         <div className="text-white py-8">
           <div className="flex flex-col lg:flex-row mb-16">
             <div className="flex w-full lg:w-2/3">

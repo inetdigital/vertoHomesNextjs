@@ -337,7 +337,7 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="relative text-center cursor-pointer uppercase px-6 py-3 rounded-md shadow-md tracking-widest font-normal bg-vertoDarkBlue hover:bg-vertoLightBlue text-white"
             >
-              Return to development
+              Return to {developmentName}
             </motion.button>
           </Link>
         </div>

@@ -49,53 +49,63 @@ const WithImageGrid = ({ slice }) => {
   return (
     <div className={clsx(backgroundColor, paddingClasses, `grid gap-y-0`)}>
       <div className="max-w-7xl mx-auto">
-        {slice.primary.content_block.map((section, index) => (
-          <div
-            key={index}
-            className={`grid grid-cols-1 md:grid-cols-2 items-center mb-${index === slice.primary.content_block.length - 1 ? "0" : "24"} ${
-              index % 2 === 0 ? "" : "md:[&>*:first-child]:order-2"
-            }`}
-          >
-            <div className={textColor}>
-              <PrismicRichText
-                field={section.content}
-                components={{
-                  hyperlink: ({ children, node }) => (
-                    <PrismicNextLink field={node.data}>
-                      {slice.primary.background_color === "White" ||
-                      slice.primary.background_color === null ? (
-                        <BlockButtonDarkBlue label={children} reverse />
-                      ) : (
-                        <BlockButton label={children} />
-                      )}
-                    </PrismicNextLink>
-                  ),
-                  paragraph: ({ children, node }) => (
-                    <p className={textColor}>{children}</p>
-                  ),
-                }}
-              />
-            </div>
+        {slice.primary.content_block.map((section, index) => {
+          const isFirstRowReversed =
+            slice.primary.first_row_image_position === false;
+          const isReversed = isFirstRowReversed
+            ? index % 2 === 0
+            : index % 2 !== 0;
+
+          return (
             <div
-              className={`mt-16 md:mt-0 ${index % 2 === 0 ? "pl-0 md:pl-24" : "pr-0 md:pr-24"}`}
+              key={index}
+              className={`grid grid-cols-1 md:grid-cols-2 items-center mb-${
+                index === slice.primary.content_block.length - 1 ? "0" : "24"
+              } ${isReversed ? "md:[&>*:first-child]:order-2" : ""}`}
             >
-              {section.image && (
-                <PrismicNextImage
-                  field={section.image}
-                  fallbackAlt="Verto Homes"
+              <div className={textColor}>
+                <PrismicRichText
+                  field={section.content}
+                  components={{
+                    hyperlink: ({ children, node }) => (
+                      <PrismicNextLink field={node.data}>
+                        {slice.primary.background_color === "White" ||
+                        slice.primary.background_color === null ? (
+                          <BlockButtonDarkBlue label={children} reverse />
+                        ) : (
+                          <BlockButton label={children} />
+                        )}
+                      </PrismicNextLink>
+                    ),
+                    paragraph: ({ children, node }) => (
+                      <p className={textColor}>{children}</p>
+                    ),
+                  }}
                 />
-              )}
-              {section.secondary_image && (
-                <div className="mt-12">
+              </div>
+              <div
+                className={`mt-16 md:mt-0 ${
+                  isReversed ? "pr-0 md:pr-24" : "pl-0 md:pl-24"
+                }`}
+              >
+                {section.image && (
                   <PrismicNextImage
-                    field={section.secondary_image}
+                    field={section.image}
                     fallbackAlt="Verto Homes"
                   />
-                </div>
-              )}
+                )}
+                {section.secondary_image && (
+                  <div className="mt-12">
+                    <PrismicNextImage
+                      field={section.secondary_image}
+                      fallbackAlt="Verto Homes"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

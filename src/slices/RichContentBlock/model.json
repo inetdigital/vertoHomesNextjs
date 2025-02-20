@@ -110,6 +110,15 @@
             ],
             "default_value": "White"
           }
+        },
+        "first_row_image_position": {
+          "type": "Boolean",
+          "config": {
+            "label": "First row image position",
+            "placeholder_false": "left",
+            "placeholder_true": "right",
+            "default_value": true
+          }
         }
       },
       "items": {}

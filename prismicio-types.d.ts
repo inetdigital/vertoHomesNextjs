@@ -4342,6 +4342,17 @@ export interface RichContentBlockSliceWithImageInGridPrimary {
     "White" | "VertoGreen" | "VertoBlue",
     "filled"
   >;
+
+  /**
+   * First row image position field in *RichContentBlock → WithImageInGrid → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: rich_content_block.withImageInGrid.primary.first_row_image_position
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  first_row_image_position: prismic.BooleanField;
 }
 
 /**
