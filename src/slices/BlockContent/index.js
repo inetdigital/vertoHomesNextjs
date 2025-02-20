@@ -571,7 +571,9 @@ const WithRegistrationForm = ({ slice, themeColor }) => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className={`${BtnColorClasses} relative px-4 py-2 font-medium text-lg tracking-button uppercase border rounded transition-colors duration-300 ease-in-out`}
             >
-              Get in touch
+              {slice.primary.link_label
+                ? slice.primary.link_label
+                : "Get in touch"}
             </motion.div>
           </Link>
         )}
