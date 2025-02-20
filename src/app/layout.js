@@ -26,6 +26,8 @@ import BodyClassManager from "@/components/BodyClassManager";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import Script from "next/script";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // Include any weights you need
@@ -36,6 +38,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} font-sans`}>
       <head>{/* Adobe Fonts link */}</head>
+      <>
+        {/* Load Google Tag Manager script asynchronously */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-H9R4TQWC7K"
+        />
+
+        {/* Google Analytics configuration */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-H9R4TQWC7K');
+        `}
+        </Script>
+      </>
       <body className="overflow-x-hidden antialiased">
         <SearchTabProvider>
           <SearchOptionsProvider>
