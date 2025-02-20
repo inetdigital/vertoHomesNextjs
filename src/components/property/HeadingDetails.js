@@ -182,7 +182,7 @@ export const HeadingDetails = ({ page }) => {
             <div className="flex flex-col gap-4 w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0">
               {page.data?.property_images &&
                 page.data?.property_images?.length > 0 && (
-                  <BlockButtonBlue label="All Photos" onClick={openSlider} />
+                  <BlockButtonBlue label="Gallery" onClick={openSlider} />
                 )}
               {page.data?.floor_plans?.url && (
                 <a href={page.data?.floor_plans?.url} target="_blank">
