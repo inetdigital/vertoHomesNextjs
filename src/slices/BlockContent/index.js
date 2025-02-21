@@ -474,7 +474,7 @@ const AnimatedTitle = ({ title, textColorClass, highlightColorClass }) => {
       variants={containerVariants}
     >
       <p
-        className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-3xl text-wrap`}
+        className={`uppercase text-${textColorClass} tracking-widest font-heading font-semibold text-xl sm:text-2xl md:text-3xl text-wrap`}
       >
         {title.length > 25
           ? title

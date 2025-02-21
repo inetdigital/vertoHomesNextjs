@@ -49,8 +49,13 @@ const InlineImages = ({ slice }) => {
         variants={containerVariants}
       >
         {slice.primary.images?.map((item, index, array) => {
-          const middleIndex = Math.floor(array.length / 2); // Find the center index
-          const distanceFromMiddle = Math.abs(index - middleIndex); // Distance from center (0 for center, 1 for left/right of center, etc.)
+          const totalItems = array.length;
+          const isOdd = totalItems % 2 !== 0;
+          const isLastItem = index === totalItems - 1;
+          const isLastAndOdd = isOdd && isLastItem; // True if it's the last item AND the total count is odd
+
+          const middleIndex = Math.floor(totalItems / 2); // Find the center index
+          const distanceFromMiddle = Math.abs(index - middleIndex); // Distance from center
 
           return (
             <motion.div
@@ -61,11 +66,11 @@ const InlineImages = ({ slice }) => {
                   ...itemVariants.visible,
                   transition: {
                     ...itemVariants.visible.transition,
-                    delay: distanceFromMiddle * 0.2, // Delay increases based on distance from center
+                    delay: distanceFromMiddle * 0.2,
                   },
                 },
               }}
-              className="flex justify-center"
+              className={`flex justify-center ${isLastAndOdd ? "col-span-2 px-12 sm:px-0 sm:col-span-1" : ``}`}
             >
               <PrismicNextImage field={item.image} className="object-contain" />
             </motion.div>

@@ -187,7 +187,7 @@ export const SearchResultsPanel = ({ restrictToDevelopment = false }) => {
               </div>
             </div>
           )}
-          <div className="flex">
+          <div className="flex flex-wrap gap-y-2 gap-x-2 md:gap-x-0 md:gap-y-0">
             {selectedStatus && (
               <div className="bg-vertoDarkGreen rounded-full p-4 mr-0 lg:mr-2 flex items-center">
                 <p className="text-white text-xs sm:text-sm lg:text-base truncate">
