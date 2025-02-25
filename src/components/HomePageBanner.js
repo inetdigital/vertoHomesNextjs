@@ -160,7 +160,7 @@ export default function HomePageBanner({ singleHomePage, banners }) {
               }}
             ></motion.div>
             <motion.div
-              className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 max-w-4xl mx-auto"
+              className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}

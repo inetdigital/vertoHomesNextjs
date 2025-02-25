@@ -32,6 +32,7 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
       paddingAs={
         isConsecutive === false ? "fullWidthBlock" : "fullWidthBlockConsecutive"
       }
+      slice={slice.variation}
       className={`text-center`}
     >
       <div
@@ -45,12 +46,9 @@ const BlockContent = ({ slice, isConsecutive = false }) => {
               : "py-28 md:py-32 px-6 md:px-12",
           {
             "pt-28 md:pt-32":
-              [
-                "testimonial",
-                "withRegisterInterestForm",
-                "splitGrid",
-                "default",
-              ].includes(slice.variation) && isConsecutive,
+              ["withRegisterInterestForm", "splitGrid", "default"].includes(
+                slice.variation
+              ) && isConsecutive,
           }
         )}
       >

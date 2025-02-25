@@ -3,6 +3,7 @@ import clsx from "clsx";
 export function Bounded({
   as: Comp = "div",
   size,
+  slice,
   className,
   paddingAs = "default",
   children,
@@ -12,12 +13,11 @@ export function Bounded({
     default: "py-28 lg:py-32 px-6 md:px-12",
     contentSection: "pt-28 lg:pt-32 px-6 md:px-12",
     contentSectionLast: "py-28 lg:py-32 px-6 md:px-12",
-    fullWidthBlock: "mt-28 lg:mt-32",
+    fullWidthBlock: slice !== "testimonial" ? "mt-28 lg:mt-32" : "mt-0",
     fullWidthBlockConsecutive: "mt-0",
     copyright: "py-6",
     searchHeader: "pt-36",
     tight: "px-6 md:px-12 py-12",
-    // Add more cases here as needed
   };
 
   return (
