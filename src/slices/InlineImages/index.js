@@ -70,7 +70,7 @@ const InlineImages = ({ slice }) => {
                   },
                 },
               }}
-              className={`flex justify-center ${isLastAndOdd ? "col-span-2 px-12 sm:px-0 sm:col-span-1" : ``}`}
+              className={`flex justify-center ${isLastAndOdd ? "col-span-2 px-16 sm:px-0 sm:col-span-1" : ``}`}
             >
               <PrismicNextImage field={item.image} className="object-contain" />
             </motion.div>

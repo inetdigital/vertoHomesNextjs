@@ -67,7 +67,12 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
       <div className="px-6 lg:px-12 pt-8">
         {/* Header Link */}
         <div>
-          <Link href="/find-your-new-home">
+          <Link
+            href="/find-your-new-home"
+            onClick={() => {
+              document.body.style.overflow = "auto";
+            }}
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
@@ -113,6 +118,9 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                           "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
                           "group flex rounded-md p-2 pl-3 text-xl"
                         )}
+                        onClick={() => {
+                          document.body.style.overflow = "auto";
+                        }}
                       >
                         {item.primary.link_label}
                       </PrismicNextLink>
@@ -180,7 +188,10 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                             <li key={index}>
                               <Link
                                 href="/find-your-new-home"
-                                onClick={() => setDevelopmentsParams(item.uid)}
+                                onClick={(e) => {
+                                  document.body.style.overflow = "auto";
+                                  setDevelopmentsParams(item.uid);
+                                }}
                                 className={clsx(
                                   "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
                                   "group flex rounded-md p-2 pl-3 text-xl"
@@ -205,6 +216,9 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                                   "text-gray-700 hover:bg-vertoDarkBlue hover:text-white",
                                   "group flex rounded-md p-2 pl-3 text-xl"
                                 )}
+                                onClick={() => {
+                                  document.body.style.overflow = "auto";
+                                }}
                               />
                             </li>
                           );
@@ -279,6 +293,10 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
                                           <PrismicNextLink
                                             field={item.link}
                                             className="text-base"
+                                            onClick={() => {
+                                              document.body.style.overflow =
+                                                "auto";
+                                            }}
                                           />
                                         </li>
                                       );
