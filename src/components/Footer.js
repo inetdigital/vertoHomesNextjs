@@ -117,8 +117,8 @@ export const Footer = ({ navigation }) => {
         className="bg-vertoDarkBlue"
       >
         <div className="grid grid-cols-2 gap-24">
-          <div />
-          <div>
+          <div className="hidden md:block" />
+          <div className="col-span-2 md:col-span-1 px-6">
             <p className="text-white text-xs">
               © Copyright Verto {new Date().getFullYear()}. All rights
               reserved.{" "}
