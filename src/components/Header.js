@@ -183,59 +183,35 @@ export const Header = ({ navigation, settings }) => {
             </div>
             <nav className="block lg:hidden py-4">
               <div className="menu">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="rgba(0,0,0,0)"
-                  stroke="#000"
-                  strokeLinecap="round"
-                  strokeWidth="0.6"
-                  className="hb"
-                  cursor="pointer"
-                  viewBox="0 0 10 10"
-                  onClick={handleClick}
-                >
-                  <path d="M2 3h6M2 5h6M2 7h6">
-                    <animate
-                      fill="freeze"
-                      attributeName="d"
-                      begin="start.begin"
-                      dur="0.2s"
-                      values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7"
-                    ></animate>
-                    <animate
-                      fill="freeze"
-                      attributeName="d"
-                      begin="reverse.begin"
-                      dur="0.2s"
-                      values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7"
-                    ></animate>
-                  </path>
-                  <path stroke="none" d="M0 0h10v10H0z">
-                    <animate
-                      id="reverse"
-                      attributeName="width"
-                      begin="click"
-                      dur="2s"
-                    ></animate>
-                  </path>
-                  <path stroke="none" d="M0 0h10v10H0z">
-                    <animate
-                      id="start"
-                      fill="freeze"
-                      attributeName="width"
-                      begin="click"
-                      dur="0.001s"
-                      values="10;0"
-                    ></animate>
-                    <animate
-                      fill="freeze"
-                      attributeName="width"
-                      begin="reverse.begin"
-                      dur="0.001s"
-                      values="0;10"
-                    ></animate>
-                  </path>
-                </svg>
+                {!mobileMenuStatus ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-6"
+                    onClick={handleClick}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-6"
+                    onClick={handleClick}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
               </div>
             </nav>
           </div>
