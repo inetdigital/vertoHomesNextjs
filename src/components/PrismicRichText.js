@@ -6,12 +6,15 @@ import { Heading } from "./Heading";
 /** @type {import("@prismicio/react").JSXMapSerializer} */
 const defaultComponents = {
   heading1: ({ children }) => (
-    <Heading as="h1" className="mb-7 mt-12 first:mt-0 last:mb-0 text-h1">
+    <Heading
+      as="h1"
+      className="mb-7 mt-12 first:mt-0 last:mb-0 text-3xl sm:text-4xl md:text-6xl font-semibold"
+    >
       {children}
     </Heading>
   ),
   heading2: ({ children }) => (
-    <Heading as="h2" className="mb-7 last:mb-0 text-h2">
+    <Heading as="h2" className="mb-7 last:mb-0">
       {children}
     </Heading>
   ),

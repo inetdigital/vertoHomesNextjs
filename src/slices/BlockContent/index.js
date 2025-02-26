@@ -229,7 +229,7 @@ const ContentList = ({ slice }) => {
   return (
     <div className="max-w-4xl mx-auto">
       {slice?.primary?.title_content && (
-        <div className="flex justify-center flex-col text-center">
+        <div className="flex justify-center flex-col text-center max-w-3xl mx-auto">
           <PrismicRichText
             field={slice.primary.title_content}
             components={{
