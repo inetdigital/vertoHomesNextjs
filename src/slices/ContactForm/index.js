@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import { PrismicRichText } from "@/components/PrismicRichText";
 
 const ContactForm = ({ slice }) => {
-  console.log(slice);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

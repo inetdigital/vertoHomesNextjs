@@ -63,7 +63,17 @@ export const Header = ({ navigation, settings }) => {
   };
 
   const handleClick = () => {
-    setMobileMenuStatus((prevStatus) => !prevStatus);
+    setMobileMenuStatus((prev) => {
+      const newState = !prev;
+
+      if (newState) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+
+      return newState;
+    });
   };
 
   useEffect(() => {

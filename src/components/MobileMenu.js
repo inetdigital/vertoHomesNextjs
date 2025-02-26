@@ -60,8 +60,8 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
 
   return (
     <div
-      className={`block lg:hidden transition-all duration-300 ease-in-out absolute overflow-hidden left-0 w-full bg-white ${
-        mobileMenuStatus ? "h-screen" : "h-0"
+      className={`block lg:hidden transition-all duration-300 ease-in-out absolute overflow-hidden left-0 w-full bg-white overflow-x-hidden ${
+        mobileMenuStatus ? "h-screen overflow-y-auto" : "h-0"
       }`}
     >
       <div className="px-6 lg:px-12 pt-8">
@@ -79,7 +79,7 @@ export const MobileMenu = ({ navigation, mobileMenuStatus }) => {
           </Link>
         </div>
         <hr className="border-t border-gray-300 my-8" />
-        <div className="transition-all duration-300 ease-in-out">
+        <div className="transition-all duration-300 ease-in-out max-h-screen">
           {/* Navigation */}
           <AnimatePresence
             initial={false}
