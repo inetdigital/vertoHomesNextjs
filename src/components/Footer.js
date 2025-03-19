@@ -77,32 +77,81 @@ export const Footer = ({ navigation }) => {
                     </ul>
                   )}
                   {item.variation === "contactDetails" && (
-                    <ul>
-                      <li className="mb-2 sm:mb-2">
-                        <PrismicNextLink
-                          field={item.primary.link}
-                          className="font-sans text-base font-extralight text-vertoBlack"
-                        />
-                      </li>
-                      <li className="mb-2 sm:mb-6">
-                        <a
-                          href={`tel:0${item.primary.telephone}`}
-                          className="font-sans text-base font-extralight text-vertoBlack"
-                        >
-                          <FormatUKPhoneNumber
-                            phoneNumber={item.primary.telephone}
+                    <>
+                      <ul>
+                        <li className="mb-2 sm:mb-2">
+                          <PrismicNextLink
+                            field={item.primary.link}
+                            className="font-sans text-base font-extralight text-vertoBlack"
                           />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href={`mailto:${item.primary.email}`}
-                          className="font-sans text-base font-extralight text-vertoBlack"
-                        >
-                          {item.primary.email}
-                        </a>
-                      </li>
-                    </ul>
+                        </li>
+                        <li className="mb-2 sm:mb-6">
+                          <a
+                            href={`tel:0${item.primary.telephone}`}
+                            className="font-sans text-base font-extralight text-vertoBlack"
+                          >
+                            <FormatUKPhoneNumber
+                              phoneNumber={item.primary.telephone}
+                            />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href={`mailto:${item.primary.email}`}
+                            className="font-sans text-base font-extralight text-vertoBlack"
+                          >
+                            {item.primary.email}
+                          </a>
+                        </li>
+                      </ul>
+                      <ul className="flex items-center mt-6 gap-3">
+                        <li>
+                          <a
+                            href="https://www.instagram.com/vertohomes/"
+                            target="_blank"
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              className="h-8 w-8 text-vertoBlack"
+                              viewBox="0 0 24 24"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z"></path>
+                              <rect
+                                width="16"
+                                height="16"
+                                x="4"
+                                y="4"
+                                rx="4"
+                              ></rect>
+                              <circle cx="12" cy="12" r="3"></circle>
+                              <path d="M16.5 7.5v.001"></path>
+                            </svg>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.linkedin.com/company/verto-homes/"
+                            target="_blank"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              className="h-6 w-6 text-vertoBlack"
+                            >
+                              <path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5M8 19H5V8h3zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764M20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476z"></path>
+                            </svg>
+                          </a>
+                        </li>
+                      </ul>
+                    </>
                   )}
                 </div>
               );
