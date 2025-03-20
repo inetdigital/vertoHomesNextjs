@@ -7,22 +7,6 @@ const HubSpotFormOverlay = ({ portalId }) => {
   const { isFormOpen, closeForm, formId } = useHubspotMainForm();
 
   useEffect(() => {
-    const loadHubSpotScript = () => {
-      if (!document.querySelector("#hubspot-script")) {
-        const script = document.createElement("script");
-        script.id = "hubspot-script";
-        script.src = "https://js-eu1.hsforms.net/forms/embed/v2.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-    };
-
-    if (typeof window !== "undefined") {
-      loadHubSpotScript();
-    }
-  }, []);
-
-  useEffect(() => {
     if (isFormOpen && formId && typeof window !== "undefined" && window.hbspt) {
       window.hbspt.forms.create({
         portalId,
