@@ -45,12 +45,6 @@ export default function RootLayout({ children }) {
           src="https://www.googletagmanager.com/gtag/js?id=G-H9R4TQWC7K"
         />
 
-        <Script
-          id="hubspot-script"
-          src="//js-eu1.hs-scripts.com/144659623.js"
-          strategy="afterInteractive"
-        />
-
         {/* Google Analytics configuration */}
         <Script id="google-analytics" strategy="afterInteractive">
           {`
