@@ -86,7 +86,11 @@ export const HeadingDetails = ({ page }) => {
                   <BlockButton
                     label="Register your interest"
                     onClick={() =>
-                      handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                      handleOpenForm(
+                        page?.data?.form_id
+                          ? page.data.form_id
+                          : "aceed824-92de-40a5-9021-08953b22be3a"
+                      )
                     }
                   />
                 </>
@@ -96,7 +100,11 @@ export const HeadingDetails = ({ page }) => {
                   <BlockButton
                     label="Arrange a Viewing"
                     onClick={() =>
-                      handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                      handleOpenForm(
+                        page?.data?.form_id
+                          ? page.data.form_id
+                          : "aceed824-92de-40a5-9021-08953b22be3a"
+                      )
                     }
                   />
                   {page.data?.brochure?.url && (

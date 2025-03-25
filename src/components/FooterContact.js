@@ -79,7 +79,13 @@ const FooterButtonsStandard = ({ handleOpenForm, page, property }) => {
             ? "Arrange a viewing"
             : "Register your interest"
         }
-        onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
+        onClick={() =>
+          handleOpenForm(
+            page?.data?.form_id
+              ? page.data.form_id
+              : "aceed824-92de-40a5-9021-08953b22be3a"
+          )
+        }
       />
 
       {property && page.data?.development?.data?.brochure?.url && (
@@ -106,7 +112,13 @@ const FooterButtonsBlue = ({ handleOpenForm, page, property }) => {
             ? "Arrange a viewing"
             : "Register your interest"
         }
-        onClick={() => handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")}
+        onClick={() =>
+          handleOpenForm(
+            page?.data?.form_id
+              ? page.data.form_id
+              : "aceed824-92de-40a5-9021-08953b22be3a"
+          )
+        }
       />
       {property && page.data?.development?.data?.brochure?.url && (
         <a href={page.data?.development?.data?.brochure?.url} target="_blank">
