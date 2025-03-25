@@ -380,7 +380,16 @@ interface DevelopmentDocumentData {
    * - **Tab**: Content
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
-  slices4: prismic.SliceZone<DevelopmentDocumentDataSlices4Slice>;
+  slices4: prismic.SliceZone<DevelopmentDocumentDataSlices4Slice> /**
+   * Form ID field in *Development*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: development.form_id
+   * - **Tab**: Hubspot
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  form_id: prismic.KeyTextField;
 }
 
 /**
@@ -1069,7 +1078,16 @@ interface PropertyDocumentData {
    * - **Tab**: Content
    * - **Documentation**: https://prismic.io/docs/field#slices
    */;
-  slices5: prismic.SliceZone<PropertyDocumentDataSlices5Slice>;
+  slices5: prismic.SliceZone<PropertyDocumentDataSlices5Slice> /**
+   * Form ID field in *Property*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property.form_id
+   * - **Tab**: Hubspot
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  form_id: prismic.KeyTextField;
 }
 
 /**

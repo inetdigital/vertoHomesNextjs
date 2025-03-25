@@ -214,6 +214,15 @@
           }
         }
       }
+    },
+    "Hubspot": {
+      "form_id": {
+        "type": "Text",
+        "config": {
+          "label": "Form ID",
+          "placeholder": ""
+        }
+      }
     }
   }
 }
