@@ -40,6 +40,7 @@ export default async function Development({ params }) {
   const page = await client
     .getByUID("development", uid)
     .catch(() => notFound());
+  console.log(page);
   const navigation = await fetchNavigation(client);
   const settings = await client.getSingle("settings");
   return (

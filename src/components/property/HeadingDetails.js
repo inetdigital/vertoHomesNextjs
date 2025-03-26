@@ -85,7 +85,11 @@ export const HeadingDetails = ({ page }) => {
                 label="Arrange a viewing"
                 reverse
                 onClick={() =>
-                  handleOpenForm("aceed824-92de-40a5-9021-08953b22be3a")
+                  handleOpenForm(
+                    page?.data?.form_id
+                      ? page.data.form_id
+                      : "aceed824-92de-40a5-9021-08953b22be3a"
+                  )
                 }
               />
             </div>
