@@ -101,8 +101,9 @@ export default function RootLayout({ children }) {
                                     <PressProvider>
                                       <HubspotMainFormProvider>
                                         <BodyClassManager />
+
                                         <main>
-                                          {children}
+                                          {!loading && children}
                                           <PrismicPreview
                                             repositoryName={repositoryName}
                                           />
