@@ -34,7 +34,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat", // Use a custom CSS variable to reference the font
 });
 
-const loading = true;
+const loading = Math.random() < 0.5;
 
 export default function RootLayout({ children }) {
   if (loading) {
