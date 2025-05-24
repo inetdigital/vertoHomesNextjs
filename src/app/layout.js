@@ -42,11 +42,7 @@ export default function RootLayout({ children }) {
       <html lang="en" className={`${montserrat.variable} font-sans`}>
         <head>{/* Adobe Fonts link */}</head>
         <body className="overflow-x-hidden antialiased">
-          <div className="flex justify-center items-center h-screen">
-            <div className="loader">
-              <img src={`/assets/loader.svg`} width={15} height={7} />
-            </div>
-          </div>
+          <div className="flex justify-center items-center h-screen"></div>
         </body>
       </html>
     );
