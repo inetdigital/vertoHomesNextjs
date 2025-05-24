@@ -37,20 +37,6 @@ const montserrat = Montserrat({
 });
 
 export default function RootLayout({ children }) {
-  const value = Math.random();
-  console.log("Random value for loading state:", value);
-  const loading = value < 0.5;
-  console.log("Loading state:", loading);
-  if (loading) {
-    return (
-      <html lang="en" className={`${montserrat.variable} font-sans`}>
-        <head>{/* Adobe Fonts link */}</head>
-        <body className="overflow-x-hidden antialiased">
-          <div className="flex justify-center items-center h-screen"></div>
-        </body>
-      </html>
-    );
-  }
   return (
     <html lang="en" className={`${montserrat.variable} font-sans`}>
       <head>{/* Adobe Fonts link */}</head>
@@ -103,7 +89,7 @@ export default function RootLayout({ children }) {
                                         <BodyClassManager />
 
                                         <main>
-                                          {!loading && children}
+                                          {children}
                                           <PrismicPreview
                                             repositoryName={repositoryName}
                                           />
