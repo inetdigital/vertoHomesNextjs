@@ -34,7 +34,23 @@ const montserrat = Montserrat({
   variable: "--font-montserrat", // Use a custom CSS variable to reference the font
 });
 
+const loading = true;
+
 export default function RootLayout({ children }) {
+  if (loading) {
+    return (
+      <html lang="en" className={`${montserrat.variable} font-sans`}>
+        <head>{/* Adobe Fonts link */}</head>
+        <body className="overflow-x-hidden antialiased">
+          <div className="flex justify-center items-center h-screen">
+            <div className="loader">
+              <img src={`/assets/loader.svg`} width={15} height={7} />
+            </div>
+          </div>
+        </body>
+      </html>
+    );
+  }
   return (
     <html lang="en" className={`${montserrat.variable} font-sans`}>
       <head>{/* Adobe Fonts link */}</head>
