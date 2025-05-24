@@ -35,7 +35,10 @@ const montserrat = Montserrat({
 });
 
 export default function RootLayout({ children }) {
-  const loading = Math.random() < 0.5;
+  const value = Math.random();
+  console.log("Random value for loading state:", value);
+  const loading = value < 0.5;
+  console.log("Loading state:", loading);
   if (loading) {
     return (
       <html lang="en" className={`${montserrat.variable} font-sans`}>
