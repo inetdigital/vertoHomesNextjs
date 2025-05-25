@@ -1,5 +1,3 @@
-"use client";
-
 import "../styles/globals.css";
 
 import { Montserrat } from "next/font/google";
