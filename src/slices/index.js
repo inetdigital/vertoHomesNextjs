@@ -13,6 +13,7 @@ export const components = {
   energy_comparison: dynamic(() => import("./StatisticComparisonCards")),
   footer_menu: dynamic(() => import("./FooterMenu")),
   fullimage_block: dynamic(() => import("./FullimageBlock")),
+  hub_spot_form_button: dynamic(() => import("./HubSpotFormButton")),
   image: dynamic(() => import("./Image")),
   image_grid: dynamic(() => import("./ImageGrid")),
   inline_images: dynamic(() => import("./InlineImages")),

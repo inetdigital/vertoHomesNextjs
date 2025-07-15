@@ -10,13 +10,29 @@ import {
 } from "framer-motion";
 import { PrismicNextImage } from "@prismicio/next";
 
-export const BannerImage = ({ image, title, themeColor, caption, status }) => {
+import { useHubspotMainForm } from "@/context/HubspotMainFormContext";
+
+export const BannerImage = ({
+  image,
+  title,
+  themeColor,
+  caption,
+  status,
+  data,
+}) => {
+  console.log("BannerImage data:", data);
   const colorClasses = themeColor ? themeColor : "vertoLightGreen";
 
   const [isBrowser, setIsBrowser] = useState(false); // Track if the app is in the browser
   const { scrollY } = useScroll();
   const [viewportHeight, setViewportHeight] = useState(0);
   const scale = useTransform(scrollY, [0, viewportHeight], [1, 1.2]);
+
+  const { openForm, setFormId } = useHubspotMainForm();
+  const handleOpenForm = (formId) => {
+    setFormId(formId); // Set dynamic form ID
+    openForm(); // Open the modal
+  };
 
   // Ensure the component detects the browser environment
   useEffect(() => {
@@ -81,6 +97,22 @@ export const BannerImage = ({ image, title, themeColor, caption, status }) => {
             <p className="text-white font-normal text-lg lg:text-2xl text-center">
               {Array.isArray(caption) ? prismic.asText(caption) : caption}
             </p>
+          </div>
+        )}
+        {data?.banner_link && data?.hubspot_form_id && (
+          <div className="mt-16">
+            <button onClick={() => handleOpenForm(data?.hubspot_form_id)}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className={`text-white bg-vertoLightBlue hover:bg-vertoLightBlue hover:text-white relative px-4 py-2 font-medium text-lg tracking-button uppercase border-0 rounded transition-colors duration-300 ease-in-out`}
+              >
+                {data.banner_link.text
+                  ? data.banner_link.text
+                  : "Register your interest"}
+              </motion.div>
+            </button>
           </div>
         )}
       </div>

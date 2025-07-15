@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"link_label": {
+				"__TYPE__": "FieldContent",
+				"value": "lamp",
+				"type": "Text"
+			},
+			"hubspot_form_id": {
+				"__TYPE__": "FieldContent",
+				"value": "carried",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

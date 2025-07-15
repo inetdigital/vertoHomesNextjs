@@ -46,11 +46,31 @@
           "placeholder": ""
         }
       },
+      "banner_link": {
+        "type": "Link",
+        "config": {
+          "label": "Banner Link",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "select": null,
+          "allowText": true
+        }
+      },
+      "hubspot_form_id": {
+        "type": "Text",
+        "config": {
+          "label": "Hubspot Form Id",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "hub_spot_form_button": {
+              "type": "SharedSlice"
+            },
             "team": {
               "type": "SharedSlice"
             },

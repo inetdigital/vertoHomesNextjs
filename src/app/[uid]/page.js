@@ -64,6 +64,8 @@ export default async function Page({ params }) {
           title={page.data.title}
           themeColor="vertoLightBlue"
           caption={page.data.banner_caption}
+          status={null}
+          data={page.data}
         />
       )}
 

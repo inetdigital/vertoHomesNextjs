@@ -1,0 +1,33 @@
+{
+  "id": "hub_spot_form_button",
+  "type": "SharedSlice",
+  "name": "HubSpotFormButton",
+  "description": "HubSpotFormButton",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "link_label": {
+          "type": "Text",
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          }
+        },
+        "hubspot_form_id": {
+          "type": "Text",
+          "config": {
+            "label": "Hubspot Form ID",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

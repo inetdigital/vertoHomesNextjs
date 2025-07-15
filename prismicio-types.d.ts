@@ -587,6 +587,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | HubSpotFormButtonSlice
   | TeamSlice
   | MapLocationSlice
   | VideoSlice
@@ -656,6 +657,28 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   banner_caption: prismic.KeyTextField;
+
+  /**
+   * Banner Link field in *Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.banner_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  banner_link: prismic.LinkField;
+
+  /**
+   * Hubspot Form Id field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.hubspot_form_id
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  hubspot_form_id: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -3410,6 +3433,61 @@ export type FullimageBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *HubSpotFormButton → Default → Primary*
+ */
+export interface HubSpotFormButtonSliceDefaultPrimary {
+  /**
+   * Link Label field in *HubSpotFormButton → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hub_spot_form_button.default.primary.link_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_label: prismic.KeyTextField;
+
+  /**
+   * Hubspot Form ID field in *HubSpotFormButton → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hub_spot_form_button.default.primary.hubspot_form_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  hubspot_form_id: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for HubSpotFormButton Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HubSpotFormButtonSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HubSpotFormButtonSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HubSpotFormButton*
+ */
+type HubSpotFormButtonSliceVariation = HubSpotFormButtonSliceDefault;
+
+/**
+ * HubSpotFormButton Shared Slice
+ *
+ * - **API ID**: `hub_spot_form_button`
+ * - **Description**: HubSpotFormButton
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HubSpotFormButtonSlice = prismic.SharedSlice<
+  "hub_spot_form_button",
+  HubSpotFormButtonSliceVariation
+>;
+
+/**
  * Primary content in *Image → Default → Primary*
  */
 export interface ImageSliceDefaultPrimary {
@@ -5368,6 +5446,10 @@ declare module "@prismicio/client" {
       FullimageBlockSliceDefaultPrimary,
       FullimageBlockSliceVariation,
       FullimageBlockSliceDefault,
+      HubSpotFormButtonSlice,
+      HubSpotFormButtonSliceDefaultPrimary,
+      HubSpotFormButtonSliceVariation,
+      HubSpotFormButtonSliceDefault,
       ImageSlice,
       ImageSliceDefaultPrimary,
       ImageSliceWidePrimary,
