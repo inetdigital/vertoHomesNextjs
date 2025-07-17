@@ -109,6 +109,11 @@ export default function RootLayout({ children }) {
             </LocationsProvider>
           </SearchOptionsProvider>
         </SearchTabProvider>
+        <Script
+          src="https://widget.superchat.de/snippet.js?applicationKey=WC1baYn4VO89lxGA9DKzg53Wmq"
+          strategy="afterInteractive"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </body>
     </html>
   );
