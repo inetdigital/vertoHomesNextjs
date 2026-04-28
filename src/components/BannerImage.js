@@ -59,6 +59,13 @@ export const BannerImage = ({
           </p>
         </div>
       )}
+      {status?.uid === "sold" && (
+        <div className="absolute z-[2] right-0 top-40 bg-vertoDarkGreen px-6 py-4 hidden md:block">
+          <p className="text-vertoLightGreen text-2xl font-semibold font-heading tracking-widest">
+            SOLD
+          </p>
+        </div>
+      )}
       {image && (
         <AnimatePresence>
           <motion.div

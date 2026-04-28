@@ -58,7 +58,7 @@ export default async function Property({ params }) {
           image={page.data.banner_image}
           title={page.data.title}
           caption={page.data.banner_caption}
-          status={page.data.development_status}
+          status={page.data.status}
         />
       )}
       <HeadingDetails page={page} />

@@ -16,6 +16,11 @@ export const PropertyCard = ({ property }) => {
               fallbackAlt="Verto Homes"
             />
           )}
+          {property.data.status?.uid === "sold" && (
+            <div className="absolute top-4 left-4 z-[2] bg-vertoLightGreen text-white text-sm font-bold uppercase px-3 py-1 rounded">
+              Sold
+            </div>
+          )}
 
           <div className="flex items-center justify-center flex-col w-full z-[1]">
             <div>

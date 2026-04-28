@@ -75,9 +75,11 @@ export const HeadingDetails = ({ page }) => {
           <div className="flex flex-col lg:flex-row mb-16">
             <div className="flex w-full lg:w-2/3">
               <div className="bg-white text-vertoDarkBlue font-bold px-8 py-4 rounded-lg text-2xl tracking-wide inline w-full sm:w-auto text-center">
-                {page.data.price && page.data.price > 0
-                  ? `£ ${formatPrice(page.data.price)}`
-                  : "POA"}
+                {page.data.status?.uid === "sold"
+                  ? "Sold"
+                  : page.data.price && page.data.price > 0
+                    ? `£ ${formatPrice(page.data.price)}`
+                    : "POA"}
               </div>
             </div>
             <div className="w-full lg:w-1/3 pl-0 lg:pl-12 mt-12 lg:mt-0 flex">
